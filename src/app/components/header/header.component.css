@@ -1,0 +1,67 @@
+@media screen and (max-width: 500px) {
+  /* Mobile */
+  .layout-topmenu {
+      display: none;
+  }
+  .layout-sidemenu {
+      visibility: visible;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  /* Desktop */
+  .layout-topmenu {
+      visibility: visible;
+  }
+
+  .layout-sidemenu {
+      display: none;
+  }
+}
+
+.layout-main {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.layout-topmenu {
+  padding-top: 190px;
+}
+
+
+
+.fill-remaining-space {
+    /*This fills the remaining space, by using flexbox.  
+   Every toolbar row uses a flexbox row layout. */
+   flex: 1 1 auto;
+ }
+
+ .barra-user{
+   color: white;
+   background-color:#BDBDBD;
+   padding-left: 10px;
+   padding-right: 5px;
+   
+ }
+
+ .header-general{
+  width: 100%; 
+ }
+
+ .header-user{
+   text-align: left;
+   font-size: 15px;
+ }
+ .header-time{
+  text-align: right;
+  font-size: 10px;
+}
+.header-button-off{
+  text-align: center;
+  color: red;
+  cursor: pointer;
+}
+.header-button-login{
+  color: rgb(13, 243, 13);
+  cursor: pointer;
+}

@@ -1,4 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+
+.centrado{
+  text-align: center;
+  vertical-align:middle;
+ }
+
+.my-container{
+  
+    margin: 0 auto;
+    padding: 10px;
+  
+
+
+
+}
+
+@media screen and (max-width: 500px) {
+  /* Mobile */
+  .myinput-size {
+      width: 98%;
+      
+  }  
+  .mypanel-size {
+    width: 98%;
+    margin-top:'20px';
+    margin: 0 auto;
+  }  
+
+
+
+}
+
+@media screen and (min-width: 500px) {
+  /* Desktop */
+  .myinput-size {
+    width: 70%;
+  }  
+
+  .mypanel-size {
+    width: 80%;
+    margin-top:'20px';
+    margin: 0 auto;
+  }  
+
+
+}
+
+
+
 .dark-theme {
   background-color: #3f3f3f;
   color: #dedede;

@@ -1,0 +1,39 @@
+
+  <p-panel header="Conectarse" styleClass="mypanel-size">
+
+    <form [formGroup]="loginForm"  autocomplete="off" novalidate (ngSubmit)="onsubmit()">
+
+    <div class="ui-g">
+      <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+              <input  type="email"  pInputText formControlName="email" id="email"  class="myinput-size"
+                placeholder="Correo">
+            </div>
+          </div>          
+      </div>
+      <div class="ui-g-12 ui-md-12">
+        <div class="ui-g-12">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-key"></i></span>
+            <input  type="password"  pInputText formControlName="password" id="password"  class="myinput-size"
+              placeholder="Contraseña">
+          </div>
+        </div>          
+
+        <div class="ui-g-12">
+          <p-message severity="error" [text]="loginForm.controls['password'].errors['required'] ? 'La contrasela es obligatoria' : loginForm.controls['password'].errors['minlength'] ? 'Lacontraseña debe ser min de 6 carácteres' : ''" 
+          *ngIf="!loginForm.controls['password'].valid&&loginForm.controls['password'].dirty"></p-message>
+        </div>   
+
+
+    </div>
+    <div class="ui-g-12 ui-md-12 centrado">
+      <div class="ui-g-12">
+        <button pButton label="Login" type="submit" icon="pi pi-power-off" [disabled]="!loginForm.valid"></button>
+      </div>          
+  </div>
+    </div>
+  </form>
+  </p-panel>
