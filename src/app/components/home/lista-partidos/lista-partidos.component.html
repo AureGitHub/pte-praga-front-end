@@ -1,21 +1,21 @@
 <p-dataView #dv [value]="partidos" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="brand"
 [sortField]="sortField" [sortOrder]="sortOrder">
 <p-header>
-    <div class="ui-helper-clearfix">
+    <!-- <div class="ui-helper-clearfix">
         <div class="ui-g">
             <div class="ui-g-12 ui-md-4">
-                <p-dropdown [options]="sortOptions"  placeholder="Sort By" (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+                <p-dropdown [options]="sortOptions"  placeholder="Ordenar por" (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
             </div>
             <div class="ui-g-6 ui-md-4 filter-container">
                 <div style="position:relative">
-                    <input type="search" pInputText placeholder="Search by nombre" (input)="dv.filter($event.target.value)">
+                    <input type="search" pInputText placeholder="buscar by nombre" (input)="dv.filter($event.target.value)">
                 </div>
             </div>
             <div class="ui-g-6 ui-md-4" style="text-align:right">
-                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                
             </div>
         </div>
-    </div>
+    </div> -->
 </p-header>
 <ng-template let-partido pTemplate="listItem">
     <div class="ui-g" class="item_partido_normal">
@@ -51,14 +51,5 @@
         </div>
     </div>
 </ng-template>
-<ng-template let-partido pTemplate="gridItem">
-    <div style="padding:.5em" class="ui-g-12 ui-md-3">
-        <p-panel [header]="partido.dia" [style]="{'text-align':'center'}">
-            <img src="../../../../../assets/images/canstockphoto61341382.jpg" width="40">
-            <div class="car-detail">Pistas: {{partido.pistas}} - T. Jugadores: {{partido.jugadorestotal}} - Apuntados:{{partido.jugadoresapuntados}} </div>
-            <hr class="ui-widget-content" style="border-top:0">
-            <button pButton type="button" icon="pi pi-search"  style="margin-top:0"></button>
-        </p-panel>
-    </div>
-</ng-template>
+
 </p-dataView>

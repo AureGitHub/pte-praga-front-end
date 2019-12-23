@@ -15,6 +15,8 @@ import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {DataViewModule} from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
+import {TableModule} from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [],
@@ -31,7 +33,9 @@ import { DropdownModule } from 'primeng/dropdown';
     ToastModule,
     ConfirmDialogModule,
     DataViewModule,
-    DropdownModule
+    DropdownModule,
+    TableModule,
+    DialogModule
   ],
   exports: [
     CommonModule,
@@ -46,7 +50,9 @@ import { DropdownModule } from 'primeng/dropdown';
     ToastModule,
     ConfirmDialogModule,
     DataViewModule,
-    DropdownModule
+    DropdownModule,
+    TableModule,
+    DialogModule
   ]
 })
 export class MyprimengModule { }

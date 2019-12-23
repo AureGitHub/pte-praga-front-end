@@ -61,8 +61,8 @@ export class ListaPartidosComponent implements OnInit {
         var keyA = new Date(a.dia),
             keyB = new Date(b.dia);
         // Compare the 2 dates
-        if(keyA < keyB) return -1;
-        if(keyA > keyB) return 1;
+        if(keyA > keyB) return -1;
+        if(keyA < keyB) return 1;
         return 0;
     });
 

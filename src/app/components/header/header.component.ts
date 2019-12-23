@@ -53,12 +53,15 @@ export class HeaderComponent implements OnInit {
   IniciaMenu() {
     this.MenuItems = [
       {
+
+        style: {color:'red'},
+        
           label: 'Home',
           icon: 'pi pi-home', routerLink: ['/'],
       },
 
       {
-        label: 'Login',
+        label: 'Login', 
         icon: 'pi pi-power-off', routerLink: ['/login'],
         visible: !this.currentUser
     },
@@ -71,8 +74,8 @@ export class HeaderComponent implements OnInit {
 
       },
       {
-          label: 'File Manager',
-          icon: 'pi pi-file-o', routerLink: ['/files']
+          label: 'Jugadores',
+          icon: 'pi pi-users', routerLink: ['/users']
       },
       {
           label: 'Counters', icon: 'fa fa-fw fa-sitemap',

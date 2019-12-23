@@ -27,6 +27,8 @@ import { LoadingComponent } from './components/layout/loading/loading.component'
 import { NgxLoadingModule } from 'ngx-loading';
 import { ListaPartidosComponent } from './components/home/lista-partidos/lista-partidos.component';
 import { DatePipe } from '@angular/common';
+import { DetallePartidoComponent } from './components/detalle-partido/detalle-partido.component';
+import { UsersComponent } from './components/users/users.component';
 
 const appRoutes: Routes = [ ];
 
@@ -40,7 +42,9 @@ const appRoutes: Routes = [ ];
         LoginComponent,
         AlertComponent,
         LoadingComponent,
-        ListaPartidosComponent
+        ListaPartidosComponent,
+        DetallePartidoComponent,
+        UsersComponent
     ],
     imports: [
         BrowserModule,
