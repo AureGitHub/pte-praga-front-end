@@ -22,6 +22,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemHeroService } from './services/api-fake-memory/fake-bd-ptepraga.service';
 import { InterceptorService } from './services/http/interceptor.service';
+import { LoadingService } from './services/components/loading.service';
+import { LoadingComponent } from './components/layout/loading/loading.component';
+import { NgxLoadingModule } from 'ngx-loading';
+import { ListaPartidosComponent } from './components/home/lista-partidos/lista-partidos.component';
+import { DatePipe } from '@angular/common';
 
 const appRoutes: Routes = [ ];
 
@@ -33,7 +38,9 @@ const appRoutes: Routes = [ ];
         HeaderComponent,
         HomeComponent,
         LoginComponent,
-        AlertComponent
+        AlertComponent,
+        LoadingComponent,
+        ListaPartidosComponent
     ],
     imports: [
         BrowserModule,
@@ -43,7 +50,10 @@ const appRoutes: Routes = [ ];
         ReactiveFormsModule,
         MyprimengModule,
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(InMemHeroService)
+        HttpClientInMemoryWebApiModule.forRoot(InMemHeroService),
+        NgxLoadingModule.forRoot({}),
+        
+
     ],
     providers: [
         {
@@ -51,7 +61,9 @@ const appRoutes: Routes = [ ];
             useClass: InterceptorService,
             multi: true
           },
+          DatePipe,
         AlertService,
+        LoadingService,
         MessageService,
         HttpGralService,
         AuthenticationService,

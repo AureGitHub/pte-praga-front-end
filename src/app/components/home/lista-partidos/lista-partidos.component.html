@@ -1,0 +1,64 @@
+<p-dataView #dv [value]="partidos" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="brand"
+[sortField]="sortField" [sortOrder]="sortOrder">
+<p-header>
+    <div class="ui-helper-clearfix">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-4">
+                <p-dropdown [options]="sortOptions"  placeholder="Sort By" (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+            </div>
+            <div class="ui-g-6 ui-md-4 filter-container">
+                <div style="position:relative">
+                    <input type="search" pInputText placeholder="Search by nombre" (input)="dv.filter($event.target.value)">
+                </div>
+            </div>
+            <div class="ui-g-6 ui-md-4" style="text-align:right">
+                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+        </div>
+    </div>
+</p-header>
+<ng-template let-partido pTemplate="listItem">
+    <div class="ui-g" class="item_partido_normal">
+
+        <div class="ui-g-6 ui-md-3">
+            <i class="pi pi-calendar"></i>  <b>{{partido.dia}}</b>  
+        </div>
+
+        <div class="ui-g-6 ui-md-3">
+            <i class="pi pi-clock"></i> {{partido.hora}} ({{partido.duracion}})
+        </div>
+
+        <div class="ui-g-6 ui-md-3" title="pistas">
+            <i class="pi pi-paperclip"></i>  <b>{{partido.pistas}}</b> 
+        </div>
+
+        <div class="ui-g-6 ui-md-3" title="jugadores">
+            <i class="pi pi-users"></i> {{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}
+        </div>
+
+
+      
+        <div class="ui-g-4 ui-md-4" title="Apuntarse" *ngIf="currentUser && !partido.idpartidoxjugador">
+            <i (click)="Apuntate(partido)"  class="pi pi-thumbs-up verde icono-link"></i>
+        </div>
+
+        <div class="ui-g-4 ui-md-4" title="Borrarse" *ngIf="currentUser && partido.idpartidoxjugador">
+            <i (click)="Borrate(partido)" class="pi pi-thumbs-down rojo icono-link"></i>
+        </div>
+
+        <div class="ui-g-4 ui-md-4" title="Informacion" *ngIf="currentUser && !partido.esCreador">
+            <i [routerLink]="['/detalle-partido', partido.id]" class="pi pi-info info icono-link"></i> 
+        </div>
+    </div>
+</ng-template>
+<ng-template let-partido pTemplate="gridItem">
+    <div style="padding:.5em" class="ui-g-12 ui-md-3">
+        <p-panel [header]="partido.dia" [style]="{'text-align':'center'}">
+            <img src="../../../../../assets/images/canstockphoto61341382.jpg" width="40">
+            <div class="car-detail">Pistas: {{partido.pistas}} - T. Jugadores: {{partido.jugadorestotal}} - Apuntados:{{partido.jugadoresapuntados}} </div>
+            <hr class="ui-widget-content" style="border-top:0">
+            <button pButton type="button" icon="pi pi-search"  style="margin-top:0"></button>
+        </p-panel>
+    </div>
+</ng-template>
+</p-dataView>

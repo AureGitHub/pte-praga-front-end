@@ -51,7 +51,6 @@ export class InterceptorService implements HttpInterceptor {
     // const token: string = localStorage.getItem('token');
 
 
-
     this.loadingService.mostar(true);
 
     // if (token) {

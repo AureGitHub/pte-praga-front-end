@@ -1,5 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+.icono-link{
+  cursor: pointer;
+}
 
+.verde{
+  color: green;
+}
+
+.rojo{
+  color: red;
+}
+
+.info{
+  color: yellowgreen;
+}
 .centrado{
   text-align: center;
   vertical-align:middle;
@@ -22,7 +36,7 @@
       
   }  
   .mypanel-size {
-    width: 98%;
+    
     margin-top:'20px';
     margin: 0 auto;
   }  
@@ -38,7 +52,7 @@
   }  
 
   .mypanel-size {
-    width: 80%;
+
     margin-top:'20px';
     margin: 0 auto;
   }  

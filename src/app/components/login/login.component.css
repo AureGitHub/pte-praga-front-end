@@ -7,6 +7,8 @@
 
 
 
+
+
   @media screen and (max-width: 500px) {
   /* Mobile */
   .layout-topmenu {
@@ -14,6 +16,11 @@
   }
   .layout-sidemenu {
       visibility: visible;
+  }
+
+  .mypanel-size-local{
+    width: 98%;
+    margin: 0 auto;
   }
 }
 
@@ -25,5 +32,9 @@
 
   .layout-sidemenu {
       display: none;
+  }
+  .mypanel-size-local{
+    width: 40%;
+    margin: 0 auto;
   }
 }

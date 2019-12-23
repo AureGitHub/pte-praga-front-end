@@ -1,0 +1,72 @@
+
+
+
+.img_pp{
+  width:30%;
+  max-width:40px;
+}
+
+.div_button_normal{
+  text-align: center;
+  background-color: #FAFAFA;
+}
+
+.button_normal{
+  
+  margin: 5px;
+  
+}
+
+.lista-partidos{
+  color:black;  
+}
+
+.filter-container {
+  text-align: center;
+}
+
+.item_partido_normal{
+  border-width: 1;
+  border-color: wheat;
+  background-color:#424242;
+  box-shadow: 10px 10px black;
+  margin: 5px;
+
+  
+}
+
+.car-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  border-bottom: 1px solid #d9dad9;
+}
+.car-details > div {
+  display: flex;
+  align-items: center;
+}
+.car-details > div img {
+  margin-right: 14px;
+}
+.car-detail {
+  padding: 0 1em 1em 1em;
+  border-bottom: 1px solid #d9dad9;
+  margin: 1em;
+}
+.ui-panel-content {
+  padding: 1em;
+}
+.dark-theme :host ::ng-deep .car-details,
+.dark-theme :host ::ng-deep .car-detail {
+  border-bottom: 1px solid #191919;
+}
+
+@media (max-width: 1024px) {
+  .car-details img {
+       width: 75px;
+  }
+  .filter-container {
+      text-align: left;
+  }
+}
