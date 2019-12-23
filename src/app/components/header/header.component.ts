@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
 
 
   IniciaMenu() {
-    this.MenuItems = [
+    this.MenuItems = [ 
       {
 
         style: {color:'red'},
