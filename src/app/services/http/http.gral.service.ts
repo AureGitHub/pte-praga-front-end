@@ -31,6 +31,7 @@ export class HttpGralService {
 
 
   getDatas(url: string): Observable<any[]> {
+
     return this.http.get<any[]>(url).pipe(
       tap(data => {})
     ); }

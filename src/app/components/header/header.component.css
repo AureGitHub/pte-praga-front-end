@@ -1,3 +1,11 @@
+
+/deep/ .menucus ul li:nth-child(2) {
+  background: green;
+}
+/deep/ .menucus ul li:nth-child(3) {
+  background:red;
+}
+
 @media screen and (max-width: 500px) {
   /* Mobile */
   .layout-topmenu {

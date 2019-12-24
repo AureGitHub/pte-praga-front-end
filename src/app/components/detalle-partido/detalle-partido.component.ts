@@ -16,6 +16,10 @@ export class DetallePartidoComponent implements OnInit {
   currentUser: User;
   partido: Partido = null;
 
+  diestros: User[]=[];
+  zurdos: User[]=[];
+
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -31,11 +35,49 @@ export class DetallePartidoComponent implements OnInit {
     this.getPartido(this.route.snapshot.paramMap.get('id'));
   }
 
-  getPartido(id){
 
-    this.httpGralService.getDataById(apisUrl.partido, id).subscribe(
+  hacerdistribucion(){}
+
+  getPartido(idpartido){
+
+    this.httpGralService.getDataById(apisUrl.partido, idpartido).subscribe(
       data => {
         this.partido = data;
+
+        //jugadores del partido
+
+        this.httpGralService.getDatas(apisUrl.partidoxjugador + '?idpartido=' +idpartido ).subscribe(
+          jugadorespartido =>
+          {
+            
+
+            jugadorespartido.forEach(jugador => 
+              this.httpGralService.getDataById(apisUrl.user,jugador.idjugador).subscribe(
+                user => {
+                  if(user!=null){
+                    if(user.idposicion === 1){
+                      this.diestros.push(user)
+                    }else if(user.idposicion === 2){
+                      this.zurdos.push(user)
+                    }
+                    
+                  }
+
+                }
+              )            
+             );
+
+
+
+
+          });
+
+        
+        
+
+
+
+
       });
 
   }
