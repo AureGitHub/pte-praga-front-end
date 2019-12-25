@@ -29,8 +29,12 @@ import { ListaPartidosComponent } from './components/home/lista-partidos/lista-p
 import { DatePipe } from '@angular/common';
 import { DetallePartidoComponent } from './components/detalle-partido/detalle-partido.component';
 import { UsersComponent } from './components/users/users.component';
+import { NoAuthComponent } from './components/no-auth/no-auth.component';
+import { NoFoundComponent } from './components/no-found/no-found.component';
+import { AuthGuard } from './services/guard';
+import { RoleGuard } from './services/guard/roles.guard';
 
-const appRoutes: Routes = [ ];
+const appRoutes: Routes = [ ]; 
 
 @NgModule({
     declarations: [
@@ -44,9 +48,12 @@ const appRoutes: Routes = [ ];
         LoadingComponent,
         ListaPartidosComponent,
         DetallePartidoComponent,
-        UsersComponent
+        UsersComponent,
+        NoAuthComponent,
+        NoFoundComponent
     ],
     imports: [
+       
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
@@ -56,10 +63,13 @@ const appRoutes: Routes = [ ];
         HttpClientModule,
         HttpClientInMemoryWebApiModule.forRoot(InMemHeroService),
         NgxLoadingModule.forRoot({}),
+       
         
 
     ],
     providers: [
+        AuthGuard,
+        RoleGuard,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: InterceptorService,
