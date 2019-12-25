@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api/menuitem';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-top-menu',
@@ -9,6 +10,9 @@ import { MenuItem } from 'primeng/api/menuitem';
 export class TopMenuComponent implements OnInit {
 
   @Input() MenuData: MenuItem[];
+  @Input() currentUser: User;
+
+  @Output() callLogout = new EventEmitter();
 
   constructor() { }
 

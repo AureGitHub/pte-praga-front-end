@@ -33,6 +33,7 @@ import { NoAuthComponent } from './components/no-auth/no-auth.component';
 import { NoFoundComponent } from './components/no-found/no-found.component';
 import { AuthGuard } from './services/guard';
 import { RoleGuard } from './services/guard/roles.guard';
+import { ComunMenuComponent } from './components/header/comun-menu/comun-menu.component';
 
 const appRoutes: Routes = [ ]; 
 
@@ -50,7 +51,8 @@ const appRoutes: Routes = [ ];
         DetallePartidoComponent,
         UsersComponent,
         NoAuthComponent,
-        NoFoundComponent
+        NoFoundComponent,
+        ComunMenuComponent
     ],
     imports: [
        

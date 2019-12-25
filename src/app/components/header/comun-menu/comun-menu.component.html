@@ -1,0 +1,24 @@
+
+<div class="ui-fluid">
+    <div class="ui-g">
+        <div class="ui-g-7 ui-md-9" align="right">
+            <i class="pi pi-user verde" *ngIf="currentUser"></i> {{currentUser?.nombre}}
+           
+          </div>
+        
+          <div class="ui-g-5 ui-md-3" align="right">
+            <i
+              (click)="callLogout.emit($event)"
+              class="pi pi-power-off rojo icono-link"
+              *ngIf="currentUser"
+            ></i>
+            <i
+              routerLink="/login"
+              class="pi pi-power-off verde icono-link"
+              *ngIf="!currentUser"
+            ></i>
+          </div>
+    </div>
+</div>
+
+

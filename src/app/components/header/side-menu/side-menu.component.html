@@ -8,23 +8,8 @@
         <p-tieredMenu styleClass="menucus" #menu [model]="MenuData" [popup]="true"></p-tieredMenu>
       </p-toolbar>
     </div>
-
-    <div class="ui-g-3 ui-md-3" align="right">
-      <i class="pi pi-user verde" *ngIf="currentUser"></i> {{currentUser?.nombre}}
-     
-    </div>
-
-    <div class="ui-g-2 ui-md-2" align="right">
-      <i
-        (click)="callLogout.emit($event)"
-        class="pi pi-power-off rojo icono-link"
-        *ngIf="currentUser"
-      ></i>
-      <i
-        routerLink="/login"
-        class="pi pi-power-off verde icono-link"
-        *ngIf="!currentUser"
-      ></i>
+    <div class="ui-g-5 ui-md-5">
+      <app-comun-menu (callLogout)="callLogout.emit($event)" [currentUser]="currentUser"></app-comun-menu>
     </div>
   </div>
 </div>

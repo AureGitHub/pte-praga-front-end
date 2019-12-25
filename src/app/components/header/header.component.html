@@ -1,8 +1,13 @@
 <div class="header-general">
-        <app-top-menu [MenuData]="MenuItems" class="layout-topmenu"></app-top-menu>
+        <app-top-menu
+        (callLogout)="logout()"
+        [currentUser]="currentUser"
+         [MenuData]="MenuItems" 
+         class="layout-topmenu"></app-top-menu>
         <app-side-menu
         (callLogout)="logout()"
+        [currentUser]="currentUser"
         [MenuData]="MenuItems" 
-        [currentUser]="currentUser" class="layout-sidemenu"></app-side-menu
+         class="layout-sidemenu"></app-side-menu
         >    
 </div>
