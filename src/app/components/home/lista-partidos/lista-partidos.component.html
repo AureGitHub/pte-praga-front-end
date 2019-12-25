@@ -46,7 +46,7 @@
             <i (click)="Borrate(partido)" class="pi pi-thumbs-down rojo icono-link"></i>
         </div>
 
-        <div class="ui-g-4 ui-md-4" title="Informacion" *ngIf="currentUser && !partido.esCreador">
+        <div class="ui-g-4 ui-md-4" title="Informacion" *ngIf="currentUser">
             <i [routerLink]="['/detalle-partido', partido.id]" class="pi pi-info info icono-link"></i> 
         </div>
     </div>

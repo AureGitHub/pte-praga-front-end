@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { User } from 'src/app/models/user';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MenuItem } from 'primeng/api/menuitem';
 
 @Component({
@@ -9,6 +10,9 @@ import { MenuItem } from 'primeng/api/menuitem';
 export class SideMenuComponent implements OnInit {
 
   @Input() MenuData: MenuItem[];
+  @Input() currentUser: User;
+
+  @Output() callLogout = new EventEmitter();
 
   constructor() { }
 

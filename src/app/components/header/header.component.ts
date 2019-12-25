@@ -36,9 +36,12 @@ export class HeaderComponent implements OnInit {
   logout() {
 
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to proceed?',
-      header: 'Confirmation',
+      message: '¿Va a desconectarse de la aplicación?',
+      header: 'Confirmación de desconexión',
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Si',
+      rejectLabel: 'No',
+      
       accept: () => {
         this.authenticationService.logout();
         this.router.navigate(['/']);
@@ -56,26 +59,14 @@ export class HeaderComponent implements OnInit {
 
         style: {color:'red'},
         
-          label: 'Home',
+          label: 'Partidos',
           icon: 'pi pi-home', routerLink: ['/'],
       },
-
-      {
-        label: 'Login', 
-        icon: 'pi pi-power-off', routerLink: ['/login'],
-        visible: !this.currentUser
-    },
-
-      {
-          label: 'Logout',
-          icon: 'pi  pi-power-off',
-          visible: this.currentUser != null,
-          command: (event: Event) => { this.logout(); }
-
-      },
+     
       {
           label: 'Jugadores',
-          icon: 'pi pi-users', routerLink: ['/users']
+          icon: 'pi pi-users', routerLink: ['/users'],
+          visible: this.currentUser && this.currentUser.isAdmin
       },
       {
           label: 'Counters', icon: 'fa fa-fw fa-sitemap',
