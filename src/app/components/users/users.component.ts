@@ -125,7 +125,7 @@ export class UsersComponent implements OnInit {
 
   }
 
-  deleteConfirm() {
+  delete(idUser) {
     this.displayDialog = false;
     
     this.confirmationService.confirm({
@@ -133,11 +133,13 @@ export class UsersComponent implements OnInit {
       header: 'Borrado usuario',
       icon: 'pi pi-user-minus',
       accept: () => {
-        this.httpGralService.deleteDataById(apisUrl.user, this.selectedUser.id)
+        this.httpGralService.deleteDataById(apisUrl.user, idUser)
         .subscribe(() => {
           const index = this.users.indexOf(this.selectedUser);
           this.users = this.users.filter((val, i) => i !== index);
           this.user = null;
+
+          this.getUsers();
         });
       },
       reject: () => {
