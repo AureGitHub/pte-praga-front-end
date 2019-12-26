@@ -20,6 +20,7 @@ import { AlertService } from 'src/app/services/components/alert.service';
 export class UsersComponent implements OnInit {
 
   displayDialog: boolean;
+ 
 
   Selpos: any;
   Selper: any;
@@ -50,10 +51,10 @@ export class UsersComponent implements OnInit {
 
       this.userForm = new FormGroup({
         'id': new FormControl(''),
-        'alias': new FormControl('', [Validators.required, 
-          Validators.compose([Validators.minLength(5)]),
+        'alias': new FormControl('', [Validators.required,
+          Validators.compose([Validators.minLength(3)]),
           Validators.compose([Validators.maxLength(10)])
-        ]),        
+        ]),
         'email': new FormControl('',  [Validators.required, Validators.email]),
         'password': new FormControl('', [Validators.required, Validators.compose([Validators.minLength(6)])]),
         'nombre': new FormControl('', [Validators.required, 

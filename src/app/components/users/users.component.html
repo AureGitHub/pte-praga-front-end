@@ -48,14 +48,24 @@
     </div>
   </ng-template>
 </p-table>
-<div class="mypanel-size-local">
+
+
+
+
+
   <p-dialog
     header="Jugador"
     [(visible)]="displayDialog"
     [responsive]="true"
     showEffect="fade"
     [modal]="false"
+    [responsive]="false" [resizable]="false"        
+    [style]="{'max-width': '800px'}"
+    
   >
+
+  
+
     <form
       [formGroup]="userForm"
       autocomplete="off"
@@ -101,7 +111,7 @@
             </div>            
         </div>          
         <div class="ui-g-1">
-          <i class="pi pi-info rojo" *ngIf="hasError('email',['required','minlength','maxlength'])"></i>         
+          <i class="pi pi-info rojo" *ngIf="hasError('email',['required','email'])"></i>         
         </div>
       
 
@@ -144,7 +154,7 @@
         <div class="ui-g-1">
           <i class="pi pi-info rojo" *ngIf="hasError('idperfil',['required'])"></i>         
         </div>
-        <div class="ui-g-12" align="center">
+        <div class="ui-g-11" align="center">
           <button
             pButton
             label="Guardar"
@@ -153,9 +163,12 @@
             [disabled]="!userForm.valid"
           ></button>
         </div> 
+        <div class="ui-g-1">          
+        </div>
       </div>  
     </div>    
 
     </form>
+  
   </p-dialog>
-</div>
+

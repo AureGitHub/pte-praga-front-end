@@ -1,0 +1,74 @@
+<ng-container *ngIf="myFormGroup!=null">
+    <form [formGroup]="myFormGroup" autocomplete="off" novalidate (ngSubmit)="onsubmit()">
+
+        <div class="ui-fluid">        
+            <div class="ui-g">
+                <ng-container  *ngFor="let form_elem of formDataTemplate">               
+                    <ng-container  *ngIf="form_elem.type=='hidden'">
+                            <input type="hidden" formControlName="{{form_elem.name}}">
+                    </ng-container>
+
+                    <ng-container  *ngIf="form_elem.type!='hidden'">
+                        <div class="ui-g-11">            
+                            <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon">
+                                <i class="{{form_elem.icon}}"></i>
+                            </span>
+                            <ng-container  [ngSwitch]="form_elem.type">
+                                <ng-container  *ngSwitchCase="'textBox'">
+                                        <input type="text" pInputText formControlName="{{form_elem.name}}" style="width: 100%;"   placeholder="{{form_elem.placeholder}}"/>
+                                </ng-container>
+
+                                <ng-container  *ngSwitchCase="'email'">
+                                    <input type="email" pInputText formControlName="{{form_elem.name}}" style="width: 100%;"   placeholder="{{form_elem.placeholder}}"/>                            
+                                </ng-container>
+
+                                <ng-container  *ngSwitchCase="'password'">
+                                    <input type="password" pInputText formControlName="{{form_elem.name}}" style="width: 100%;"   placeholder="{{form_elem.placeholder}}"/>                            
+                                </ng-container>
+
+                                <ng-container  *ngSwitchCase="'select'">
+                                    <p-dropdown class="my-p-dropdown"   [options]="form_elem.options" formControlName="{{form_elem.name}}"></p-dropdown>
+                            </ng-container>
+
+                            </ng-container>
+                            </div>            
+                        </div>          
+                        <div class="ui-g-1">                            
+                        <i class="pi pi-exclamation-triangle rojo" *ngIf="hasError(form_elem.name, form_elem.validators_resumen)" pTooltip="{{form_elem.validators_message}}"></i>
+                        </div>
+
+
+                        <ng-container *ngIf="form_elem.validators !=null">
+                            <ng-container *ngFor="let validator of form_elem.validators">
+                                <div class="ui-g-11">
+                                    <p-message severity="error" [text]="validator.mensaje" 
+                                    *ngIf="hasError(form_elem.name, validator.name)"></p-message>
+                                  </div>
+                                  <div class="ui-g-1">
+
+                                  </div>
+                            </ng-container>
+                        </ng-container>                
+                    </ng-container>
+                        
+                </ng-container>  
+    
+                <div class="ui-g-11" align="center">
+                    <button
+                      pButton
+                      label="{{ButtonLabel}}"
+                      type="submit"
+                      icon="{{ButtonIcon}}"
+                      [disabled]="!myFormGroup.valid"
+                    ></button>
+                  </div> 
+                  <div class="ui-g-1">          
+                  </div>
+    
+            </div>
+        </div>   
+    </form>
+</ng-container>
+
+

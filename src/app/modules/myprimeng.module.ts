@@ -17,6 +17,7 @@ import {DataViewModule} from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
 import {TableModule} from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
+import {TooltipModule} from 'primeng/tooltip';
 
 @NgModule({
   declarations: [],
@@ -35,7 +36,8 @@ import { DialogModule } from 'primeng/dialog';
     DataViewModule,
     DropdownModule,
     TableModule,
-    DialogModule
+    DialogModule,
+    TooltipModule
   ],
   exports: [
     CommonModule,
@@ -52,7 +54,8 @@ import { DialogModule } from 'primeng/dialog';
     DataViewModule,
     DropdownModule,
     TableModule,
-    DialogModule
+    DialogModule,
+    TooltipModule
   ]
 })
 export class MyprimengModule { }

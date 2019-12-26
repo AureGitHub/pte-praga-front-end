@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/components/alert.service';
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
 import { first } from 'rxjs/operators';
+import form_login from 'src/app/forms/form-login';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,9 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
+  formDataTemplate = form_login;
+  formData = {id: 666, email: 'admin11@a.es', password : '123456'};
+
 
   constructor(
     private router: Router,
@@ -28,31 +32,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    this.loginForm = new FormGroup({
-      'email': new FormControl('',  [Validators.required, Validators.email]),
-      'password': new FormControl('', [Validators.required, Validators.compose([Validators.minLength(6)])]),
-   });
-
-   this.loginForm.reset({email: 'admin@a.es', password : '123456'});
 
   }
 
 
-  public hasError = (controlName: string, errorName: string) => {
-    return this.loginForm.controls[controlName].hasError(errorName);
-  }
-
-  public onsubmit = () => {
-    if (this.loginForm.valid) {
-
-        this.alertService.clear();
-
-        const user = {};
-        user['email'] = this.loginForm.controls['email'].value;
-        user['password'] = this.loginForm.controls['password'].value;
 
 
-        this.authenticationService.login(user)
+  public submit = (formulario) => {
+
+    this.authenticationService.login(formulario)
         .pipe(first())
         .subscribe(
             data => {
@@ -63,10 +51,6 @@ export class LoginComponent implements OnInit {
               }
             });
 
-
-
-
-    }
   }
 
 }
