@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  ngAfterViewChecked() {
+  doFake() {
 
     this.myForm.SetFormData({id: 666, email: 'admin@a.es', password : '123456'});
       }

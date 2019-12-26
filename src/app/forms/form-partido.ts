@@ -36,7 +36,7 @@ export const form_partido = [
     'name': 'pistas',
     'placeholder': 'Pistas',
     'type': 'number',
-    'icon': 'pi pi-paperclip',
+    'icon': 'fa verde fa-square',
     'validators': [
       {'name' : 'required', 'mensaje': 'Campo obligatorio'},
       {'name' : 'max', value : 4, 'mensaje': 'Máximo 4 pistas'},

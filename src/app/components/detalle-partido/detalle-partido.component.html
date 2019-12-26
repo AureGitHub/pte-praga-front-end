@@ -1,14 +1,13 @@
 <div class="ui-fluid">
 
 <div class="ui-g"  *ngIf="currentUser && partido">
-
-
-  <div class="ui-g-6 ui-md-6">
-    <h2><i class="pi pi-calendar"></i> {{partido.dia}}</h2>  
+ 
+  <div class="ui-g-9 ui-md-9">
+    <h3><i class="pi pi-calendar"></i> {{partido.dia}}</h3>  
   </div>
 
-  <div class="ui-g-6 ui-md-6">
-    <h2><i class="pi pi-clock"></i>{{partido.hora}} ({{partido.duracion}})</h2>  
+  <div class="ui-g-3 ui-md-3">
+    <h3><i class="pi pi-clock"></i>{{partido.duracion}}</h3>  
   </div>
 
 
@@ -44,7 +43,7 @@
  </div>
 </div> 
 <div class="ui-g-12 ui-md-12">  
-  <button (click)="hacerdistribucion()" size="90%" pButton type="button" label="V.I.C.T.O.R." icon="pi pi-star-o" ></button> 
+  <button (click)="hacerdistribucion()" size="90%" pButton type="button" label="V.I.C.T.O.R." icon="fa fa-2x fa-steam" ></button> 
  </div>
 
 

@@ -7,21 +7,21 @@
         <div class="ui-g-12 ui-md-12">
           <img src="assets/images/Login-pPraga.jpg" width="60%" />
         </div>
+      
+      <div class="ui-g-12 ui-md-12">
+        <app-my-form (EventEmitterForm)="submit($event)" 
+        [formDataTemplate]="formDataTemplate"                   
+        [formButtonLabel]="'Login'"
+        [formButtonIcon]="'pi pi-power-off'">       
+        </app-my-form>
       </div>
 
+      <div class="ui-g-12 ui-md-12">
+        <button (click)="doFake()" style="width:30%;color: red"  pButton type="button" label="Fake" icon="pi pi-star-o" ></button> 
+      </div>
 
-      <app-my-form (EventEmitterForm)="submit($event)" 
-                   [formDataTemplate]="formDataTemplate"                   
-                   [formButtonLabel]="'Login'"
-                   [formButtonIcon]="'pi pi-power-off'">
-                  
-        </app-my-form>
+    </div>
 
-
-
-
-
-      
     </p-panel>
   
   </div>

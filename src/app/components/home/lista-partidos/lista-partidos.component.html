@@ -6,7 +6,7 @@
       (click)="showDialogToAdd()"
       pButton
       type="button"
-      icon="pi pi-paperclip"
+      icon="fa fa-2x fa-plus-square-o"
       label="Añadir partido"
     ></button>
 </div>
@@ -19,16 +19,17 @@
 <ng-template let-partido pTemplate="listItem">
     <div class="ui-g" class="item_partido_normal">
 
-        <div class="ui-g-6 ui-md-3">
+        
+        <div class="ui-g-9 ui-md-9">
             <i class="pi pi-calendar"></i>  <b>{{partido.dia}}</b>  
         </div>
 
-        <div class="ui-g-6 ui-md-3">
-            <i class="pi pi-clock"></i> ({{partido.duracion}})
+        <div class="ui-g-3 ui-md-3">
+            <i class="pi pi-clock"></i> {{partido.duracion}}
         </div>
 
         <div class="ui-g-6 ui-md-3" title="pistas">
-            <i class="pi pi-paperclip"></i>  <b>{{partido.pistas}}</b> 
+            <i style="margin: 3px;" class="fa verde fa-square"></i>  <b>{{partido.pistas}}</b> 
         </div>
 
         <div class="ui-g-6 ui-md-3" title="jugadores">

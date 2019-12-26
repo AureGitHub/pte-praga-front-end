@@ -12,6 +12,12 @@ import { DatePipe } from '@angular/common';
 export class MyFormComponent implements OnInit {
 
 
+  settings = {
+    bigBanner: true,
+    timePicker: true,
+    format: 'dd-MM-yyyy',
+    defaultOpen: true
+}
   myFormGroup: FormGroup;
 
   es: any;
@@ -158,7 +164,11 @@ export class MyFormComponent implements OnInit {
     for (const prop in data) {
 
       if(arrControl.find(a => a === prop )){
-        if (prop === 'dia'){
+
+        const input_template_fecha = this.formDataTemplate.find(a => a.name === prop);
+
+
+        if (input_template_fecha.type === 'calendar'){
 
           // lo muestro en español... lo convierto a inglish para poder setarlo al calendar
           const hora = data[prop].split(' ')[1];
@@ -167,6 +177,9 @@ export class MyFormComponent implements OnInit {
           const dia = data[prop].split(' ')[0].split('-')[0];
 
           this.myFormGroup.get('dia').setValue(new Date(anno + '-' + mes + '-' + dia + ' ' + hora));
+
+          
+
         } else {
           this.myFormGroup.get(prop).setValue(data[prop]);
   

@@ -1,11 +1,13 @@
 
 <div class="ui-fluid">
     <div class="ui-g">
-        <div class="ui-g-10 ui-md-10" align="left">
+        <div class="ui-g-8 ui-md-8" align="left">
             <i class="pi pi-user verde" *ngIf="currentUser"></i> {{currentUser?.alias}}
            
           </div>
-        
+          <div class="ui-g-2 ui-md-2" align="center">
+            <i class="fa  fa-backward azul icono-link" routerLink="/"></i>
+          </div>
           <div class="ui-g-2 ui-md-2" align="right">
             <i
               (click)="callLogout.emit($event)"

@@ -20,6 +20,7 @@ import { DialogModule } from 'primeng/dialog';
 import {TooltipModule} from 'primeng/tooltip';
 import {CalendarModule} from 'primeng/calendar';
 
+
 @NgModule({
   declarations: [],
   imports: [
@@ -39,7 +40,9 @@ import {CalendarModule} from 'primeng/calendar';
     TableModule,
     DialogModule,
     TooltipModule,
-    CalendarModule
+    CalendarModule,
+    
+    
   ],
   exports: [
     CommonModule,
@@ -58,7 +61,9 @@ import {CalendarModule} from 'primeng/calendar';
     TableModule,
     DialogModule,
     TooltipModule,
-    CalendarModule
+    CalendarModule, 
+    
+    
   ]
 })
 export class MyprimengModule { }
