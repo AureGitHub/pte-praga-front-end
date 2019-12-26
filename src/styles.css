@@ -3,6 +3,9 @@
   cursor: pointer;
 }
 
+.my-p-dropdown{
+  width: 100%;
+}
 .verde{
   color: green;
 }

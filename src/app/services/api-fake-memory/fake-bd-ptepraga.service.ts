@@ -19,9 +19,9 @@ export class InMemHeroService implements InMemoryDbService {
       {id : 2, descripcion: 'Reves'}
     ];
     const users = [
-      {id : 1 , idperfil: 1 , email : 'admin@a.es',  password: '123456', nombre : 'nombre1', idposicion : 1, token : 'no112144344545mbre1'},
-      {id : 2 , idperfil: 2 , email : 'noadmin@a.es',  password: '123456',nombre : 'nombre2', idposicion : 2, token : 'no112144344545mbre1'},
-      {id : 3 , idperfil: 2 , email : 'a@a.es',  password: '123456',nombre : 'jose aurelio de sande', idposicion : 2, token : 'no112144344545mbre1'}
+      {id : 1 , idperfil: 1 , alias: 'Aure', email : 'admin@a.es',  password: '123456', nombre : 'J. Aurelio de Sande', idposicion : 1, token : 'no112144344545mbre1'},
+      {id : 2 , idperfil: 2 , alias: 'J.Fonseca', email : 'Fonseca@a.es',  password: '123456',nombre : 'Jesús Fonseca', idposicion : 2, token : 'no112144344545mbre1'},
+      {id : 3 , idperfil: 2 , alias: 'J.Rebollo', email : 'Rebollo@a.es',  password: '123456',nombre : 'Jesús Rebollo', idposicion : 2, token : 'no112144344545mbre1'}
 
     ];
 

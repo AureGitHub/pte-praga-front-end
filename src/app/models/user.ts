@@ -1,5 +1,6 @@
 export interface User {
     id?;
+    alias?;
     idperfil?;
     email?;
     password?;

@@ -20,28 +20,27 @@
     <h3>Jugadores: {{partido.jugadoresapuntados}}/{{partido.jugadorestotal}} </h3>
   </div>
 
-
   <div class="ui-g-6 ui-md-6">  
-     <h4>Diestros</h4>    
-  </div>
+    <h4>Diestros</h4> 
+    <div  class="comun-detalle-partido drive">
+      <ul>
+        <li *ngFor="let jugador of diestros">
+          {{ jugador.alias }}
+        </li>
+      </ul>
+    </div>
 
-  <div class="ui-g-6 ui-md-6">  
-     <h4>Zurdos</h4>    
-  </div>
-
-
-  <div class="ui-g-6 ui-md-6">  
-    <ul>
-      <li *ngFor="let jugador of diestros">
-        {{ jugador.nombre }}
-      </li>
-    </ul>
  </div>
 
  <div class="ui-g-6 ui-md-6">  
-  <li *ngFor="let jugador of zurdos">
-    {{ jugador.nombre }}
-  </li>   
+  <h4>Revés</h4>
+   <div  class="comun-detalle-partido reves">
+   <ul>
+  <li *ngFor="let jugador of reves">
+    {{ jugador.alias }}
+  </li>
+</ul>   
+</div>
  </div>
 </div> 
 <div class="ui-g-12 ui-md-12">  

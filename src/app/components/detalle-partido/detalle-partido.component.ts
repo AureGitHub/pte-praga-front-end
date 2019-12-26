@@ -17,7 +17,7 @@ export class DetallePartidoComponent implements OnInit {
   partido: Partido = null;
 
   diestros: User[]=[];
-  zurdos: User[]=[];
+  reves: User[]=[];
 
 
   constructor(
@@ -58,7 +58,7 @@ export class DetallePartidoComponent implements OnInit {
                     if(user.idposicion === 1){
                       this.diestros.push(user)
                     }else if(user.idposicion === 2){
-                      this.zurdos.push(user)
+                      this.reves.push(user)
                     }
                     
                   }

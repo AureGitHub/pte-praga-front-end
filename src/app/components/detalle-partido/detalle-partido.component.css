@@ -1,0 +1,19 @@
+
+.comun-detalle-partido{
+    border-width: 1;
+    width: 90%;
+    border-color: wheat;
+    box-shadow: 4px 4px black;
+    min-height: 50px;    
+    padding: 2px;;
+}
+
+.drive{    
+    background-color:#0A0A2A;
+    
+    
+}
+
+.reves{    
+    background-color:#2A0A12;
+}
