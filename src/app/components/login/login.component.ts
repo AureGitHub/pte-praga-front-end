@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
 
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/components/alert.service';
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
 import { first } from 'rxjs/operators';
 import form_login from 'src/app/forms/form-login';
+import { MyFormComponent } from '../comun/my-form/my-form.component';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +15,11 @@ import form_login from 'src/app/forms/form-login';
 })
 export class LoginComponent implements OnInit {
 
-  userName: any;
-  password: any;
+  @ViewChild(MyFormComponent)
 
-  public loginForm: FormGroup;
+  private myForm: MyFormComponent;
 
   formDataTemplate = form_login;
-  formData = {id: 666, email: 'admin11@a.es', password : '123456'};
-
 
   constructor(
     private router: Router,
@@ -34,6 +32,11 @@ export class LoginComponent implements OnInit {
 
 
   }
+
+  ngAfterViewChecked() {
+
+    this.myForm.SetFormData({id: 666, email: 'admin@a.es', password : '123456'});
+      }
 
 
 

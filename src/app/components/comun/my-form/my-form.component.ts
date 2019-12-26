@@ -14,7 +14,7 @@ export class MyFormComponent implements OnInit {
 
   myFormGroup: FormGroup;
 
-  @Input() formData: any;
+
   @Input() formDataTemplate: any;
   @Input() formButtonLabel: any;
   @Input() formButtonIcon: any;
@@ -77,7 +77,7 @@ export class MyFormComponent implements OnInit {
 
     this.myFormGroup = new FormGroup(group);
 
-    this.myFormGroup.reset(this.formData);
+    
 
   }
 
@@ -106,6 +106,10 @@ export class MyFormComponent implements OnInit {
 
   public hasError = (controlName: string, errorName: string) => {
     return this.myFormGroup.controls[controlName].hasError(errorName);
+  }
+
+  public SetFormData(data){
+    this.myFormGroup.reset(data);
   }
 
 

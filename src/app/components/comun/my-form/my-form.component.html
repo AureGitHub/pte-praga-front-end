@@ -15,7 +15,7 @@
                                 <i class="{{form_elem.icon}}"></i>
                             </span>
                             <ng-container  [ngSwitch]="form_elem.type">
-                                <ng-container  *ngSwitchCase="'textBox'">
+                                <ng-container  *ngSwitchCase="'text'">
                                         <input type="text" pInputText formControlName="{{form_elem.name}}" style="width: 100%;"   placeholder="{{form_elem.placeholder}}"/>
                                 </ng-container>
 
@@ -27,7 +27,7 @@
                                     <input type="password" pInputText formControlName="{{form_elem.name}}" style="width: 100%;"   placeholder="{{form_elem.placeholder}}"/>                            
                                 </ng-container>
 
-                                <ng-container  *ngSwitchCase="'select'">
+                                <ng-container  *ngSwitchCase="'dropdown'">
                                     <p-dropdown class="my-p-dropdown"   [options]="form_elem.options" formControlName="{{form_elem.name}}"></p-dropdown>
                             </ng-container>
 
