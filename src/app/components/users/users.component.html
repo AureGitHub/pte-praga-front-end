@@ -1,8 +1,8 @@
-<p-table
+<div class="ui-g-12" align="center">
+  <p-table
   [columns]="cols"
   [value]="users"
-  selectionMode="single"
-  [(selection)]="selectedUser"
+  selectionMode="single"  
   (onRowSelect)="onRowSelect($event)"
   [paginator]="true"
   [rows]="5"
@@ -35,9 +35,10 @@
       </td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="summary" let-rowData>
-    <div style="text-align:left">
+  <ng-template  pTemplate="summary" let-rowData>
+    <div class="ui-g-12" align="center">
       <button
+      style="width: 30%;"
         class="ui-button-success"
         (click)="showDialogToAdd()"
         pButton
@@ -45,10 +46,14 @@
         icon="pi pi-user-plus"
         label="Añadir"
       ></button>
+
     </div>
+    
+      
+    
   </ng-template>
 </p-table>
-
+</div>
 
 
 

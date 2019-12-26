@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SelectItem, ConfirmationService } from 'primeng/api';
 
 
@@ -7,6 +7,8 @@ import { Partido } from 'src/app/models/partido';
 import { User } from 'src/app/models/user';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
+import { MyFormComponent } from '../../comun/my-form/my-form.component';
+import { form_partido } from 'src/app/forms/form-partido';
 
 
 
@@ -19,13 +21,19 @@ import { AuthenticationService } from 'src/app/services/http/authentication.serv
 })
 export class ListaPartidosComponent implements OnInit {
 
+  @ViewChild(MyFormComponent)
+
+  private myForm: MyFormComponent;
+  displayDialog: boolean;
+  formDataTemplate = form_partido;
+
+  newPartido = false;
+
   public loading = false;
 
   partidos: Partido[] = [];
 
   selectedPartido: Partido;
-
-    displayDialog: boolean;
 
     sortOptions: SelectItem[];
 
@@ -41,11 +49,59 @@ export class ListaPartidosComponent implements OnInit {
     private httpGralService: HttpGralService,
     private datePipe: DatePipe,
     private confirmationService: ConfirmationService,
-  
     private authenticationService: AuthenticationService
     ) {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
+
+    ngOnInit() {
+      this.getPartidos();
+      this.sortOptions = [
+        {label: 'Nombre', value: 'nombre'},
+        {label: 'email', value: 'email'}
+    ];
+    }
+
+
+    showDialogToAdd(){
+      this.myForm.SetFormData({idcreador: this.currentUser.id});
+      this.newPartido = true;
+      this.displayDialog = true;
+
+    }
+
+    onEdit(formulario) {
+      this.newPartido = false;
+      this.displayDialog = true;
+      // formulario.dia = new Date(formulario.dia);
+      // formulario.hora = new Date(formulario.hora);
+      this.myForm.SetFormData(formulario);
+    }
+
+    submit(formulario) {
+
+      formulario.dia = this.datePipe.transform(new  Date(formulario.dia), 'yyyy-MM-dd HH:mm');
+
+      if (this.newPartido) { 
+        this.httpGralService.addData(apisUrl.partido, formulario)
+          .subscribe(partido => {
+            this.getPartidos();
+            this.displayDialog = false;
+          });
+      } else {
+        this.httpGralService.updateData(apisUrl.partido, formulario)
+          .subscribe(() => {
+            this.getPartidos();
+            this.displayDialog = false;
+          });
+        }
+
+  }
+
+
+
+
+
 
     getPartidos(){
 
@@ -58,23 +114,20 @@ export class ListaPartidosComponent implements OnInit {
         partidos_ = data;
 
         partidos_.sort(function(a, b){
-        var keyA = new Date(a.dia),
+        const keyA = new Date(a.dia),
             keyB = new Date(b.dia);
         // Compare the 2 dates
-        if(keyA > keyB) return -1;
-        if(keyA < keyB) return 1;
+        if(keyA > keyB) { return -1; }
+        if(keyA < keyB) { return 1; }
         return 0;
     });
 
 
-        this.httpGralService.getDatas(apisUrl.partidoxjugador).subscribe(
-        data =>
-        {
+        this.httpGralService.getDatas(apisUrl.partidoxjugador).subscribe( data => {
           partidos_.forEach(
             partido =>
             {
-
-              partido.dia = this.datePipe.transform(new  Date(partido.dia), 'dd-MM-yyyy');
+              partido.dia = this.datePipe.transform(new  Date(partido.dia), 'dd-MM-yyyy HH:mm');
 
               const jugadorespartido = data.filter(a => a.idpartido === partido.id);
               if (this.currentUser) {
@@ -96,14 +149,7 @@ export class ListaPartidosComponent implements OnInit {
 
       });
   }
-  ngOnInit() {
-    this.getPartidos();
 
-    this.sortOptions = [
-      {label: 'Nombre', value: 'nombre'},
-      {label: 'email', value: 'email'}
-  ];
-  }
 
   onSortChange(event) {
     const value = event.value;

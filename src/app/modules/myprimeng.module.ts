@@ -18,6 +18,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import {TableModule} from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import {TooltipModule} from 'primeng/tooltip';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [],
@@ -37,7 +38,8 @@ import {TooltipModule} from 'primeng/tooltip';
     DropdownModule,
     TableModule,
     DialogModule,
-    TooltipModule
+    TooltipModule,
+    CalendarModule
   ],
   exports: [
     CommonModule,
@@ -55,7 +57,8 @@ import {TooltipModule} from 'primeng/tooltip';
     DropdownModule,
     TableModule,
     DialogModule,
-    TooltipModule
+    TooltipModule,
+    CalendarModule
   ]
 })
 export class MyprimengModule { }

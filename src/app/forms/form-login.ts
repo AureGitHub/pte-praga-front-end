@@ -1,8 +1,5 @@
 const form_login = [
-  {
-    'name': 'id',
-    'type': 'hidden'
-  },
+
     {
       'name': 'email',
       'placeholder': 'Email',

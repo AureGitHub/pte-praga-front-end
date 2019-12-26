@@ -4,19 +4,25 @@ export class InMemHeroService implements InMemoryDbService {
   createDb() {
 
     const partidos  = [
-      {id : 1, idcreador: 1, dia: '2019-12-15', hora: '10:30', duracion: 2, pistas : 2, jugadorestotal: 8, jugadoresapuntados : 3},
-      {id : 2, idcreador: 2, dia: '2019-12-05', hora: '18:30',  duracion: 1.5, pistas : 1, jugadorestotal: 4, jugadoresapuntados : 1},
-      {id : 3, idcreador: 3, dia: '2019-12-16', hora: '10:00',  duracion: 2, pistas : 3, jugadorestotal: 12, jugadoresapuntados : 7},
-      {id : 4, idcreador: 1, dia: '2019-12-07', hora: '17:30',  duracion: 1.5, pistas : 1, jugadorestotal: 4, jugadoresapuntados : 1},
+      {id : 1, idcreador: 1, dia: '2019-12-15 10:30',  duracion: 2, pistas : 2, jugadorestotal: 8, jugadoresapuntados : 3},
+      {id : 2, idcreador: 2, dia: '2019-12-05 18:30',  duracion: 1.5, pistas : 1, jugadorestotal: 4, jugadoresapuntados : 1},
+      {id : 3, idcreador: 3, dia: '2019-12-16 10:00',  duracion: 2, pistas : 3, jugadorestotal: 12, jugadoresapuntados : 7},
+      {id : 4, idcreador: 1, dia: '2019-12-07 17:30',  duracion: 1.5, pistas : 1, jugadorestotal: 4, jugadoresapuntados : 1},
+      // {id : 1, idcreador: 1, dia: '2019-12-15', hora: '10:30', duracion: 2, pistas : 2, jugadorestotal: 8, jugadoresapuntados : 3},
+      // {id : 2, idcreador: 2, dia: '2019-12-05', hora: '18:30',  duracion: 1.5, pistas : 1, jugadorestotal: 4, jugadoresapuntados : 1},
+      // {id : 3, idcreador: 3, dia: '2019-12-16', hora: '10:00',  duracion: 2, pistas : 3, jugadorestotal: 12, jugadoresapuntados : 7},
+      // {id : 4, idcreador: 1, dia: '2019-12-07', hora: '17:30',  duracion: 1.5, pistas : 1, jugadorestotal: 4, jugadoresapuntados : 1},
     ];
 
     const perfil  = [
-      {id : 1, descripcion: 'admin'},
-      {id : 2, descripcion: 'jugador'}
+      {label: 'Selecciones'},
+      {value : 1, label: 'admin'},
+      {value : 2, label: 'jugador'}
     ];
     const posicion  = [
-      {id : 1, descripcion: 'Drive'},
-      {id : 2, descripcion: 'Reves'}
+      {label: 'Selecciones'},
+      {value : 1, label: 'Drive'},
+      {value : 2, label: 'Reves'}
     ];
     const users = [
       {id : 1 , idperfil: 1 , alias: 'Aure', email : 'admin@a.es',  password: '123456', nombre : 'J. Aurelio de Sande', idposicion : 1, token : 'no112144344545mbre1'},

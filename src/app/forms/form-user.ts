@@ -53,11 +53,7 @@ const form_user = [
       'placeholder': 'Posición',
       'type': 'dropdown',
       'icon': 'pi pi-map-marker',
-      'options': [
-        {'label': 'selccione posición'},
-        {'label': 'Drive', 'value': 1},
-        {'label': 'Reves', 'value': 2}
-      ],
+      'options': [],
       'validators': [
         {'name' : 'required', 'mensaje': 'Campo obligatorio'}
       ]
@@ -68,11 +64,7 @@ const form_user = [
       'placeholder': 'Perfil',
       'type': 'dropdown',
       'icon': 'pi pi-lock',
-      'options': [
-        {'label': 'selccione perfil'},
-        {'label': 'Admin', 'value': 1},
-        {'label': 'Jugador', 'value': 2}
-      ],
+      'options': [],
       'validators': [
         {'name' : 'required', 'mensaje': 'Campo obligatorio'}
       ]

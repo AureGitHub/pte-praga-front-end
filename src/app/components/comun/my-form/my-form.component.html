@@ -19,6 +19,10 @@
                                         <input type="text" pInputText formControlName="{{form_elem.name}}" style="width: 100%;"   placeholder="{{form_elem.placeholder}}"/>
                                 </ng-container>
 
+                                <ng-container  *ngSwitchCase="'number'">
+                                    <input type="number" pInputText formControlName="{{form_elem.name}}" style="width: 100%;"   placeholder="{{form_elem.placeholder}}"/>                            
+                                </ng-container>
+
                                 <ng-container  *ngSwitchCase="'email'">
                                     <input type="email" pInputText formControlName="{{form_elem.name}}" style="width: 100%;"   placeholder="{{form_elem.placeholder}}"/>                            
                                 </ng-container>
@@ -28,8 +32,23 @@
                                 </ng-container>
 
                                 <ng-container  *ngSwitchCase="'dropdown'">
-                                    <p-dropdown class="my-p-dropdown"   [options]="form_elem.options" formControlName="{{form_elem.name}}"></p-dropdown>
-                            </ng-container>
+                                    <p-dropdown class="my-p-dropdown"   [options]="form_elem.options" formControlName="{{form_elem.name}}"></p-dropdown>                            
+                                </ng-container>
+
+                                <ng-container  *ngSwitchCase="'calendar'">
+                                    <p-calendar  formControlName="{{form_elem.name}}" [monthNavigator]="true" dateFormat="dd/mm/yy"
+                                     [yearNavigator]="true" yearRange="2000:2030" [showTime]="true" ></p-calendar>
+                                </ng-container>
+
+                                <ng-container  *ngSwitchCase="'calendar-dia'">
+                                    <p-calendar  formControlName="{{form_elem.name}}" [monthNavigator]="true" dateFormat="dd/mm/yy"
+                                     [yearNavigator]="true" yearRange="2000:2030" ></p-calendar>
+                                </ng-container>
+
+                                <ng-container  *ngSwitchCase="'calendar-hora'">
+                                    <p-calendar  formControlName="{{form_elem.name}}" [timeOnly]="true" ></p-calendar>
+                                </ng-container>
+
 
                             </ng-container>
                             </div>            

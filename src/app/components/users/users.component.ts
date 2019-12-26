@@ -25,8 +25,6 @@ export class UsersComponent implements OnInit {
   @ViewChild(MyFormComponent)
 
   private myForm: MyFormComponent;
-
-
   displayDialog: boolean;
   formDataTemplate = form_user;
 
@@ -41,22 +39,42 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private confirmationService: ConfirmationService,
-    private httpGralService: HttpGralService,
-    private alertService: AlertService,
+    private httpGralService: HttpGralService
     ) { }
 
     ngOnInit() {
 
-      this.getUsers();
-      // this.getPosicion();
-      // this.getPerfil();
       this.cols = [
         { field: 'alias', header: 'Alias' },
         { field: 'idposicion', header: 'idposicion' },
         { field: 'idperfil', header: 'idperfil' },
       ];
+
+      this.getUsers();
+      this.SetformDataTemplate();
+      // this.getPosicion();
+      // this.getPerfil();
+
     }
 
+  SetformDataTemplate() {
+
+    this.httpGralService.getDatas(apisUrl.posicion).subscribe(
+      lstpos => {
+
+        const itemTemplatePos = this.formDataTemplate.find(a => a.name === 'idposicion' );
+        itemTemplatePos.options = lstpos;
+
+        this.httpGralService.getDatas(apisUrl.perfil).subscribe(
+          lstperfil => {
+            const itemTemplatePer = this.formDataTemplate.find(a => a.name === 'idperfil' );
+            itemTemplatePer.options = lstperfil;
+
+
+              });
+
+      });
+  }
 
   getUsers() {
     this.httpGralService.getDatas(apisUrl.user).subscribe(
@@ -64,28 +82,6 @@ export class UsersComponent implements OnInit {
         this.users = data;
       });
   }
-
-  // getPosicion() {
-  //   this.httpGralService.getDatas(apisUrl.posicion).subscribe(
-  //     data => {
-  //       data.forEach(item => {
-  //         this.lstPosicion.push({label:item.descripcion, value:item.id});
-  //       })
-  //     });
-  // }
-
-  // getPerfil() {
-  //   this.httpGralService.getDatas(apisUrl.perfil).subscribe(
-  //     data => {
-
-  //       data.forEach(item => {
-  //         this.lstPerfil.push({label:item.descripcion, value:item.id});
-  //       })
-
-  //     });
-  // }
-
-
 
 
 
@@ -140,10 +136,7 @@ export class UsersComponent implements OnInit {
   onRowSelect(event) {
     this.newUser = false;
     this.displayDialog = true;
-
     this.myForm.SetFormData(event.data);
-
-    // Aqui hay que mandar los datros al usuario
 
   }
 
