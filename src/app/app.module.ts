@@ -66,7 +66,7 @@ const appRoutes: Routes = [ ];
         ReactiveFormsModule,
         MyprimengModule,
         HttpClientModule,
-        HttpClientInMemoryWebApiModule.forRoot(InMemHeroService),
+        //HttpClientInMemoryWebApiModule.forRoot(InMemHeroService),
         NgxLoadingModule.forRoot({}),
         
        

@@ -25,17 +25,7 @@ const form_user = [
           {'name' : 'required', 'mensaje': 'Campo obligatorio'},
           {'name' : 'email', 'mensaje': 'Formato de email incorrecto'}
       ]
-    },
-    {
-      'name': 'password',
-      'placeholder': 'Contraseña',
-      'type': 'password',
-      'icon': 'pi pi-key',
-      'validators': [
-          {'name' : 'required', 'mensaje': 'Campo obligatorio'},
-          {'name' : 'minlength', value : 6 , 'mensaje': 'Mínimo 6 caráteres'},
-      ]
-    },
+    },    
     {
       'name': 'nombre',
       'placeholder': 'Nombre',
@@ -43,7 +33,7 @@ const form_user = [
       'icon': 'pi pi-user',
       'validators': [
         {'name' : 'required', 'mensaje': 'Campo obligatorio'},
-        {'name' : 'minlength', value : 10 , 'mensaje': 'Mínimo 10 caráteres'},
+        {'name' : 'minlength', value : 5 , 'mensaje': 'Mínimo 10 caráteres'},
         {'name' : 'maxlength', value : 50 , 'mensaje': 'Másimo 50 caráteres'},
       ]
     },

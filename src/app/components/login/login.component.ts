@@ -7,6 +7,7 @@ import { AuthenticationService } from 'src/app/services/http/authentication.serv
 import { first } from 'rxjs/operators';
 import form_login from 'src/app/forms/form-login';
 import { MyFormComponent } from '../comun/my-form/my-form.component';
+import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private alertService: AlertService,
     private authenticationService: AuthenticationService,
+    private httpGralService: HttpGralService
 
   ) { }
 
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   doFake() {
 
-    this.myForm.SetFormData({id: 666, email: 'admin@a.es', password : '123456'});
+    this.myForm.SetFormData({id: 666, email: 'aure@gmail.es', password : 'jas11jas11'});
       }
 
 
@@ -43,16 +45,14 @@ export class LoginComponent implements OnInit {
 
   public submit = (formulario) => {
 
-    this.authenticationService.login(formulario)
-        .pipe(first())
-        .subscribe(
-            data => {
-              if (data) {
-                this.router.navigate(['/']);
-              } else {
-              this.alertService.error('usuario/password incorrecto');
-              }
-            });
+
+    this.httpGralService.addData(apisUrl.login, formulario)
+          .subscribe(dataServer => {
+            this.authenticationService.login(dataServer);
+            this.router.navigate(['/']);
+          });
+
+       
 
   }
 

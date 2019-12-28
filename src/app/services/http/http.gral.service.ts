@@ -5,14 +5,17 @@ import { tap } from 'rxjs/operators';
 import { AlertService } from '../components/alert.service';
 
 
+// const server='api';  // from memory
+const server = 'http://localhost:4000';     //from nodes js
 
 
 export const apisUrl = {
-  user: 'api/users',
-  partido: 'api/partidos',
-  posicion: 'api/posicion',
-  perfil: 'api/perfil',
-  partidoxjugador: 'api/partidoxjugador'
+  login : server + '/login',
+  user: server + '/jugadores',
+  partido: server + '/partidos',
+  posicion: server + '/posicion',
+  perfil: server + '/perfil',
+  partidoxjugador: server + '/partidoxjugador'
 }
 
 @Injectable({
@@ -33,7 +36,7 @@ export class HttpGralService {
   getDatas(url: string): Observable<any[]> {
 
     return this.http.get<any[]>(url).pipe(
-      tap(data => {})
+      tap(data => {return data})
     ); }
 
     getDataById(url: string, id: number): Observable<any> {
@@ -51,7 +54,7 @@ export class HttpGralService {
 
     addData (url: string, obj: any): Observable<any> {
       return this.http.post<any>(url, obj).pipe(
-        tap((newUser: any) => {})
+        tap((newItem: any) => {})
       );
     }
 

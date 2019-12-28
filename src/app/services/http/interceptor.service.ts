@@ -66,7 +66,9 @@ export class InterceptorService implements HttpInterceptor {
 
 
     return next.handle(req).pipe(
-        tap(_ =>{this.loadingService.mostar(false);} ),
+        tap(_ =>{
+          this.loadingService.mostar(false);          
+        } ),
       catchError(this.handleErro<any>('operacion'))
     );
   }

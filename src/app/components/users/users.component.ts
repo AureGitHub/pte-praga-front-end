@@ -34,10 +34,11 @@ export class UsersComponent implements OnInit {
 
   cols: any[];
 
-  users: User[];
+  users: any[];
 
 
   constructor(
+    private alertService: AlertService,
     private confirmationService: ConfirmationService,
     private httpGralService: HttpGralService
     ) { }
@@ -46,8 +47,8 @@ export class UsersComponent implements OnInit {
 
       this.cols = [
         { field: 'alias', header: 'Alias' },
-        { field: 'idposicion', header: 'idposicion' },
-        { field: 'idperfil', header: 'idperfil' },
+        { field: 'posicion', header: 'posicion' },
+        { field: 'perfil', header: 'perfil' },
       ];
 
       this.getUsers();
@@ -99,8 +100,13 @@ export class UsersComponent implements OnInit {
       if (this.newUser) {
         this.httpGralService.addData(apisUrl.user, formulario)
           .subscribe(user => {
-            this.users.push(user);
-            this.displayDialog = false;
+            if(user){
+              this.displayDialog = false;
+                this.getUsers();
+                this.alertService.success('operacion ejecutada correctamente');
+                
+            }
+            
           });
       } else {
         this.httpGralService.updateData(apisUrl.user, formulario)
@@ -123,6 +129,7 @@ export class UsersComponent implements OnInit {
       accept: () => {
         this.httpGralService.deleteDataById(apisUrl.user, idUser)
         .subscribe(() => {
+          this.alertService.success('operacion ejecutada correctamente');
           this.getUsers();
         });
       },
