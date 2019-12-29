@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MenuItem } from 'primeng/api/menuitem';
 import { User } from 'src/app/models/user';
-import { AuthenticationService } from 'src/app/services/http/authentication.service';
 import { ConfirmationService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/http/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
 
   MenuItems: MenuItem[];
 
-  currentUser: User;
+  @Input() currentUser: User;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -22,10 +22,10 @@ export class HeaderComponent implements OnInit {
     public router: Router
 
   ) {
-    this.authenticationService.currentUser.subscribe(user => {
-      this.currentUser = user;
-      this.IniciaMenu();
-    } );
+    // this.authenticationService.currentUser.subscribe(user => {
+    //   this.currentUser = user;
+    //   this.IniciaMenu();
+    // } );
    }
 
   ngOnInit() {

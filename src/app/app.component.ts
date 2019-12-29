@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from './models/user';
+import { AuthenticationService } from './services/http/authentication.service';
 
 
 
@@ -10,7 +12,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-    constructor() { }
+    currentUser: User;
+
+    constructor(
+        private authenticationService: AuthenticationService,
+
+    ) {
+        this.authenticationService.currentUser.subscribe(user => {
+            this.currentUser = user;
+          } );
+     }
 
     ngOnInit() {
 
