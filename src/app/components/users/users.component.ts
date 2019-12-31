@@ -111,9 +111,8 @@ export class UsersComponent implements OnInit {
       } else {
         this.httpGralService.updateData(apisUrl.user, formulario)
           .subscribe(() => {
-            const findUserInList = this.users.find(item => item.id === formulario.id);
-            const index = this.users.indexOf(findUserInList);
-            this.users[index] = formulario;
+            this.getUsers();    
+            this.alertService.success('operacion ejecutada correctamente');
             this.displayDialog = false;
           });
         }

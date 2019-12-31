@@ -1,0 +1,11 @@
+<div class="mypanel-size-local">
+    <p-panel header="Conectarse" size="6" styleClass="mypanel-size">
+
+    <app-my-form (EventEmitterForm)="submit($event)" 
+    [formDataTemplate]="formDataTemplate"                   
+    [formButtonLabel]="'Registro'"
+    [formButtonIcon]="'pi pi-user-plus'">       
+    </app-my-form>
+
+    </p-panel>
+</div>

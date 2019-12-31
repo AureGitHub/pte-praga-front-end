@@ -7,6 +7,7 @@ import { UsersComponent } from './components/users/users.component';
 import { NoAuthComponent } from './components/no-auth/no-auth.component';
 import { NoFoundComponent } from './components/no-found/no-found.component';
 import { RoleGuard } from './services/guard/roles.guard';
+import { RegistroComponent } from './components/registro/registro.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,10 @@ const routes: Routes = [
   { path: 'login',      component: LoginComponent },
   { path: 'detalle-partido/:id',      component: DetallePartidoComponent, canActivate: [RoleGuard],  data: {idperfil: [1,2] } },
   {path: 'users', component : UsersComponent, canActivate: [RoleGuard],  data: {idperfil: [1] }},
+  { path: 'registro', component: RegistroComponent },
   { path: 'not-found', component: NoFoundComponent },
+  
+  
   { path: '**', redirectTo: 'not-found' },
   // {
   //   path: 'heroes',

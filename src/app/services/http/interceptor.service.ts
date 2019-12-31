@@ -31,7 +31,8 @@ export class InterceptorService implements HttpInterceptor {
   private handleErro<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-        const strError = '(' + operation + ') ' + error.status + ', ' + error.statusText +  ', ' + error.url;
+      console.log(error);
+        const strError = '(' + operation + ') ' + error.status + ', ' + error.error +  ', ' + error.url;
 
         this.loadingService.mostar(false);
         // TODO: send the error to remote logging infrastructure

@@ -17,11 +17,14 @@
       </div>
 
       <div class="ui-g-12 ui-md-12">
+        <button [routerLink]="['/registro']"   class="ui-button-success"  pButton type="button" label="registro" icon="pi pi-user-plus" ></button> 
+      </div>
+      <div class="ui-g-12 ui-md-12">
         <button (click)="doFake()" style="width:30%;color: red"  pButton type="button" label="Fake" icon="pi pi-star-o" ></button> 
       </div>
 
     </div>
-
+    <a [routerLink]="['not-found']" [state]="{ id:1 , name:'Angular'}">Dynamic Data</a>
     </p-panel>
   
   </div>

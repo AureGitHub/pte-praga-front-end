@@ -1,0 +1,17 @@
+
+
+  @media screen and (max-width: 500px) {
+    /* Mobile */
+    .mypanel-size-local{
+      width: 98%;
+      margin: 0 auto;
+    }
+  }
+  
+  @media screen and (min-width: 500px) {
+    /* Desktop */
+    .mypanel-size-local{
+      width: 40%;
+      margin: 0 auto;
+    }
+  }

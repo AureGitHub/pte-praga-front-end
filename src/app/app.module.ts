@@ -35,6 +35,7 @@ import { AuthGuard } from './services/guard';
 import { RoleGuard } from './services/guard/roles.guard';
 import { ComunMenuComponent } from './components/header/comun-menu/comun-menu.component';
 import { MyFormComponent } from './components/comun/my-form/my-form.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 
 const appRoutes: Routes = [ ]; 
@@ -55,7 +56,8 @@ const appRoutes: Routes = [ ];
         NoAuthComponent,
         NoFoundComponent,
         ComunMenuComponent,
-        MyFormComponent
+        MyFormComponent,
+        RegistroComponent
     ],
     imports: [
        
