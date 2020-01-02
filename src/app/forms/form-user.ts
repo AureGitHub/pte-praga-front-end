@@ -60,7 +60,16 @@ const form_user = [
       ]
     },
 
-
+    {
+      'name': 'idestado',
+      'placeholder': 'Estado',
+      'type': 'dropdown',
+      'icon': 'fa fa-smile-o',
+      'options': [],
+      'validators': [
+        {'name' : 'required', 'mensaje': 'Campo obligatorio'}
+      ]
+    },
 
   ];
   export default form_user;

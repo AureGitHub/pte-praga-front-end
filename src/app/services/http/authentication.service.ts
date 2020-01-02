@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { User } from 'src/app/models/user';
+
 import { HttpGralService, apisUrl } from './http.gral.service';
 
 
@@ -11,19 +11,19 @@ import { HttpGralService, apisUrl } from './http.gral.service';
 })
 export class AuthenticationService {
 
-  private currentUserSubject: BehaviorSubject<User>;
-    public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<any>;
+    public currentUser: Observable<any>;
 
     apiurl = 'api/users';
 
     constructor(
       private httpGralService: HttpGralService
       ) {
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
-    public get currentUserValue(): User {
+    public get currentUserValue(): any {
 
         return this.currentUserSubject.value;
     }
@@ -34,7 +34,7 @@ export class AuthenticationService {
 
         // Para salir del paso... ataco al backend fake
         login(dataServer) {            
-          const user: User  = dataServer.data;
+          const user: any  = dataServer.data;
           user.token = dataServer.token;
           user.isAdmin = user.idperfil === 1;
           user.isConectado = true;

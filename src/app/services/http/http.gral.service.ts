@@ -12,9 +12,12 @@ const server = 'http://localhost:4000';     //from nodes js
 export const apisUrl = {
   login : server + '/login',
   user: server + '/jugadores',
+  registro: server + '/registro',
   partido: server + '/partidos',
   posicion: server + '/posicion',
   perfil: server + '/perfil',
+  estadoJugador: server + '/estadoJugador',
+
   partidoxjugador: server + '/partidoxjugador'
 }
 

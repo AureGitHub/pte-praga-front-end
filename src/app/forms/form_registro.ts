@@ -2,6 +2,10 @@ import form_user from "./form-user";
 
 let form_registro = form_user;
 
+form_registro = form_registro.filter(a=> a.name!='idperfil');
+form_registro = form_registro.filter(a=> a.name!='idestado');
+
+
 form_registro.push(
     {
         'name': 'password',
@@ -18,13 +22,15 @@ form_registro.push(
 
 form_registro.push(
     {
-        'name': 'repeat_password',
+        'name': 'confirm_password',
         'placeholder': 'Repite Contraseña',
         'type': 'password',
         'icon': 'pi pi-key',
         'validators': [
             {'name' : 'required', 'mensaje': 'Campo obligatorio'},
             {'name' : 'minlength', value : 6 , 'mensaje': 'Mínimo 6 caráteres'},
+            {'name' : 'confirm_password',  'mensaje': 'Contraseña y confirmación diferentes'},
+
         ]
       }
 );

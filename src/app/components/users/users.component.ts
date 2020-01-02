@@ -49,6 +49,7 @@ export class UsersComponent implements OnInit {
         { field: 'alias', header: 'Alias' },
         { field: 'posicion', header: 'posicion' },
         { field: 'perfil', header: 'perfil' },
+        { field: 'estado', header: 'estado' },
       ];
 
       this.getUsers();
@@ -70,6 +71,14 @@ export class UsersComponent implements OnInit {
           lstperfil => {
             const itemTemplatePer = this.formDataTemplate.find(a => a.name === 'idperfil' );
             itemTemplatePer.options = lstperfil;
+
+            this.httpGralService.getDatas(apisUrl.estadoJugador).subscribe(
+              lstestados => {
+                const itemTemplatePer = this.formDataTemplate.find(a => a.name === 'idestado' );
+                itemTemplatePer.options = lstestados;
+    
+    
+                  });
 
 
               });

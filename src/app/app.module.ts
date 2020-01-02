@@ -36,6 +36,8 @@ import { RoleGuard } from './services/guard/roles.guard';
 import { ComunMenuComponent } from './components/header/comun-menu/comun-menu.component';
 import { MyFormComponent } from './components/comun/my-form/my-form.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
+import { EstadoGuard } from './services/guard/estado.guard';
 
 
 const appRoutes: Routes = [ ]; 
@@ -57,7 +59,8 @@ const appRoutes: Routes = [ ];
         NoFoundComponent,
         ComunMenuComponent,
         MyFormComponent,
-        RegistroComponent
+        RegistroComponent,
+        ConfirmEmailComponent
     ],
     imports: [
        
@@ -76,6 +79,7 @@ const appRoutes: Routes = [ ];
 
     ],
     providers: [
+        EstadoGuard,
         AuthGuard,
         RoleGuard,
         {

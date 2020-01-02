@@ -74,6 +74,17 @@ export class MyFormComponent implements OnInit {
     }
   }
 
+
+   passwordMatchValidator(group: FormGroup): any {
+    if (group) {
+      if (group.get("password").value !==group.get("confirm_password").value) {
+        return { notMatching : true };
+      }
+    }
+   
+    return null;
+  }
+
   crearForm() {
     if (this.formDataTemplate == null) { return; }
     const group = {};
@@ -105,6 +116,14 @@ export class MyFormComponent implements OnInit {
               case 'min':
                 validators.push(Validators.compose([Validators.min(validator.value)]));
               break;
+
+              case 'confirm_password':
+                // validators.push(Validators.compose([this.passwordMatchValidator]));
+              break;
+
+
+
+              
 
 
 
@@ -146,6 +165,10 @@ export class MyFormComponent implements OnInit {
 
 
   public hasError = (controlName: string, errorName: string) => {
+    return this.myFormGroup.controls[controlName].dirty && this.myFormGroup.controls[controlName].hasError(errorName);
+  }
+
+  public MyhasError = (controlName: string, errorName: string) => {
     return this.myFormGroup.controls[controlName].dirty && this.myFormGroup.controls[controlName].hasError(errorName);
   }
 

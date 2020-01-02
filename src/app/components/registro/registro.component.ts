@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import form_registro from 'src/app/forms/form_registro';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
+import { AlertService } from 'src/app/services/components/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -11,7 +13,9 @@ export class RegistroComponent implements OnInit {
 
   formDataTemplate = form_registro;
   constructor(
-    private httpGralService: HttpGralService
+    private httpGralService: HttpGralService,
+    private alertService: AlertService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -38,6 +42,16 @@ export class RegistroComponent implements OnInit {
   }
   public submit = (formulario) => {
 
+    this.httpGralService.addData(apisUrl.registro, formulario)
+          .subscribe(user => {
+            if(user){
+              
+                this.alertService.success('operacion ejecutada correctamente');
+                this.router.navigate(['/login']);
+                
+            }
+            
+          });
 
     // this.httpGralService.addData(apisUrl.login, formulario)
     //       .subscribe(dataServer => {
