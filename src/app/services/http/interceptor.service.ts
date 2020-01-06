@@ -5,6 +5,8 @@ import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AlertService } from '../components/alert.service';
 import { LoadingService } from '../components/loading.service';
+import { AuthenticationService } from './authentication.service';
+import { User } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,7 @@ import { LoadingService } from '../components/loading.service';
 
 export class InterceptorService implements HttpInterceptor {
 
+  currentUser: User;
 
     headers = new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json');
     httpOptions = {
@@ -23,8 +26,14 @@ export class InterceptorService implements HttpInterceptor {
   constructor(
     private router: Router,
     private alertService: AlertService,
-    private loadingService: LoadingService
-  ) {}
+    private loadingService: LoadingService,
+    private authenticationService: AuthenticationService,
+  ) {
+    this.authenticationService.currentUser.subscribe(user => {
+      this.currentUser = user;
+    } );
+
+  }
 
 
 
@@ -61,6 +70,10 @@ export class InterceptorService implements HttpInterceptor {
     //     }
     //   });
     // }
+
+    if(this.currentUser && this.currentUser.token){
+      req = req.clone({headers: req.headers.set('x-access-token', this.currentUser.token)});
+    }
 
     req = req.clone({headers: req.headers.set('Content-Type', 'application/json')});
     req = req.clone({headers: req.headers.set('Accept', 'application/json')});

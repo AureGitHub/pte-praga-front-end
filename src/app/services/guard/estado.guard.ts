@@ -18,12 +18,12 @@ export class EstadoGuard implements CanActivate {
     const currentUser = this.authenticationService.currentUserValue;
 
 
-    if(!currentUser){
-      this._router.navigate(['/login']);
-    return false;
-    }
+    // if(!currentUser){
+    //   this._router.navigate(['/login']);
+    // return false;
+    // }
 
-    console.log(currentUser.idestado);
+    
     if (currentUser && currentUser.idestado===1) {
         this._router.navigate(['/confirm-email']);
         return false;

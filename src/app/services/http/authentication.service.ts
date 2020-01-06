@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 
 import { HttpGralService, apisUrl } from './http.gral.service';
+import { User } from 'src/app/models/user';
 
 
 
@@ -15,6 +16,7 @@ export class AuthenticationService {
     public currentUser: Observable<any>;
 
     apiurl = 'api/users';
+
 
     constructor(
       private httpGralService: HttpGralService
@@ -35,7 +37,8 @@ export class AuthenticationService {
         // Para salir del paso... ataco al backend fake
         login(dataServer) {            
           const user: any  = dataServer.data;
-          user.token = dataServer.token;
+          user.token = dataServer['x-access-token'].token;
+          user.expire = dataServer['x-access-token'].expire;
           user.isAdmin = user.idperfil === 1;
           user.isConectado = true;
           localStorage.setItem('currentUser', JSON.stringify(user));

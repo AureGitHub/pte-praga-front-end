@@ -19,6 +19,7 @@ import {TableModule} from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import {TooltipModule} from 'primeng/tooltip';
 import {CalendarModule} from 'primeng/calendar';
+import {CardModule} from 'primeng/card';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import {CalendarModule} from 'primeng/calendar';
     DialogModule,
     TooltipModule,
     CalendarModule,
+    CardModule,
     
     
   ],
@@ -62,7 +64,7 @@ import {CalendarModule} from 'primeng/calendar';
     DialogModule,
     TooltipModule,
     CalendarModule, 
-    
+    CardModule,
     
   ]
 })
