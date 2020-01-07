@@ -47,6 +47,8 @@ export class InterceptorService implements HttpInterceptor {
         // TODO: send the error to remote logging infrastructure
         this.alertService.error(strError, false, 30000);
 
+        return throwError(error); 
+
         // TODO: better job of transforming error for user consumption
 
         // Let the app keep running by returning an empty result.

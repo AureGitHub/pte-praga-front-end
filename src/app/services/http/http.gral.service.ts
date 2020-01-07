@@ -7,13 +7,15 @@ import { AuthenticationService } from './authentication.service';
 
 
 // const server='api';  // from memory
-// const server = 'http://localhost:4000';     //from nodes js
-const server = 'https://pte-praga-back-end.herokuapp.com';
+ const server = 'http://localhost:4000';     //from nodes js
+//const server = 'https://pte-praga-back-end.herokuapp.com';
 
 
 export const apisUrl = {
   login : server + '/login',
   cambiar_password : server + '/cambiarPassword',
+  ask_cod_conf_email : server + '/pedirCodigoEmail',
+  conf_email : server + '/confirmarEmail',
   user: server + '/jugadores',
   registro: server + '/registro',
   partido: server + '/partidos',

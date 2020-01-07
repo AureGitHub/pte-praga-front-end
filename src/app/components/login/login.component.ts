@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   doFake() {
 
-    this.myForm.SetFormData({id: 666, email: 'aure@gmail.es', password : 'jas11jas11'});
+    this.myForm.SetFormData({id: 666, email: 'auredecocccam@gmail.com', password : 'jas11jas11'});
       }
 
 

@@ -118,41 +118,49 @@ export class ListaPartidosComponent implements OnInit {
         }
 
 
-        partidos_.sort(function(a, b){
-        const keyA = new Date(a.dia),
-            keyB = new Date(b.dia);
-        // Compare the 2 dates
-        if(keyA > keyB) { return -1; }
-        if(keyA < keyB) { return 1; }
-        return 0;
-    });
+        partidos_.forEach(
+              partido =>
+              {
+                partido.dia = this.datePipe.transform(new  Date(partido.dia), 'dd-MM-yyyy HH:mm');                  
+                if (this.currentUser) {
+                  partido.esCreador = partido.idcreador === this.currentUser.id;
+                } else {
+                  partido.esCreador = false;
+                }
+              });  
+              this.partidos = partidos_;            
+      },
+      error => {
 
-
-        this.httpGralService.getDatas(apisUrl.partidoxjugador).subscribe( data => {
-          partidos_.forEach(
-            partido =>
-            {
-              partido.dia = this.datePipe.transform(new  Date(partido.dia), 'dd-MM-yyyy HH:mm');
-
-              const jugadorespartido = data.filter(a => a.idpartido === partido.id);
-              if (this.currentUser) {
-
-                const partidoxjugador = jugadorespartido.find(a => a.idjugador === this.currentUser.id);
-                partido.idpartidoxjugador =  partidoxjugador  ? partidoxjugador.id : null;
-
-                partido.esCreador = partido.idcreador === this.currentUser.id;
-              } else {
-                partido.esCreador = false;
-              }
-            }
-            );
-
-            this.partidos = partidos_;
-
-        }
+      }
       );
 
-      });
+
+        // this.httpGralService.getDatas(apisUrl.partidoxjugador).subscribe( data => {
+        //   partidos_.forEach(
+        //     partido =>
+        //     {
+        //       partido.dia = this.datePipe.transform(new  Date(partido.dia), 'dd-MM-yyyy HH:mm');
+
+        //       const jugadorespartido = data.filter(a => a.idpartido === partido.id);
+        //       if (this.currentUser) {
+
+        //         const partidoxjugador = jugadorespartido.find(a => a.idjugador === this.currentUser.id);
+        //         partido.idpartidoxjugador =  partidoxjugador  ? partidoxjugador.id : null;
+
+        //         partido.esCreador = partido.idcreador === this.currentUser.id;
+        //       } else {
+        //         partido.esCreador = false;
+        //       }
+        //     }
+        //     );
+
+        //     this.partidos = partidos_;
+
+        // }
+      //);
+
+     // });
   }
 
 
