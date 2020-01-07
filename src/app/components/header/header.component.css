@@ -6,7 +6,7 @@
   background:red;
 } */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   /* Mobile */
   .layout-topmenu {
       display: none;
@@ -16,7 +16,7 @@
   }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 700px) {
   /* Desktop */
   .layout-topmenu {
       visibility: visible;
