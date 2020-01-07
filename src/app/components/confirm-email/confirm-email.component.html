@@ -1,19 +1,21 @@
-<p-card  header="Confirmación de email" [style]="{width: '360px'}">
-    <div>Tienes que confirmar el email</div>
-    <div>Solicita un código para confirmar el email</div>
-    <div> </div>
-    <div> <button (click)="doFake()"   pButton type="button" label="Solicitar código" icon="pi pi-key" ></button> </div>
-    <div> </div>
-    <div>Se ha enviado un correo a su dirección con el código de confirmación</div>
-</p-card>
-<br>
-<p-card  header="Introduce el código" [style]="{width: '360px'}">    
-    <div><div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-        <input type="text" style="width: 100%;"  pInputText placeholder="Código de confirmación">         
-    </div></div>
-    <div> </div>
-    <div> <button (click)="doFake()"  class="ui-button-success"  pButton type="button" label="Confirmar" icon="pi pi-check" ></button> </div>
-    <div> </div>
-    <div>Introduce el código recibido y pulsa Confirmar</div>
-</p-card>
+<div class="mypanel-size-local">
+    <p-card  header="Confirmación de email" [style]="{width: '360px'}">
+        <div>Tienes que confirmar el email</div>
+        <div>Solicita un código para confirmar el email</div>
+        <div> </div>
+        <div> <button (click)="doFake()"   pButton type="button" label="Solicitar código" icon="pi pi-key" ></button> </div>
+        <div> </div>
+        <div>Se ha enviado un correo a su dirección con el código de confirmación</div>
+    </p-card>
+    <br>
+    <p-card  header="Introduce el código" [style]="{width: '360px'}">    
+        <div><div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
+            <input type="text" style="width: 100%;"  pInputText placeholder="Código de confirmación">         
+        </div></div>
+        <div> </div>
+        <div> <button (click)="doFake()"  class="ui-button-success"  pButton type="button" label="Confirmar" icon="pi pi-check" ></button> </div>
+        <div> </div>
+        <div>Introduce el código recibido y pulsa Confirmar</div>
+    </p-card>
+</div>

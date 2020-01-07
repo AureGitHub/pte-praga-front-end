@@ -17,7 +17,7 @@ export class MyFormComponent implements OnInit {
     timePicker: true,
     format: 'dd-MM-yyyy',
     defaultOpen: true
-}
+};
   myFormGroup: FormGroup;
 
   es: any;
@@ -40,24 +40,24 @@ export class MyFormComponent implements OnInit {
   ngOnInit() {
 
     this.es = {
-      //date
-      closeText: "Cerrar",
-      prevText: "<Ant",
-      nextText: "Sig>",
-      currentText: "Hoy",
-      monthNames: [ "enero","febrero","marzo","abril","mayo","junio",
-      "julio","agosto","septiembre","octubre","noviembre","diciembre" ],
-      monthNamesShort: [ "ene","feb","mar","abr","may","jun",
-      "jul","ago","sep","oct","nov","dic" ],
-      dayNames: [ "domingo","lunes","martes","miércoles","jueves","viernes","sábado" ],
-      dayNamesShort: [ "dom","lun","mar","mié","jue","vie","sáb" ],
-      dayNamesMin: [ "D","L","M","X","J","V","S" ],
-      weekHeader: "Sm",
-      dateFormat: "dd/mm/yy",
+      // date
+      closeText: 'Cerrar',
+      prevText: '<Ant',
+      nextText: 'Sig>',
+      currentText: 'Hoy',
+      monthNames: [ 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre' ],
+      monthNamesShort: [ 'ene', 'feb', 'mar', 'abr', 'may', 'jun',
+      'jul', 'ago', 'sep', 'oct', 'nov', 'dic' ],
+      dayNames: [ 'domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado' ],
+      dayNamesShort: [ 'dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb' ],
+      dayNamesMin: [ 'D', 'L', 'M', 'X', 'J', 'V', 'S' ],
+      weekHeader: 'Sm',
+      dateFormat: 'dd/mm/yy',
       firstDay: 1,
       isRTL: false,
       showMonthAfterYear: false,
-      yearSuffix: "" 
+      yearSuffix: ''
 
   };
 
@@ -77,11 +77,11 @@ export class MyFormComponent implements OnInit {
 
    passwordMatchValidator(group: FormGroup): any {
     if (group) {
-      if (group.get("password").value !==group.get("confirm_password").value) {
+      if (group.get('password').value !== group.get('confirm_password').value) {
         return { notMatching : true };
       }
     }
-   
+
     return null;
   }
 
@@ -123,7 +123,7 @@ export class MyFormComponent implements OnInit {
 
 
 
-              
+
 
 
 
@@ -177,7 +177,7 @@ export class MyFormComponent implements OnInit {
 
     this.myFormGroup.reset({});
 
-    const arrControl =[];
+    const arrControl = [];
 
     // tslint:disable-next-line:forin
     for (const control  in this.myFormGroup.controls) {
@@ -186,12 +186,12 @@ export class MyFormComponent implements OnInit {
 
     for (const prop in data) {
 
-      if(arrControl.find(a => a === prop )){
+      if (arrControl.find(a => a === prop )) {
 
         const input_template_fecha = this.formDataTemplate.find(a => a.name === prop);
 
 
-        if (input_template_fecha.type === 'calendar'){
+        if (input_template_fecha.type === 'calendar') {
 
           // lo muestro en español... lo convierto a inglish para poder setarlo al calendar
           const hora = data[prop].split(' ')[1];
@@ -201,20 +201,20 @@ export class MyFormComponent implements OnInit {
 
           this.myFormGroup.get('dia').setValue(new Date(anno + '-' + mes + '-' + dia + ' ' + hora));
 
-          
+
 
         } else {
           this.myFormGroup.get(prop).setValue(data[prop]);
-  
+
         }
       }
 
-     
+
 
     }
 
-    //this.myFormGroup.reset(data);
-    //this.myFormGroup.get('dia').setValue(new Date('2019-10-10'));
+    // this.myFormGroup.reset(data);
+    // this.myFormGroup.get('dia').setValue(new Date('2019-10-10'));
 
   }
 

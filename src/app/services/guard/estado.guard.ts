@@ -23,14 +23,16 @@ export class EstadoGuard implements CanActivate {
     // return false;
     // }
 
-    
-    if (currentUser && currentUser.idestado===1) {
+    if (currentUser && currentUser.idestado === 1) {
         this._router.navigate(['/confirm-email']);
         return false;
     }
 
+    if (currentUser && currentUser.idestado === 2 ) {
+      this._router.navigate(['/cambiar-password']);
+      return false;
+  }
 
-   
     return true;
   }
 

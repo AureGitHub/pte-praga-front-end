@@ -48,11 +48,9 @@ export class LoginComponent implements OnInit {
 
     this.httpGralService.addData(apisUrl.login, formulario)
           .subscribe(dataServer => {
-            this.authenticationService.login(dataServer);
+            // this.authenticationService.login(dataServer);
             this.router.navigate(['/']);
           });
-
-       
 
   }
 

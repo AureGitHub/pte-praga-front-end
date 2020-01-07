@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AlertService } from '../components/alert.service';
 import { LoadingService } from '../components/loading.service';
@@ -41,7 +41,7 @@ export class InterceptorService implements HttpInterceptor {
     return (error: any): Observable<T> => {
 
       console.log(error);
-        const strError = '(' + operation + ') ' + error.status + ', ' + error.error +  ', ' + error.url;
+        const strError = '(' + operation + ') ' + error.status + ', ' + error.error.message ;
 
         this.loadingService.mostar(false);
         // TODO: send the error to remote logging infrastructure
@@ -52,7 +52,7 @@ export class InterceptorService implements HttpInterceptor {
         // Let the app keep running by returning an empty result.
         return of(result as T);
     };
-    }
+    } 
 
 
 
@@ -71,17 +71,16 @@ export class InterceptorService implements HttpInterceptor {
     //   });
     // }
 
-    if(this.currentUser && this.currentUser.token){
+    if (this.currentUser && this.currentUser.token) {
       req = req.clone({headers: req.headers.set('x-access-token', this.currentUser.token)});
     }
 
     req = req.clone({headers: req.headers.set('Content-Type', 'application/json')});
     req = req.clone({headers: req.headers.set('Accept', 'application/json')});
 
-
     return next.handle(req).pipe(
-        tap(_ =>{
-          this.loadingService.mostar(false);          
+        tap(_ => {
+          this.loadingService.mostar(false);
         } ),
       catchError(this.handleErro<any>('operacion'))
     );

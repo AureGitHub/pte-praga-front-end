@@ -112,15 +112,14 @@ export class UsersComponent implements OnInit {
             if(user){
               this.displayDialog = false;
                 this.getUsers();
-                this.alertService.success('operacion ejecutada correctamente');
-                
+                this.alertService.success('Se ha creado el usuario. Contraseña: 123456. DEBE CAMBIARLA');
             }
-            
+
           });
       } else {
         this.httpGralService.updateData(apisUrl.user, formulario)
           .subscribe(() => {
-            this.getUsers();    
+            this.getUsers();
             this.alertService.success('operacion ejecutada correctamente');
             this.displayDialog = false;
           });

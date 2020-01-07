@@ -10,6 +10,7 @@ import { RoleGuard } from './services/guard/roles.guard';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
 import { EstadoGuard } from './services/guard/estado.guard';
+import { CambiarPasswordComponent } from './components/cambiar-password/cambiar-password.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,7 @@ const routes: Routes = [
   {path: 'users', component : UsersComponent, canActivate: [EstadoGuard, RoleGuard],  data: {idperfil: [1] }},
   { path: 'registro', component: RegistroComponent },
   { path: 'confirm-email', component: ConfirmEmailComponent },
-
+  { path: 'cambiar-password', component: CambiarPasswordComponent },
   
   { path: 'not-found', component: NoFoundComponent },
   

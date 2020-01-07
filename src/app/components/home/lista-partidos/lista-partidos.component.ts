@@ -113,6 +113,11 @@ export class ListaPartidosComponent implements OnInit {
       data => {
         partidos_ = data;
 
+        if (partidos_ == null){
+          return;
+        }
+
+
         partidos_.sort(function(a, b){
         const keyA = new Date(a.dia),
             keyB = new Date(b.dia);

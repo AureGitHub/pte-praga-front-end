@@ -30,27 +30,16 @@ export class RegistroComponent implements OnInit {
         const itemTemplatePos = this.formDataTemplate.find(a => a.name === 'idposicion' );
         itemTemplatePos.options = lstpos;
 
-        this.httpGralService.getDatas(apisUrl.perfil).subscribe(
-          lstperfil => {
-            const itemTemplatePer = this.formDataTemplate.find(a => a.name === 'idperfil' );
-            itemTemplatePer.options = lstperfil;
-
-
-              });
-
       });
   }
   public submit = (formulario) => {
 
     this.httpGralService.addData(apisUrl.registro, formulario)
           .subscribe(user => {
-            if(user){
-              
+            if (user) {
                 this.alertService.success('operacion ejecutada correctamente');
                 this.router.navigate(['/login']);
-                
             }
-            
           });
 
     // this.httpGralService.addData(apisUrl.login, formulario)
@@ -58,8 +47,6 @@ export class RegistroComponent implements OnInit {
     //         this.authenticationService.login(dataServer);
     //         this.router.navigate(['/']);
     //       });
-
-       
 
   }
 

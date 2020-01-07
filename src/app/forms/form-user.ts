@@ -33,7 +33,7 @@ const form_user = [
       'icon': 'pi pi-user',
       'validators': [
         {'name' : 'required', 'mensaje': 'Campo obligatorio'},
-        {'name' : 'minlength', value : 5 , 'mensaje': 'Mínimo 10 caráteres'},
+        {'name' : 'minlength', value : 10 , 'mensaje': 'Mínimo 10 caráteres'},
         {'name' : 'maxlength', value : 50 , 'mensaje': 'Másimo 50 caráteres'},
       ]
     },

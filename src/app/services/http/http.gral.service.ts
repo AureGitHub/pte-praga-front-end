@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { AlertService } from '../components/alert.service';
+import { AuthenticationService } from './authentication.service';
 
 
 // const server='api';  // from memory
-const server = 'http://localhost:4000';     //from nodes js
+// const server = 'http://localhost:4000';     //from nodes js
+const server = 'https://pte-praga-back-end.herokuapp.com';
 
 
 export const apisUrl = {
   login : server + '/login',
+  cambiar_password : server + '/cambiarPassword',
   user: server + '/jugadores',
   registro: server + '/registro',
   partido: server + '/partidos',
@@ -19,7 +22,7 @@ export const apisUrl = {
   estadoJugador: server + '/estadoJugador',
 
   partidoxjugador: server + '/partidoxjugador'
-}
+};
 
 @Injectable({
   providedIn: 'root'
@@ -32,39 +35,81 @@ export class HttpGralService {
 
   constructor(
     private alertService: AlertService,
-    private http: HttpClient
+    private http: HttpClient,
+    private authenticationService: AuthenticationService
   ) { }
 
 
   getDatas(url: string): Observable<any[]> {
 
     return this.http.get<any[]>(url).pipe(
-      tap(data => {return data})
+      map(response => {
+        if (response == null) {
+          return null;
+        }
+        if (response['x-access-token'] != null) {
+          this.authenticationService.refreshSecure(response);
+        }
+        return response['data'];
+
+      })
     ); }
 
     getDataById(url: string, id: number): Observable<any> {
 
       return this.http.get<any>(`${url}/${id}`).pipe(
-        tap(_ =>{} )
+        map(response => {
+          if (response == null) {
+            return null;
+          }
+          if (response['x-access-token'] != null) {
+            this.authenticationService.refreshSecure(response);
+          }
+          return response['data'];
+        })
       );
     }
 
     updateData (url: string, obj: any): Observable<any> {
       return this.http.put(url, obj).pipe(
-        tap()
+        map(response => {
+          if (response == null) {
+            return null;
+          }
+          if (response['x-access-token'] != null) {
+            this.authenticationService.refreshSecure(response);
+          }
+          return response['data'];
+        })
       );
     }
 
     addData (url: string, obj: any): Observable<any> {
       return this.http.post<any>(url, obj).pipe(
-        tap((newItem: any) => {})
+        map(response => {
+          if (response == null) {
+            return null;
+          }
+          if (response['x-access-token'] != null) {
+            this.authenticationService.refreshSecure(response);
+          }
+          return response['data'];
+        })
       );
     }
 
     deleteDataById (url: string, id: number): Observable<any> {
 
       return this.http.delete<any>(`${url}/${id}`).pipe(
-        tap()
+        map(response => {
+          if (response == null) {
+            return null;
+          }
+          if (response['x-access-token'] != null) {
+            this.authenticationService.refreshSecure(response);
+          }
+          return response['data'];
+        })
       );
     }
 

@@ -38,6 +38,7 @@ import { MyFormComponent } from './components/comun/my-form/my-form.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
 import { EstadoGuard } from './services/guard/estado.guard';
+import { CambiarPasswordComponent } from './components/cambiar-password/cambiar-password.component';
 
 
 const appRoutes: Routes = [ ]; 
@@ -60,7 +61,8 @@ const appRoutes: Routes = [ ];
         ComunMenuComponent,
         MyFormComponent,
         RegistroComponent,
-        ConfirmEmailComponent
+        ConfirmEmailComponent,
+        CambiarPasswordComponent
     ],
     imports: [
        
