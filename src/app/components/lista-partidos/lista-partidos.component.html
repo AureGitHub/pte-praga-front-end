@@ -1,13 +1,14 @@
 
 <div class="ui-g-12" align="right">
     <button
-    style="width: 40%;"
+    style="width: 15%;"
       class="ui-button-success"
       (click)="showDialogToAdd()"
       pButton
       type="button"
       icon="fa fa-2x fa-plus-square-o"
-      label="Añadir partido"
+      label=" "
+      *ngIf="currentUser?.isConectado"
     ></button>
 </div>
 

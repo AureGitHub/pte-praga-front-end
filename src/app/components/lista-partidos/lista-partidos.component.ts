@@ -7,11 +7,12 @@ import { Partido } from 'src/app/models/partido';
 import { User } from 'src/app/models/user';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
-import { MyFormComponent } from '../../comun/my-form/my-form.component';
+
 import { form_partido } from 'src/app/forms/form-partido';
+import { MyFormComponent } from '../comun/my-form/my-form.component';
 
 
-
+ 
 
 
 @Component({

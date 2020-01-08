@@ -20,12 +20,12 @@ export class AlertComponent implements OnInit, OnDestroy {
             .subscribe(message => {
                 switch (message && message.type) {
                     case 'success':
-                        this.messageService.add({severity:'success', summary: 'Success Message', detail: message.text});
+                        this.messageService.add({severity: 'success', summary: '', detail: message.text});
 
                         message.cssClass = 'alert alert-success';
                         break;
                     case 'error':
-                        this.messageService.add({severity: 'error', summary: 'Error Message', detail: message.text, life: message.life});
+                        this.messageService.add({severity: 'error', summary: '', detail: message.text, life: message.life});
                         break;
                 }
 

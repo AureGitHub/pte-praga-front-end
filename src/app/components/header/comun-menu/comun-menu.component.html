@@ -1,8 +1,11 @@
 
 <div class="ui-fluid">
     <div class="ui-g">
-        <div class="ui-g-8 ui-md-8" align="left">
-            <i class="pi pi-user verde" *ngIf="currentUser"></i> {{currentUser?.alias}}
+        <div class="ui-g-8 ui-md-8"  align="left" >
+          <div class=" icono-link" routerLink="/detalle-jugador">
+              <i class="pi pi-user verde" *ngIf="currentUser"></i> {{currentUser?.alias}}
+          </div>
+            
            
           </div>
           <div class="ui-g-2 ui-md-2" align="center">

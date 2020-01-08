@@ -1,32 +1,31 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Validators, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { routerTransition } from 'src/app/router.animations';
 import { User } from 'src/app/models/user';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
 import { ConfirmationService } from 'primeng/api';
 import { AlertService } from 'src/app/services/components/alert.service';
-import form_user from 'src/app/forms/form-user';
 import { MyFormComponent } from '../comun/my-form/my-form.component';
+import form_jugador from 'src/app/forms/form_jugador';
 
 
 
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  selector: 'app-jugadores',
+  templateUrl: './jugadores.component.html',
+  styleUrls: ['./jugadores.component.scss'],
   animations: [routerTransition()],
 
 })
 
 
-export class UsersComponent implements OnInit {
+export class JugadoresComponent implements OnInit {
 
   @ViewChild(MyFormComponent)
 
   private myForm: MyFormComponent;
   displayDialog: boolean;
-  formDataTemplate = form_user;
+  formDataTemplate = form_jugador;
 
   newUser: boolean;
 
@@ -74,10 +73,9 @@ export class UsersComponent implements OnInit {
 
             this.httpGralService.getDatas(apisUrl.estadoJugador).subscribe(
               lstestados => {
-                const itemTemplatePer = this.formDataTemplate.find(a => a.name === 'idestado' );
-                itemTemplatePer.options = lstestados;
-    
-    
+                const itemTemplateEstado = this.formDataTemplate.find(a => a.name === 'idestado' );
+                itemTemplateEstado.options = lstestados;
+
                   });
 
 
@@ -87,7 +85,7 @@ export class UsersComponent implements OnInit {
   }
 
   getUsers() {
-    this.httpGralService.getDatas(apisUrl.user).subscribe(
+    this.httpGralService.getDatas(apisUrl.jugadores).subscribe(
       data => {
         this.users = data;
       });
@@ -107,7 +105,7 @@ export class UsersComponent implements OnInit {
   submit(formulario) {
 
       if (this.newUser) {
-        this.httpGralService.addData(apisUrl.user, formulario)
+        this.httpGralService.addData(apisUrl.jugadores, formulario)
           .subscribe(user => {
             if(user){
               this.displayDialog = false;
@@ -117,7 +115,7 @@ export class UsersComponent implements OnInit {
 
           });
       } else {
-        this.httpGralService.updateData(apisUrl.user, formulario)
+        this.httpGralService.updateData(apisUrl.jugadores, formulario)
           .subscribe(() => {
             this.getUsers();
             this.alertService.success('operacion ejecutada correctamente');
@@ -134,7 +132,7 @@ export class UsersComponent implements OnInit {
       header: 'Borrado usuario',
       icon: 'pi pi-user-minus',
       accept: () => {
-        this.httpGralService.deleteDataById(apisUrl.user, idUser)
+        this.httpGralService.deleteDataById(apisUrl.jugadores, idUser)
         .subscribe(() => {
           this.alertService.success('operacion ejecutada correctamente');
           this.getUsers();

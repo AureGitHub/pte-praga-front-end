@@ -1,0 +1,13 @@
+<div class="mypanel-size-local">
+    <p-panel header="Datos jugador" size="6" styleClass="mypanel-size">
+      <div class="ui-g centrado">
+      <div class="ui-g-12 ui-md-12">
+        <app-my-form (EventEmitterForm)="submit($event)" 
+        [formDataTemplate]="formDataTemplate"                   
+        [formButtonLabel]="'Guardar'"
+        [formButtonIcon]="'pi pi-save'">       
+        </app-my-form>
+      </div>
+    </div>
+    </p-panel>
+  </div>

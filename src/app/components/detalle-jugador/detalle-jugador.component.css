@@ -1,0 +1,31 @@
+
+
+  @media screen and (max-width: 700px) {
+    /* Mobile */
+    .layout-topmenu {
+        display: none;
+    }
+    .layout-sidemenu {
+        visibility: visible;
+    }
+  
+    .mypanel-size-local{
+      width: 98%;
+      margin: 0 auto;
+    }
+  }
+  
+  @media screen and (min-width: 700px) {
+    /* Desktop */
+    .layout-topmenu {
+        visibility: visible;
+    }
+  
+    .layout-sidemenu {
+        display: none;
+    }
+    .mypanel-size-local{
+      width: 40%;
+      margin: 0 auto;
+    }
+  }

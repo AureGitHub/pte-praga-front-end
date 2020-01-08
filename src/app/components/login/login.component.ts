@@ -1,10 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
-
 import { Router } from '@angular/router';
-import { AlertService } from 'src/app/services/components/alert.service';
-import { AuthenticationService } from 'src/app/services/http/authentication.service';
-import { first } from 'rxjs/operators';
 import form_login from 'src/app/forms/form-login';
 import { MyFormComponent } from '../comun/my-form/my-form.component';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
@@ -24,14 +19,11 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private alertService: AlertService,
-    private authenticationService: AuthenticationService,
     private httpGralService: HttpGralService
 
   ) { }
 
   ngOnInit() {
-
 
   }
 

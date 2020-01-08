@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { AuthenticationService } from 'src/app/services/http/authentication.service';
 
 @Component({
   selector: 'app-comun-menu',
@@ -8,11 +9,15 @@ import { User } from 'src/app/models/user';
 })
 export class ComunMenuComponent implements OnInit {
 
-  @Input() currentUser: User;
+  currentUser: User;
 
   @Output() callLogout = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private authenticationService: AuthenticationService
+  ) { 
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
   ngOnInit() {
   }

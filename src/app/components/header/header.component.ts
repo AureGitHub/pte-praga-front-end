@@ -14,18 +14,18 @@ export class HeaderComponent implements OnInit {
 
   MenuItems: MenuItem[];
 
-  @Input() currentUser: User;
+  currentUser: User;
 
   constructor(
     private authenticationService: AuthenticationService,
     private confirmationService: ConfirmationService,
-    public router: Router
+    private router: Router
 
   ) {
-    // this.authenticationService.currentUser.subscribe(user => {
-    //   this.currentUser = user;
-    //   this.IniciaMenu();
-    // } );
+    this.authenticationService.currentUser.subscribe(user => {
+      this.currentUser = user;
+      this.IniciaMenu();
+    } );
    }
 
   ngOnInit() {
@@ -41,7 +41,6 @@ export class HeaderComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'Si',
       rejectLabel: 'No',
-      
       accept: () => {
         this.authenticationService.logout();
         this.router.navigate(['/']);
@@ -54,18 +53,18 @@ export class HeaderComponent implements OnInit {
 
 
   IniciaMenu() {
-    this.MenuItems = [ 
+    this.MenuItems = [
       {
 
-        style: {color:'red'},
-        
+        style: {color: 'red'},
+
           label: 'Partidos',
           icon: 'pi pi-home', routerLink: ['/'],
       },
-     
+
       {
           label: 'Jugadores',
-          icon: 'pi pi-users', routerLink: ['/users'],
+          icon: 'pi pi-users', routerLink: ['/jugadores'],
           visible: this.currentUser && this.currentUser.isAdmin
       },
       {

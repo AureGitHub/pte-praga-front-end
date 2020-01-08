@@ -1,7 +1,8 @@
-import form_user from './form-user';
-import form_pass_confim from './form_pass_confim';
 
-let form_registro = form_user;
+import form_pass_confim from './form_pass_confim';
+import form_jugador from './form_jugador';
+
+let form_registro = form_jugador;
 
 form_registro = form_registro.filter(a => a.name !== 'idperfil');
 form_registro = form_registro.filter(a => a.name !== 'idestado');

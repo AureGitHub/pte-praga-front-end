@@ -49,22 +49,20 @@ export class DetallePartidoComponent implements OnInit {
         this.httpGralService.getDatas(apisUrl.partidoxjugador + '?idpartido=' +idpartido ).subscribe(
           jugadorespartido =>
           {
-            
-
             jugadorespartido.forEach(jugador => 
-              this.httpGralService.getDataById(apisUrl.user,jugador.idjugador).subscribe(
+              this.httpGralService.getDataById(apisUrl.jugadores,jugador.idjugador).subscribe(
                 user => {
-                  if(user!=null){
-                    if(user.idposicion === 1){
+                  if(user != null){
+                    if (user.idposicion === 1){
                       this.diestros.push(user)
-                    }else if(user.idposicion === 2){
+                    } else if(user.idposicion === 2){
                       this.reves.push(user)
                     }
-                    
+
                   }
 
                 }
-              )            
+              )
              );
 
 

@@ -1,4 +1,4 @@
-const form_user = [
+const form_jugador = [
   {
     'name': 'id',
     'type': 'hidden'
@@ -25,7 +25,7 @@ const form_user = [
           {'name' : 'required', 'mensaje': 'Campo obligatorio'},
           {'name' : 'email', 'mensaje': 'Formato de email incorrecto'}
       ]
-    },    
+    },
     {
       'name': 'nombre',
       'placeholder': 'Nombre',
@@ -72,4 +72,4 @@ const form_user = [
     },
 
   ];
-  export default form_user;
+  export default form_jugador;
