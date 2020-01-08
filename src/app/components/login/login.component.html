@@ -1,5 +1,26 @@
 
   <div class="mypanel-size-local">
+
+    <p-dialog header="Nueva contraseña" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" 
+         [baseZIndex]="1000">
+    <p>Se enviará un código a su correo con el que podrá establecer la nueva contraseña.</p>
+        <p>
+          <app-my-form (EventEmitterForm)="submitEmail($event)" 
+          [formDataTemplate]="formDataTemplateEmail"                   
+          [formButtonLabel]="'enviar'"
+          [formButtonIcon]="'pi pi-envelope'">       
+          </app-my-form>
+        </p>
+        <p>Una vez recibido el código, introduzcalo a continuación y establezca su nueva contraseña.</p>
+        <p>
+          <app-my-form (EventEmitterForm)="submitNewPass($event)" 
+          [formDataTemplate]="formDataTemplateNewPass"                   
+          [formButtonLabel]="'Guardar'"
+          [formButtonIcon]="'pi pi-save'">       
+          </app-my-form>
+        </p>
+</p-dialog>
+
     <p-panel header="Conectarse" size="6" styleClass="mypanel-size">
 
 
@@ -9,11 +30,15 @@
         </div>
       
       <div class="ui-g-12 ui-md-12">
-        <app-my-form (EventEmitterForm)="submit($event)" 
+        <app-my-form #login (EventEmitterForm)="submit($event)" 
         [formDataTemplate]="formDataTemplate"                   
         [formButtonLabel]="'Login'"
         [formButtonIcon]="'pi pi-power-off'">       
         </app-my-form>
+      </div>
+
+      <div class="ui-g-12 ui-md-12">
+        <i (click)="showDialog()" class="fa fa-key fa-4 icono-link"> <b> He olvidado mi contraseña</b></i>
       </div>
 
       <div class="ui-g-12 ui-md-12">

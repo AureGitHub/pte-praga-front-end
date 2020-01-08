@@ -1,6 +1,6 @@
 const form_login = [
 
-    {
+    { 
       'name': 'email',
       'placeholder': 'Email',
       'type': 'email',

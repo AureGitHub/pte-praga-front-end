@@ -13,6 +13,9 @@ import { AuthenticationService } from './authentication.service';
 
 export const apisUrl = {
   login : server + '/login',
+  pedirCodigoForgetPass : server + '/pedirCodigoForgetPass', 
+  cambiarPasswordForget  : server + '/cambiarPasswordForget ', 
+  
   cambiar_password : server + '/cambiarPassword',
   ask_cod_conf_email : server + '/pedirCodigoEmail',
   conf_email : server + '/confirmarEmail',

@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import form_login from 'src/app/forms/form-login';
 import { MyFormComponent } from '../comun/my-form/my-form.component';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
+import form_email from 'src/app/forms/form_email';
+import form_newpass from 'src/app/forms/form_newpass';
+import { AlertService } from 'src/app/services/components/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +14,23 @@ import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.servic
 })
 export class LoginComponent implements OnInit {
 
-  @ViewChild(MyFormComponent)
+  display: boolean = false;
 
-  private myForm: MyFormComponent;
+  @ViewChild('login') myForm: MyFormComponent;
+
+  //private myForm: MyFormComponent;
 
   formDataTemplate = form_login;
 
+  formDataTemplateEmail = form_email;
+
+  formDataTemplateNewPass = form_newpass;
+
+
   constructor(
     private router: Router,
-    private httpGralService: HttpGralService
+    private httpGralService: HttpGralService,
+    private alertService: AlertService
 
   ) { }
 
@@ -33,6 +44,9 @@ export class LoginComponent implements OnInit {
       }
 
 
+      showDialog() {
+        this.display = true;
+    }
 
 
   public submit = (formulario) => {
@@ -45,5 +59,30 @@ export class LoginComponent implements OnInit {
           });
 
   }
+
+  public submitEmail = (formulario) => {
+
+
+    this.httpGralService.addData(apisUrl.pedirCodigoForgetPass, formulario)
+          .subscribe(dataServer => {
+            this.alertService.success('Codigo solicitado correctamente. En breve estará en su email');
+          });
+
+  }
+
+  public submitNewPass = (formulario) => {
+
+
+    this.httpGralService.addData(apisUrl.cambiarPasswordForget, formulario)
+          .subscribe(dataServer => {
+            this.alertService.success('Su password ha sido modificada correctamente');
+            this.display=false;
+            
+          });
+
+  }
+
+
+  
 
 }
