@@ -42,15 +42,15 @@ export const form_partido = [
       {'name' : 'max', value : 4, 'mensaje': 'Máximo 4 pistas'},
     ]
   },
-  {
-    'name': 'jugadorestotal',
-    'placeholder': 'Total jugadores',
-    'type': 'number',
-    'icon': 'pi pi-users',
-    'validators': [
-      {'name' : 'required', 'mensaje': 'Campo obligatorio'}
-    ]
-  },
+  // {
+  //   'name': 'jugadorestotal',
+  //   'placeholder': 'Total jugadores',
+  //   'type': 'number',
+  //   'icon': 'pi pi-users',
+  //   'validators': [
+  //     {'name' : 'required', 'mensaje': 'Campo obligatorio'}
+  //   ]
+  // },
 
   ];
 

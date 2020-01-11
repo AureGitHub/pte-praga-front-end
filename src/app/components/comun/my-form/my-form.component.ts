@@ -199,8 +199,8 @@ export class MyFormComponent implements OnInit {
           const mes = data[prop].split(' ')[0].split('-')[1];
           const dia = data[prop].split(' ')[0].split('-')[0];
 
-          this.myFormGroup.get('dia').setValue(new Date(anno + '-' + mes + '-' + dia + ' ' + hora));
-
+          //this.myFormGroup.get('dia').setValue(new Date(anno + '-' + mes + '-' + dia + ' ' + hora));
+          this.myFormGroup.get(prop).setValue(data[prop]);
 
 
         } else {

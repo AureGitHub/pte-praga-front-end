@@ -36,7 +36,7 @@
                                 </ng-container>
 
                                 <ng-container  *ngSwitchCase="'calendar'">
-                                    <p-calendar  [readonlyInput]="true"  formControlName="{{form_elem.name}}" [monthNavigator]="true" dateFormat="dd/mm/yy"
+                                    <p-calendar  [readonlyInput]="true"  formControlName="{{form_elem.name}}" [monthNavigator]="true" [locale]="es" dateFormat="dd/mm/yy"
                                      [yearNavigator]="true" yearRange="2000:2030" [showTime]="true" ></p-calendar>
                                 </ng-container>
 

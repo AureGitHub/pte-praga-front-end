@@ -80,6 +80,8 @@ export class InterceptorService implements HttpInterceptor {
     req = req.clone({headers: req.headers.set('Content-Type', 'application/json')});
     req = req.clone({headers: req.headers.set('Accept', 'application/json')});
 
+    
+
     return next.handle(req).pipe(
         tap(_ => {
           this.loadingService.mostar(false);

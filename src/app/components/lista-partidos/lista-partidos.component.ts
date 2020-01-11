@@ -1,10 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SelectItem, ConfirmationService } from 'primeng/api';
 
-
-import { DatePipe } from '@angular/common';
-import { Partido } from 'src/app/models/partido';
-import { User } from 'src/app/models/user';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
 
@@ -33,9 +29,9 @@ export class ListaPartidosComponent implements OnInit {
 
   public loading = false;
 
-  partidos: Partido[] = [];
+  partidos: any[] = [];
 
-  selectedPartido: Partido;
+  selectedPartido: any;
 
     sortOptions: SelectItem[];
 
@@ -45,11 +41,10 @@ export class ListaPartidosComponent implements OnInit {
 
     sortOrder: number;
 
-    currentUser: User;
+    currentUser: any;
 
   constructor(
     private httpGralService: HttpGralService,
-    private datePipe: DatePipe,
     private confirmationService: ConfirmationService,
     private authenticationService: AuthenticationService,
     private alertService: AlertService,
@@ -65,6 +60,15 @@ export class ListaPartidosComponent implements OnInit {
     ];
     }
 
+        getPartidos(){      
+      this.httpGralService.getDatas(apisUrl.partido).subscribe(
+      data => {
+        this.partidos = data;      
+      },
+      error => {
+      }
+      );
+  }
 
     showDialogToAdd(){
       this.myForm.SetFormData({idcreador: this.currentUser.id});
@@ -76,14 +80,15 @@ export class ListaPartidosComponent implements OnInit {
     onEdit(formulario) {
       this.newPartido = false;
       this.displayDialog = true;
-      // formulario.dia = new Date(formulario.dia);
+      //formulario.dia = new Date(formulario.dia);
       // formulario.hora = new Date(formulario.hora);
       this.myForm.SetFormData(formulario);
     }
 
     submit(formulario) {
 
-      formulario.dia = this.datePipe.transform(new  Date(formulario.dia), 'yyyy-MM-dd HH:mm');
+      //formulario.dia = this.datePipe.transform(new  Date(formulario.dia), 'yyyy-MM-dd HH:mm');
+      
 
       if (this.newPartido) { 
         this.httpGralService.addData(apisUrl.partido, formulario)
@@ -108,65 +113,7 @@ export class ListaPartidosComponent implements OnInit {
 
 
 
-    getPartidos(){
 
-      let partidos_: Partido[] = [];
-
-
-
-      this.httpGralService.getDatas(apisUrl.partido).subscribe(
-      data => {
-        partidos_ = data;
-
-        if (partidos_ == null){
-          return;
-        }
-
-
-        partidos_.forEach(
-              partido =>
-              {
-                partido.dia = this.datePipe.transform(new  Date(partido.dia), 'dd-MM-yyyy HH:mm');                  
-                // if (this.currentUser) {
-                //   partido.esCreador = partido.idcreador === this.currentUser.id;
-                // } else {
-                //   partido.esCreador = false;
-                // }
-              });  
-              this.partidos = partidos_;            
-      },
-      error => {
-
-      }
-      );
-
-
-        // this.httpGralService.getDatas(apisUrl.partidoxjugador).subscribe( data => {
-        //   partidos_.forEach(
-        //     partido =>
-        //     {
-        //       partido.dia = this.datePipe.transform(new  Date(partido.dia), 'dd-MM-yyyy HH:mm');
-
-        //       const jugadorespartido = data.filter(a => a.idpartido === partido.id);
-        //       if (this.currentUser) {
-
-        //         const partidoxjugador = jugadorespartido.find(a => a.idjugador === this.currentUser.id);
-        //         partido.idpartidoxjugador =  partidoxjugador  ? partidoxjugador.id : null;
-
-        //         partido.esCreador = partido.idcreador === this.currentUser.id;
-        //       } else {
-        //         partido.esCreador = false;
-        //       }
-        //     }
-        //     );
-
-        //     this.partidos = partidos_;
-
-        // }
-      //);
-
-     // });
-  }
 
 
   onSortChange(event) {
@@ -185,7 +132,7 @@ onDialogHide() {
     this.selectedPartido = null;
 }
 
-Apuntate(partido: Partido){
+Apuntate(partido: any){
 
   this.confirmationService.confirm({
     message: '¿Te vas a apuntar al partido. Continuar?',
@@ -203,7 +150,7 @@ Apuntate(partido: Partido){
   
 }
 
-Borrate(partido: Partido){
+Borrate(partido: any){
 
 
   this.confirmationService.confirm({
@@ -213,7 +160,7 @@ Borrate(partido: Partido){
     acceptLabel: 'Si',
     rejectLabel: 'No',
     accept: () => {
-      this.httpGralService.deleteDataById(apisUrl.partidoxjugador, partido.idpartidoxjugador).subscribe(
+      this.httpGralService.deleteData(apisUrl.partidoxjugador, {idjugador: this.currentUser.id, idpartido: partido.id }).subscribe(
         result => {
           this.getPartidos();
       });

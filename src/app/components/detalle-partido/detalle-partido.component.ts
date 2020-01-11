@@ -18,6 +18,7 @@ export class DetallePartidoComponent implements OnInit {
 
   diestros: User[]=[];
   reves: User[]=[];
+  idpartido: any;
 
 
   constructor(
@@ -32,50 +33,27 @@ export class DetallePartidoComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getPartido(this.route.snapshot.paramMap.get('id'));
+    this.idpartido =this.route.snapshot.paramMap.get('id');
+    this.getPartido();
+    this.getJugadores();
   }
 
 
   hacerdistribucion(){}
 
-  getPartido(idpartido){
-
-    this.httpGralService.getDataById(apisUrl.partido, idpartido).subscribe(
+  getJugadores(){
+    this.httpGralService.getDataById(apisUrl.partidoxjugadorByIdPartido, this.idpartido).subscribe(
       data => {
-        this.partido = data;
+        this.diestros = data.filter(a=> a.idposicion === 1);
+        this.reves = data.filter(a=> a.idposicion === 2);
+      });
+  }
 
-        //jugadores del partido
+  getPartido(){
 
-        this.httpGralService.getDatas(apisUrl.partidoxjugador + '?idpartido=' +idpartido ).subscribe(
-          jugadorespartido =>
-          {
-            jugadorespartido.forEach(jugador => 
-              this.httpGralService.getDataById(apisUrl.jugadores,jugador.idjugador).subscribe(
-                user => {
-                  if(user != null){
-                    if (user.idposicion === 1){
-                      this.diestros.push(user)
-                    } else if(user.idposicion === 2){
-                      this.reves.push(user)
-                    }
-
-                  }
-
-                }
-              )
-             );
-
-
-
-
-          });
-
-        
-        
-
-
-
-
+    this.httpGralService.getDataById(apisUrl.partido, this.idpartido).subscribe(
+      data => {
+        this.partido = data;    
       });
 
   }
