@@ -49,7 +49,7 @@
             <i [routerLink]="['/detalle-partido', partido.id]" class="pi pi-info info icono-link"></i> 
         </div>
 
-        <div class="ui-g-4 ui-md-3" title="Edit" *ngIf="partido?.esCreador">
+        <div class="ui-g-4 ui-md-3" title="Edit" *ngIf="currentUser?.id === partido.idcreador">
             <i (click)="onEdit(partido)"  class="pi pi-pencil azul icono-link"></i>  
         </div>
 

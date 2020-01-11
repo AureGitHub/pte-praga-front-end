@@ -10,6 +10,7 @@ import { AuthenticationService } from 'src/app/services/http/authentication.serv
 
 import { form_partido } from 'src/app/forms/form-partido';
 import { MyFormComponent } from '../comun/my-form/my-form.component';
+import { AlertService } from 'src/app/services/components/alert.service';
 
 
  
@@ -50,7 +51,8 @@ export class ListaPartidosComponent implements OnInit {
     private httpGralService: HttpGralService,
     private datePipe: DatePipe,
     private confirmationService: ConfirmationService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService,
     ) {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
@@ -88,12 +90,14 @@ export class ListaPartidosComponent implements OnInit {
           .subscribe(partido => {
             this.getPartidos();
             this.displayDialog = false;
+            this.alertService.success('Se ha creado el partido');
           });
       } else {
         this.httpGralService.updateData(apisUrl.partido, formulario)
           .subscribe(() => {
             this.getPartidos();
             this.displayDialog = false;
+            this.alertService.success('Se ha modificado el partido');
           });
         }
 
@@ -123,11 +127,11 @@ export class ListaPartidosComponent implements OnInit {
               partido =>
               {
                 partido.dia = this.datePipe.transform(new  Date(partido.dia), 'dd-MM-yyyy HH:mm');                  
-                if (this.currentUser) {
-                  partido.esCreador = partido.idcreador === this.currentUser.id;
-                } else {
-                  partido.esCreador = false;
-                }
+                // if (this.currentUser) {
+                //   partido.esCreador = partido.idcreador === this.currentUser.id;
+                // } else {
+                //   partido.esCreador = false;
+                // }
               });  
               this.partidos = partidos_;            
       },
