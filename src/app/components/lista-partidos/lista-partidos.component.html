@@ -37,11 +37,11 @@
             <i class="pi pi-users"></i> {{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}
         </div>
       
-        <div class="ui-g-4 ui-md-3" title="Apuntarse" *ngIf="!partido.idpartidoxjugador && (partido.jugadoresapuntados < partido.jugadorestotal)">
+        <div class="ui-g-4 ui-md-3" title="Apuntarse" *ngIf="currentUser && !partido.idpartidoxjugador && (partido.jugadoresapuntados < partido.jugadorestotal)">
             <i (click)="Apuntate(partido)"  class="pi pi-thumbs-up verde icono-link"></i>
         </div>
 
-        <div class="ui-g-4 ui-md-3" title="Borrarse" *ngIf="partido.idpartidoxjugador">
+        <div class="ui-g-4 ui-md-3" title="Borrarse" *ngIf="currentUser && partido.idpartidoxjugador">
             <i (click)="Borrate(partido)" class="pi pi-thumbs-down rojo icono-link"></i>
         </div>
 
