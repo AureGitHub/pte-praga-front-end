@@ -72,6 +72,7 @@ const appRoutes: Routes = [ ];
         HttpClientModule,
         //HttpClientInMemoryWebApiModule.forRoot(InMemHeroService),
         NgxLoadingModule.forRoot({}),
+        
 
     ],
     providers: [

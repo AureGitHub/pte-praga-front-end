@@ -18,6 +18,16 @@ export const form_partido = [
     ]
   },
 
+  // {
+  //   'name': 'hora',
+  //   'placeholder': 'Hora',
+  //   'type': 'calendar-hora',
+  //   'icon': 'pi pi-clock',
+  //   'validators': [
+      
+  //   ]
+  // },
+
 
 
   {

@@ -36,8 +36,8 @@
                                 </ng-container>
 
                                 <ng-container  *ngSwitchCase="'calendar'">
-                                    <p-calendar  [readonlyInput]="true"  formControlName="{{form_elem.name}}" [monthNavigator]="true" [locale]="es" dateFormat="dd/mm/yy"
-                                     [yearNavigator]="true" yearRange="2000:2030" [showTime]="true" ></p-calendar>
+                                    <input type="datetime-local"   formControlName="{{form_elem.name}}">
+                                    
                                 </ng-container>
 
                                 <ng-container  *ngSwitchCase="'calendar11'">
@@ -46,12 +46,15 @@
 
 
                                 <ng-container  *ngSwitchCase="'calendar-dia'">
-                                    <p-calendar  formControlName="{{form_elem.name}}" [monthNavigator]="true" dateFormat="dd/mm/yy"
-                                     [yearNavigator]="true" yearRange="2000:2030" ></p-calendar>
+                                    <p-calendar  formControlName="{{form_elem.name}}" [locale]="es"
+                                     ></p-calendar>
                                 </ng-container>
 
                                 <ng-container  *ngSwitchCase="'calendar-hora'">
-                                    <p-calendar  formControlName="{{form_elem.name}}" [timeOnly]="true" ></p-calendar>
+                                    <input type="datetime-local"   formControlName="{{form_elem.name}}"
+       name="meeting-time" value="2018-06-12T19:30"
+       min="2018-06-07T00:00" max="2018-06-14T00:00">
+                                   
                                 </ng-container>
 
 

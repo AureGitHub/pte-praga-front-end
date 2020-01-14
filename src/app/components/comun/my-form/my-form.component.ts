@@ -195,12 +195,17 @@ export class MyFormComponent implements OnInit {
 
           // lo muestro en español... lo convierto a inglish para poder setarlo al calendar
           const hora = data[prop].split(' ')[1];
-          const anno = data[prop].split(' ')[0].split('-')[2];
-          const mes = data[prop].split(' ')[0].split('-')[1];
-          const dia = data[prop].split(' ')[0].split('-')[0];
+          const anno = data[prop].split(' ')[0].split('/')[2];
+          const mes = data[prop].split(' ')[0].split('/')[1];
+          const dia = data[prop].split(' ')[0].split('/')[0];
 
           //this.myFormGroup.get('dia').setValue(new Date(anno + '-' + mes + '-' + dia + ' ' + hora));
-          this.myFormGroup.get(prop).setValue(data[prop]);
+          //this.myFormGroup.get(prop).setValue(data[prop]);
+
+          let docDate = anno + '-' + mes + '-' + dia + 'T' + hora + ':00.000Z';
+          this.myFormGroup.get(prop).setValue(docDate.slice(0, -1));
+
+          //'docdatetime': new FormControl(new Date(docDate).toISOString().slice(0, -1))
 
 
         } else {
