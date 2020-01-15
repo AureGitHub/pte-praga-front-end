@@ -1,8 +1,10 @@
 
-<div class="ui-g-12" align="right">
-    <button
-    style="width: 15%;"
+<div class="ui-g-10"></div>
+<div class="ui-g-2" align="right">
+    <button    
+      
       class="ui-button-success"
+      styleClass ="mybutton-size"
       (click)="showDialogToAdd()"
       pButton
       type="button"
@@ -37,7 +39,7 @@
             <i class="pi pi-users"></i> {{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}
         </div>
       
-        <div class="ui-g-4 ui-md-3" title="Apuntarse" *ngIf="currentUser && !partido.idpartidoxjugador && (partido.jugadoresapuntados < partido.jugadorestotal)">
+        <div class="ui-g-4 ui-md-3" title="Apuntarse" *ngIf="currentUser && !partido.idpartidoxjugador ">
             <i (click)="Apuntate(partido)"  class="pi pi-thumbs-up verde icono-link"></i>
         </div>
 

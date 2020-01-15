@@ -20,6 +20,10 @@ export class DetallePartidoComponent implements OnInit {
   reves: User[]=[];
   idpartido: any;
 
+  displayDialog= false;
+
+  newJugadores = [];
+  selectJugadores = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -56,6 +60,28 @@ export class DetallePartidoComponent implements OnInit {
         this.partido = data;    
       });
 
+  }
+
+  showDialogToAddJugador(){
+    this.displayDialog = true;
+    this.httpGralService.getDataById(apisUrl.partidoxjugadorAddByIdPartido, this.idpartido).subscribe(
+      jugadores => {
+        this.newJugadores = jugadores;    
+      });
+
+  }
+
+  AddNewJugadores(){
+
+    const formualio = {idpartido : this.idpartido, JugadoresAdd : this.selectJugadores}
+
+    this.httpGralService.addData(apisUrl.partidoxjugadorAddArray, formualio).subscribe(
+      jugadores => {
+        this.getJugadores();
+    this.displayDialog = false;   
+      });
+
+    
   }
 
 }

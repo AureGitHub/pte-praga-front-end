@@ -7,8 +7,8 @@ import { AuthenticationService } from './authentication.service';
 
 
 // const server='api';  // from memory
- //  const server = 'http://localhost:4000';     // from nodes js
- const server = 'https://pte-praga-back-end.herokuapp.com';
+// const server = 'http://localhost:4000';     // from nodes js
+const server = 'https://pte-praga-back-end.herokuapp.com';
 
 
 export const apisUrl = {
@@ -27,7 +27,9 @@ export const apisUrl = {
   estadoJugador: server + '/estadoJugador',
 
   partidoxjugador: server + '/partidoxjugador',
-  partidoxjugadorByIdPartido: server + '/partidoxjugadorByIdPartido'
+  partidoxjugadorByIdPartido: server + '/partidoxjugadorByIdPartido',
+  partidoxjugadorAddByIdPartido: server + '/partidoxjugadorAddByIdPartido',
+  partidoxjugadorAddArray: server + '/partidoxjugadorAddArray',
 };
 
 @Injectable({

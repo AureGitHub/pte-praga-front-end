@@ -47,6 +47,10 @@
     margin: 0 auto;
   }  
 
+  .mybutton-size{
+    width: 90%;
+  }
+
 
 
 }
@@ -62,6 +66,10 @@
     margin-top:'20px';
     margin: 0 auto;
   }  
+
+  .mybutton-size.ui-togglebutton.ui-button.ui-state-active{
+    width: 5%;
+  }
 
 
 }

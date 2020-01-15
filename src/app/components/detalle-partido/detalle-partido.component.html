@@ -18,7 +18,18 @@
   <div class="ui-g-6 ui-md-6">
     <h3>Jugadores: {{partido.jugadoresapuntados}}/{{partido.jugadorestotal}} </h3>
   </div>
-
+  <div class="ui-g-10"></div>
+  <div class="ui-g-2">
+    <button   
+    class="ui-button-success"    
+    (click)="showDialogToAddJugador()"
+    pButton
+    type="button"
+    icon="fa fa-2x fa-plus-square-o"
+    label=" "
+    *ngIf="currentUser?.isAdmin"
+  ></button>
+  </div>
   <div class="ui-g-6 ui-md-6">  
     <h4>Diestros</h4> 
     <div  class="comun-detalle-partido drive">
@@ -48,6 +59,29 @@
 
 
 </div>
+
+<p-dialog
+header="Añadir Jugador/es"
+[(visible)]="displayDialog"
+[responsive]="true"
+showEffect="fade"
+[modal]="false"
+[responsive]="false" [resizable]="false"        
+[style]="{'max-width': '800px'}"
+
+>
+
+<p-listbox [options]="newJugadores" [(ngModel)]="selectJugadores" multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="alias">
+  <p-header>
+    <i class="fa fa-user"></i>
+    Jugadores
+  </p-header>
+</p-listbox>
+<button   
+class="ui-button-success"  (click)="AddNewJugadores()" pButton type="button" 
+icon="fa fa-2x fa-plus-square-o" [disabled]="selectJugadores.length === 0" label="Añadir" *ngIf="currentUser?.isAdmin" ></button>
+ {{selectJugadores.length}}
+</p-dialog>
 
 
 
