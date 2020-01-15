@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { User } from 'src/app/models/user';
 import { Partido } from 'src/app/models/partido';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
+import { ConfirmationService } from 'primeng/api';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 
 @Component({
@@ -13,23 +14,28 @@ import { AuthenticationService } from 'src/app/services/http/authentication.serv
 })
 export class DetallePartidoComponent implements OnInit {
 
-  currentUser: User;
+  currentUser: any;
   partido: Partido = null;
 
-  diestros: User[]=[];
-  reves: User[]=[];
+  drives=[];
+  reves=[];
+  suplentes = [];
   idpartido: any;
 
   displayDialog= false;
 
   newJugadores = [];
   selectJugadores = [];
+  selectdrive : any;
+  selectreves : any;
+  selectsuplente : any;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private httpGralService: HttpGralService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private confirmationService: ConfirmationService,
 
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
@@ -39,7 +45,7 @@ export class DetallePartidoComponent implements OnInit {
 
     this.idpartido =this.route.snapshot.paramMap.get('id');
     this.getPartido();
-    this.getJugadores();
+    
   }
 
 
@@ -47,9 +53,30 @@ export class DetallePartidoComponent implements OnInit {
 
   getJugadores(){
     this.httpGralService.getDataById(apisUrl.partidoxjugadorByIdPartido, this.idpartido).subscribe(
-      data => {
-        this.diestros = data.filter(a=> a.idposicion === 1);
-        this.reves = data.filter(a=> a.idposicion === 2);
+      jugadores => {
+
+        this.drives = [];
+        this.reves = [];
+        this.suplentes = [];
+
+        //los que tienen plaza
+        for (let index = 0; index < this.partido.jugadorestotal; index++) {
+          if(jugadores[index]){
+            if(jugadores[index].idposicion === 1){
+              this.drives.push(jugadores[index]);
+            } else  if(jugadores[index].idposicion === 2){
+              this.reves.push(jugadores[index]);
+            }
+          }
+        }
+        for (let index = this.partido.jugadorestotal; index < jugadores.length; index++) {
+          this.suplentes.push(jugadores[index]);
+        }
+
+     
+
+        this.partido.jugadoresapuntados = jugadores.length;
+
       });
   }
 
@@ -57,7 +84,8 @@ export class DetallePartidoComponent implements OnInit {
 
     this.httpGralService.getDataById(apisUrl.partido, this.idpartido).subscribe(
       data => {
-        this.partido = data;    
+        this.partido = data;   
+        this.getJugadores(); 
       });
 
   }
@@ -79,9 +107,47 @@ export class DetallePartidoComponent implements OnInit {
       jugadores => {
         this.getJugadores();
     this.displayDialog = false;   
-      });
-
-    
+      });    
   }
+
+  borrar(formulario: any){
+
+    this.confirmationService.confirm({
+      message: 'Vas a borrar a ' + formulario.alias + ' del partido  ¿Deseas borrarte?',
+      header: 'Bórrate del partido',
+      icon: 'pi pi-thumbs-down',
+      acceptLabel: 'Si',
+      rejectLabel: 'No',
+      accept: () => {
+        this.httpGralService.deleteData(apisUrl.partidoxjugador, {idpartido : this.idpartido, idjugador: formulario.id}).subscribe(
+          jugadores => {
+            this.getJugadores();   
+            this.selectreves = null;
+            this.selectdrive = null;
+            
+          });
+      },
+      reject: () => {
+      }
+  });
+
+
+     
+
+  }
+
+  borrarReves(){
+     this.borrar(this.selectreves);
+  }
+
+  borrarDrive(){
+    this.borrar(this.selectdrive);
+ }
+
+ borrarSuplentes(){
+  this.borrar(this.selectsuplente);
+}
+
+ 
 
 }

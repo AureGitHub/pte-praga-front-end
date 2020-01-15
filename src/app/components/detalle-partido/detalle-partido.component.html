@@ -30,31 +30,67 @@
     *ngIf="currentUser?.isAdmin"
   ></button>
   </div>
-  <div class="ui-g-6 ui-md-6">  
-    <h4>Diestros</h4> 
-    <div  class="comun-detalle-partido drive">
-      <ul>
-        <li *ngFor="let jugador of diestros">
-          {{ jugador.alias }}
-        </li>
-      </ul>
-    </div>
+  <div class="ui-g-6 ui-md-6">     
+    
+    <p-listbox [options]="drives" [(ngModel)]="selectdrive" 
+         checkbox="checkbox"  optionLabel="alias">
+        <p-header>
+          <div class="ui-g-6">
+            <i class="fa fa-user"></i>
+            Drive
+          </div>
+          <div class="ui-g-6">
+            <div (click)="borrarDrive()" class="rojo icono-link" *ngIf="currentUser?.isAdmin && partido && selectdrive">
+              <i class="fa fa-eraser"></i>
+              Borrar
+            </div>      
+          </div>    
+        </p-header>
+    </p-listbox>
+      
+  </div>
 
- </div>
 
  <div class="ui-g-6 ui-md-6">  
-  <h4>Revés</h4>
-   <div  class="comun-detalle-partido reves">
-   <ul>
-  <li *ngFor="let jugador of reves">
-    {{ jugador.alias }}
-  </li>
-</ul>   
-</div>
- </div>
+  <p-listbox [options]="reves" [(ngModel)]="selectreves" 
+   checkbox="checkbox"  optionLabel="alias">
+  <p-header>
+    <div class="ui-g-6">
+      <i class="fa fa-user"></i>
+      Revés
+    </div>
+    <div class="ui-g-6">
+      <div (click)="borrarReves()" class="rojo icono-link" *ngIf="currentUser?.isAdmin && partido && selectreves">
+        <i class="fa fa-eraser"></i>
+        Borrar
+      </div>      
+    </div>    
+  </p-header>
+</p-listbox>
 </div> 
+
+<div class="ui-g-3"></div>
+<div class="ui-g-6">
+  <p-listbox [options]="suplentes" [(ngModel)]="selectsuplente" 
+         checkbox="checkbox"  optionLabel="alias">
+        <p-header>
+          <div class="ui-g-6">
+            <i class="fa fa-user"></i>
+            Suplentes
+          </div>
+          <div class="ui-g-6">
+            <div (click)="borrarSuplentes()" class="rojo icono-link" *ngIf="currentUser?.isAdmin && partido && selectsuplente">
+              <i class="fa fa-eraser"></i>
+              Borrar
+            </div>      
+          </div>    
+        </p-header>
+    </p-listbox>
+</div>
+<div class="ui-g-3"></div>
+
 <div class="ui-g-12 ui-md-12">  
-  <button (click)="hacerdistribucion()" size="90%" pButton type="button" label="V.I.C.T.O.R." icon="fa fa-2x fa-steam" ></button> 
+  <button  *ngIf="currentUser?.isAdmin && partido" (click)="hacerdistribucion()" size="90%" pButton type="button" label="V.I.C.T.O.R." icon="fa fa-2x fa-steam" ></button> 
  </div>
 
 
