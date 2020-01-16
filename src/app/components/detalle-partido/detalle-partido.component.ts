@@ -55,23 +55,23 @@ export class DetallePartidoComponent implements OnInit {
     this.httpGralService.getDataById(apisUrl.partidoxjugadorByIdPartido, this.idpartido).subscribe(
       jugadores => {
 
-        this.drives = [];
-        this.reves = [];
-        this.suplentes = [];
+        this.drives =jugadores.filter(a=> a.idposicion === 1 && a.idpartidoxjugador_estado === 1);
+        this.reves = jugadores.filter(a=> a.idposicion === 2 && a.idpartidoxjugador_estado === 1);
+        this.suplentes = jugadores.filter(a=>  a.idpartidoxjugador_estado === 2);
 
         //los que tienen plaza
-        for (let index = 0; index < this.partido.jugadorestotal; index++) {
-          if(jugadores[index]){
-            if(jugadores[index].idposicion === 1){
-              this.drives.push(jugadores[index]);
-            } else  if(jugadores[index].idposicion === 2){
-              this.reves.push(jugadores[index]);
-            }
-          }
-        }
-        for (let index = this.partido.jugadorestotal; index < jugadores.length; index++) {
-          this.suplentes.push(jugadores[index]);
-        }
+        // for (let index = 0; index < this.partido.jugadorestotal; index++) {
+        //   if(jugadores[index]){
+        //     if(jugadores[index].idposicion === 1){
+        //       this.drives.push(jugadores[index]);
+        //     } else  if(jugadores[index].idposicion === 2){
+        //       this.reves.push(jugadores[index]);
+        //     }
+        //   }
+        // }
+        // for (let index = this.partido.jugadorestotal; index < jugadores.length; index++) {
+        //   this.suplentes.push(jugadores[index]);
+        // }
 
      
 
@@ -91,6 +91,7 @@ export class DetallePartidoComponent implements OnInit {
   }
 
   showDialogToAddJugador(){
+    this.selectJugadores = [];
     this.displayDialog = true;
     this.httpGralService.getDataById(apisUrl.partidoxjugadorAddByIdPartido, this.idpartido).subscribe(
       jugadores => {
@@ -119,11 +120,16 @@ export class DetallePartidoComponent implements OnInit {
       acceptLabel: 'Si',
       rejectLabel: 'No',
       accept: () => {
-        this.httpGralService.deleteData(apisUrl.partidoxjugador, {idpartido : this.idpartido, idjugador: formulario.id}).subscribe(
+        this.httpGralService.deleteData(apisUrl.partidoxjugador, 
+          {idpartido : this.idpartido, 
+           idjugador: formulario.id,
+           idpartidoxjugador_estado : formulario.idpartidoxjugador_estado
+          }).subscribe(
           jugadores => {
             this.getJugadores();   
             this.selectreves = null;
             this.selectdrive = null;
+            this.selectsuplente = null;
             
           });
       },
