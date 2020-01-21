@@ -17,6 +17,8 @@ export class DetallePartidoComponent implements OnInit {
   currentUser: any;
   partido: Partido = null;
 
+  partidosxpistas =[{nombre: 'pepe'}, {nombre: 'pepe1'}];
+
   drives=[];
   reves=[];
   suplentes = [];

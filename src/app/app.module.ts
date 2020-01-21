@@ -37,6 +37,7 @@ import { CambiarPasswordComponent } from './components/cambiar-password/cambiar-
 import { ListaPartidosComponent } from './components/lista-partidos/lista-partidos.component';
 import { JugadoresComponent } from './components/jugadores/jugadores.component';
 import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-jugador.component';
+import { PartidoxpistaComponent } from './components/partidoxpista/partidoxpista.component';
 
 
 const appRoutes: Routes = [ ];
@@ -60,7 +61,8 @@ const appRoutes: Routes = [ ];
         RegistroComponent,
         ConfirmEmailComponent,
         CambiarPasswordComponent,
-        DetalleJugadorComponent
+        DetalleJugadorComponent,
+        PartidoxpistaComponent
     ],
     imports: [
         BrowserModule,
