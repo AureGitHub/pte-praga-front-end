@@ -17,7 +17,7 @@ export class DetallePartidoComponent implements OnInit {
   currentUser: any;
   partido: Partido = null;
 
-  partidosxpistas =[{nombre: 'pepe'}, {nombre: 'pepe1'}];
+  partidosxpistas =[];
 
   drives=[];
   reves=[];
@@ -59,24 +59,7 @@ export class DetallePartidoComponent implements OnInit {
 
         this.drives =jugadores.filter(a=> a.idposicion === 1 && a.idpartidoxjugador_estado === 1);
         this.reves = jugadores.filter(a=> a.idposicion === 2 && a.idpartidoxjugador_estado === 1);
-        this.suplentes = jugadores.filter(a=>  a.idpartidoxjugador_estado === 2);
-
-        //los que tienen plaza
-        // for (let index = 0; index < this.partido.jugadorestotal; index++) {
-        //   if(jugadores[index]){
-        //     if(jugadores[index].idposicion === 1){
-        //       this.drives.push(jugadores[index]);
-        //     } else  if(jugadores[index].idposicion === 2){
-        //       this.reves.push(jugadores[index]);
-        //     }
-        //   }
-        // }
-        // for (let index = this.partido.jugadorestotal; index < jugadores.length; index++) {
-        //   this.suplentes.push(jugadores[index]);
-        // }
-
-     
-
+        this.suplentes = jugadores.filter(a=>  a.idpartidoxjugador_estado === 2);    
         this.partido.jugadoresapuntados = jugadores.length;
 
       });
@@ -88,8 +71,15 @@ export class DetallePartidoComponent implements OnInit {
       data => {
         this.partido = data;   
         this.getJugadores(); 
+        this.getPartidoxPista();
       });
 
+  }
+  getPartidoxPista() {
+    this.httpGralService.getDataById(apisUrl.partidosxpistas, this.idpartido).subscribe(
+      pxp => {
+        this.partidosxpistas = pxp;    
+      });
   }
 
   showDialogToAddJugador(){

@@ -1,20 +1,25 @@
-<div *ngFor="let pxp of partidosxpistas; let i = index">
+<div class="centrado">
+
+
+<div class="divPistas " *ngFor="let pxp of partidosxpistas; let i = index">
   
     
     <h3>{{ pxp.nombre }}</h3>
     <div class="p-grid centrado">
       <div class="p-col-6  fondo-verde arriba derecho">
-        <div class="">6</div>
+        <div class="">{{pxp.jd1}}</div>
       </div>
       <div class="p-col-6  fondo-verde arriba izquierda">
-        <div class="box">6</div>
+        <div class="box">{{pxp.jd2}}</div>
       </div>
       <div class="p-col-6  fondo-verde derecho">
-        <div class="box">6</div>
+        <div class="box">{{pxp.jr1}}</div>
       </div>
       <div class="p-col-6  fondo-verde izquierda">
-        <div class="box">6</div>
+        <div class="box">{{pxp.jr2}}</div>
       </div>
     </div>
  
+</div>
+
 </div>

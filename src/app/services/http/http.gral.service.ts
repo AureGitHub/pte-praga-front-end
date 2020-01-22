@@ -30,6 +30,7 @@ export const apisUrl = {
   partidoxjugadorByIdPartido: server + '/partidoxjugadorByIdPartido',
   partidoxjugadorAddByIdPartido: server + '/partidoxjugadorAddByIdPartido',
   partidoxjugadorAddArray: server + '/partidoxjugadorAddArray',
+  partidosxpistas: server + '/partidosxpista',
 };
 
 @Injectable({
