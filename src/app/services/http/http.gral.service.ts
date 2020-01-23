@@ -15,7 +15,6 @@ export const apisUrl = {
   login : server + '/login',
   pedirCodigoForgetPass : server + '/pedirCodigoForgetPass', 
   cambiarPasswordForget  : server + '/cambiarPasswordForget ', 
-  
   cambiar_password : server + '/cambiarPassword',
   ask_cod_conf_email : server + '/pedirCodigoEmail',
   conf_email : server + '/confirmarEmail',
@@ -31,6 +30,7 @@ export const apisUrl = {
   partidoxjugadorAddByIdPartido: server + '/partidoxjugadorAddByIdPartido',
   partidoxjugadorAddArray: server + '/partidoxjugadorAddArray',
   partidosxpistas: server + '/partidosxpista',
+  hacerparejas : server + '/hacerparejas',
 };
 
 @Injectable({

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Partido } from 'src/app/models/partido';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
 import { ConfirmationService } from 'primeng/api';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { AlertService } from 'src/app/services/components/alert.service';
 
 
 @Component({
@@ -19,25 +19,25 @@ export class DetallePartidoComponent implements OnInit {
 
   partidosxpistas =[];
 
-  drives=[];
-  reves=[];
+  drives = [];
+  reves = [];
   suplentes = [];
   idpartido: any;
 
-  displayDialog= false;
+  displayDialog = false;
 
   newJugadores = [];
   selectJugadores = [];
-  selectdrive : any;
-  selectreves : any;
-  selectsuplente : any;
+  selectdrive: any;
+  selectreves: any;
+  selectsuplente: any;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private httpGralService: HttpGralService,
     private authenticationService: AuthenticationService,
     private confirmationService: ConfirmationService,
+    private alertService: AlertService
 
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
@@ -45,21 +45,27 @@ export class DetallePartidoComponent implements OnInit {
 
   ngOnInit() {
 
-    this.idpartido =this.route.snapshot.paramMap.get('id');
+    this.idpartido = this.route.snapshot.paramMap.get('id');
     this.getPartido();
-    
   }
 
 
-  hacerdistribucion(){}
+  hacerparejas(){
+    this.httpGralService.getDataById(apisUrl.hacerparejas, this.idpartido).subscribe(
+      parejas => {
+        this.alertService.success('V.I.C.T.O.R. ha realizado los cáculos...');
+        this.getPartidoxPista();
+
+      });
+  }
 
   getJugadores(){
     this.httpGralService.getDataById(apisUrl.partidoxjugadorByIdPartido, this.idpartido).subscribe(
       jugadores => {
 
-        this.drives =jugadores.filter(a=> a.idposicion === 1 && a.idpartidoxjugador_estado === 1);
-        this.reves = jugadores.filter(a=> a.idposicion === 2 && a.idpartidoxjugador_estado === 1);
-        this.suplentes = jugadores.filter(a=>  a.idpartidoxjugador_estado === 2);    
+        this.drives =jugadores.filter( a => a.idposicion === 1 && a.idpartidoxjugador_estado === 1);
+        this.reves = jugadores.filter( a => a.idposicion === 2 && a.idpartidoxjugador_estado === 1);
+        this.suplentes = jugadores.filter(a =>  a.idpartidoxjugador_estado === 2);
         this.partido.jugadoresapuntados = jugadores.length;
 
       });
@@ -69,8 +75,8 @@ export class DetallePartidoComponent implements OnInit {
 
     this.httpGralService.getDataById(apisUrl.partido, this.idpartido).subscribe(
       data => {
-        this.partido = data;   
-        this.getJugadores(); 
+        this.partido = data;
+        this.getJugadores();
         this.getPartidoxPista();
       });
 
@@ -78,7 +84,7 @@ export class DetallePartidoComponent implements OnInit {
   getPartidoxPista() {
     this.httpGralService.getDataById(apisUrl.partidosxpistas, this.idpartido).subscribe(
       pxp => {
-        this.partidosxpistas = pxp;    
+        this.partidosxpistas = pxp;
       });
   }
 
@@ -87,7 +93,7 @@ export class DetallePartidoComponent implements OnInit {
     this.displayDialog = true;
     this.httpGralService.getDataById(apisUrl.partidoxjugadorAddByIdPartido, this.idpartido).subscribe(
       jugadores => {
-        this.newJugadores = jugadores;    
+        this.newJugadores = jugadores;
       });
 
   }
@@ -99,8 +105,8 @@ export class DetallePartidoComponent implements OnInit {
     this.httpGralService.addData(apisUrl.partidoxjugadorAddArray, formualio).subscribe(
       jugadores => {
         this.getJugadores();
-    this.displayDialog = false;   
-      });    
+    this.displayDialog = false;
+      });
   }
 
   borrar(formulario: any){
@@ -112,25 +118,22 @@ export class DetallePartidoComponent implements OnInit {
       acceptLabel: 'Si',
       rejectLabel: 'No',
       accept: () => {
-        this.httpGralService.deleteData(apisUrl.partidoxjugador, 
-          {idpartido : this.idpartido, 
+        this.httpGralService.deleteData(apisUrl.partidoxjugador,
+          {idpartido : this.idpartido,
            idjugador: formulario.id,
            idpartidoxjugador_estado : formulario.idpartidoxjugador_estado
           }).subscribe(
           jugadores => {
-            this.getJugadores();   
+            this.getJugadores();
             this.selectreves = null;
             this.selectdrive = null;
             this.selectsuplente = null;
-            
           });
       },
       reject: () => {
       }
   });
 
-
-     
 
   }
 
