@@ -51,14 +51,14 @@ export class PartidoxpistaComponent implements OnInit {
 
   setMarcador(idpista,idturno, set){
 
-      this.pxp_setMarcador = this.partidosxpistas.find(a=> a.idpista === idpista && a.idturno === idturno);
+      this.pxp_setMarcador = this.partidosxpistas.find(a=> a['idpista'] === idpista && a['idturno'] === idturno);
 
       this.numSet =set;
 
 
 
     this.displayDialog= true;
-    this.marcadorPartido = `${this.pxp_setMarcador.nombre}    set ${set}` ;
+    this.marcadorPartido = `${this.pxp_setMarcador['nombre']}    set ${set}` ;
   }
 
   saveSet(){
@@ -68,7 +68,7 @@ export class PartidoxpistaComponent implements OnInit {
     }
 
     let form ={
-      idpartidoxpista :this.pxp_setMarcador.id ,
+      idpartidoxpista :this.pxp_setMarcador['id'] ,
       idset: this.numSet,
       juegospareja1: this.selectTanteoPar1,
       juegospareja2: this.selectTanteoPar2
@@ -85,7 +85,7 @@ export class PartidoxpistaComponent implements OnInit {
 
 
   getpistaxpartido(idpista,idturno){
-    this.pxp = this.partidosxpistas.find(a=> a.idpista === idpista && a.idturno === idturno);
+    this.pxp = this.partidosxpistas.find(a=> a['idpista'] === idpista && a['idturno'] === idturno);
   }
 
 }
