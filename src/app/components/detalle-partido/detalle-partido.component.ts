@@ -17,7 +17,9 @@ export class DetallePartidoComponent implements OnInit {
   currentUser: any;
   partido: Partido = null;
 
-  partidosxpistas =[];
+  partidosxpistas = [];
+  pistasArray = [];
+  turnosArray = [];
 
   drives = [];
   reves = [];
@@ -41,7 +43,7 @@ export class DetallePartidoComponent implements OnInit {
 
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-   }
+  }
 
   ngOnInit() {
 
@@ -50,7 +52,7 @@ export class DetallePartidoComponent implements OnInit {
   }
 
 
-  hacerparejas(){
+  hacerparejas() {
     this.httpGralService.getDataById(apisUrl.hacerparejas, this.idpartido).subscribe(
       parejas => {
         this.alertService.success('V.I.C.T.O.R. ha realizado los cáculos...');
@@ -59,19 +61,19 @@ export class DetallePartidoComponent implements OnInit {
       });
   }
 
-  getJugadores(){
+  getJugadores() {
     this.httpGralService.getDataById(apisUrl.partidoxjugadorByIdPartido, this.idpartido).subscribe(
       jugadores => {
 
-        this.drives =jugadores.filter( a => a.idposicion === 1 && a.idpartidoxjugador_estado === 1);
-        this.reves = jugadores.filter( a => a.idposicion === 2 && a.idpartidoxjugador_estado === 1);
-        this.suplentes = jugadores.filter(a =>  a.idpartidoxjugador_estado === 2);
+        this.drives = jugadores.filter(a => a.idposicion === 1 && a.idpartidoxjugador_estado === 1);
+        this.reves = jugadores.filter(a => a.idposicion === 2 && a.idpartidoxjugador_estado === 1);
+        this.suplentes = jugadores.filter(a => a.idpartidoxjugador_estado === 2);
         this.partido.jugadoresapuntados = jugadores.length;
 
       });
   }
 
-  getPartido(){
+  getPartido() {
 
     this.httpGralService.getDataById(apisUrl.partido, this.idpartido).subscribe(
       data => {
@@ -85,10 +87,22 @@ export class DetallePartidoComponent implements OnInit {
     this.httpGralService.getDataById(apisUrl.partidosxpistas, this.idpartido).subscribe(
       pxp => {
         this.partidosxpistas = pxp;
+        for (var i = 1; i <= this.partido.pistas; i++) {
+          this.pistasArray.push(i);
+        }
+
+        const maxTurno = Math.max.apply(Math, this.partidosxpistas.map(function(o) { return o.idturno; }));
+
+        for (var i = 1; i <= maxTurno; i++) {
+          this.turnosArray.push(i);
+        }
+
+
+       
       });
   }
 
-  showDialogToAddJugador(){
+  showDialogToAddJugador() {
     this.selectJugadores = [];
     this.displayDialog = true;
     this.httpGralService.getDataById(apisUrl.partidoxjugadorAddByIdPartido, this.idpartido).subscribe(
@@ -98,18 +112,18 @@ export class DetallePartidoComponent implements OnInit {
 
   }
 
-  AddNewJugadores(){
+  AddNewJugadores() {
 
-    const formualio = {idpartido : this.idpartido, JugadoresAdd : this.selectJugadores}
+    const formualio = { idpartido: this.idpartido, JugadoresAdd: this.selectJugadores }
 
     this.httpGralService.addData(apisUrl.partidoxjugadorAddArray, formualio).subscribe(
       jugadores => {
         this.getJugadores();
-    this.displayDialog = false;
+        this.displayDialog = false;
       });
   }
 
-  borrar(formulario: any){
+  borrar(formulario: any) {
 
     this.confirmationService.confirm({
       message: 'Vas a borrar a ' + formulario.alias + ' del partido  ¿Deseas borrarte?',
@@ -119,36 +133,37 @@ export class DetallePartidoComponent implements OnInit {
       rejectLabel: 'No',
       accept: () => {
         this.httpGralService.deleteData(apisUrl.partidoxjugador,
-          {idpartido : this.idpartido,
-           idjugador: formulario.id,
-           idpartidoxjugador_estado : formulario.idpartidoxjugador_estado
+          {
+            idpartido: this.idpartido,
+            idjugador: formulario.id,
+            idpartidoxjugador_estado: formulario.idpartidoxjugador_estado
           }).subscribe(
-          jugadores => {
-            this.getJugadores();
-            this.selectreves = null;
-            this.selectdrive = null;
-            this.selectsuplente = null;
-          });
+            jugadores => {
+              this.getJugadores();
+              this.selectreves = null;
+              this.selectdrive = null;
+              this.selectsuplente = null;
+            });
       },
       reject: () => {
       }
-  });
+    });
 
 
   }
 
-  borrarReves(){
-     this.borrar(this.selectreves);
+  borrarReves() {
+    this.borrar(this.selectreves);
   }
 
-  borrarDrive(){
+  borrarDrive() {
     this.borrar(this.selectdrive);
- }
+  }
 
- borrarSuplentes(){
-  this.borrar(this.selectsuplente);
-}
+  borrarSuplentes() {
+    this.borrar(this.selectsuplente);
+  }
 
- 
+
 
 }

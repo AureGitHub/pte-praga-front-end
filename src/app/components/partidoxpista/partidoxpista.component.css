@@ -33,14 +33,51 @@
     /* Mobile */
     .divPistas {
         width: 90%;
+        color: black;
     }
+
+    .divTurno {
+        width: 95%;
+        border-color: black;
+        border-style: double;        
+        margin: 10px;
+        padding: 10px;
+       
+    }
+
   }
   
   @media screen and (min-width: 700px) {
     /* Desktop */
     .divPistas {
-        width: 50%;
+        width: 90%;
+        color: black;
+        
+    }
+    .divTurno {
+        width: 60%;
+        border-color: black;
+        border-style: double;        
+        margin: 10px;
+        padding: 10px;
     }
   
     
   }
+
+  .jugador{
+      color: white;
+      font-size:medium;
+      
+  }
+
+.turno_1{
+      background-color: #FBEFF2;
+  }
+
+.turno_2{
+    background-color: #F8E0E6;
+}
+.turno_3{
+    background-color: #F6CED8;
+}
