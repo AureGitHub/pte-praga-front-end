@@ -4,6 +4,7 @@
       <div class="divTurno turno_{{j+1}}" *ngFor="let turno of turnosArray; let j = index">
         <div class="divPistas" *ngFor="let pista of (pistasArray || []); let i = index">
           {{ getpistaxpartido(pistasArray[i],turnosArray[j]) }}
+
           <div class="ui-g">
             <div class="ui-g-6"  align="left" >
               <h3>TURNO {{j+1}}</h3>

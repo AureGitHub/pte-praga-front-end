@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Partido } from 'src/app/models/partido';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
@@ -34,6 +34,8 @@ export class DetallePartidoComponent implements OnInit {
   selectreves: any;
   selectsuplente: any;
 
+  @ViewChild('divPistas') myDiv: ElementRef;
+
   constructor(
     private route: ActivatedRoute,
     private httpGralService: HttpGralService,
@@ -56,6 +58,7 @@ export class DetallePartidoComponent implements OnInit {
     this.httpGralService.getDataById(apisUrl.hacerparejas, this.idpartido).subscribe(
       parejas => {
         this.alertService.success('V.I.C.T.O.R. ha realizado los cáculos...');
+        
         this.getPartidoxPista();
 
       });
@@ -86,19 +89,20 @@ export class DetallePartidoComponent implements OnInit {
   getPartidoxPista() {
     this.httpGralService.getDataById(apisUrl.partidosxpistas, this.idpartido).subscribe(
       pxp => {
+        this.pistasArray = [];
         this.partidosxpistas = pxp;
-        for (var i = 1; i <= this.partido.pistas; i++) {
+        for (let i = 1; i <= this.partido.pistas; i++) {
           this.pistasArray.push(i);
         }
 
         const maxTurno = Math.max.apply(Math, this.partidosxpistas.map(function(o) { return o.idturno; }));
 
-        for (var i = 1; i <= maxTurno; i++) {
+        this.turnosArray = [];
+
+        for (let i = 1; i <= maxTurno; i++) {
           this.turnosArray.push(i);
         }
 
-
-       
       });
   }
 
