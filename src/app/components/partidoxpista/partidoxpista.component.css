@@ -12,22 +12,25 @@
     border-width: 1px;
     border-color: white;
 }
-.arriba{
-    border-bottom: white;
-    border-bottom-style:  solid;
-
-}
-
-.derecho{
-    border-right: white;
-    border-right-style:  dotted;
-}
-
-.izquierda{
-    border-left: white;
+.pareja1{
+    border-bottom-color: white;
+    border-bottom: double;
     
-    border-left-style:  dotted;
+
 }
+
+.pareja2{
+    border-top-color:  white;
+    border-top:  double;
+}
+
+.red{
+    background-image: url("../../../assets/images/redPadel.PNG");
+    background-repeat: repeat-x;
+    background-size: cover;
+}
+
+
 
 @media screen and (max-width: 700px) {
     /* Mobile */
@@ -38,8 +41,7 @@
 
     .divTurno {
         width: 95%;
-        border-color: black;
-        border-style: double;        
+       
         margin: 10px;
         padding: 10px;
        
@@ -56,8 +58,7 @@
     }
     .divTurno {
         width: 60%;
-        border-color: black;
-        border-style: double;        
+          
         margin: 10px;
         padding: 10px;
     }

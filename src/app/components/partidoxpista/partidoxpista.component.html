@@ -15,36 +15,42 @@
             </div>
 
             <div class="ui-g">
-              <div class="ui-g-4 fondo-verde arriba derecho"  align="center" >
+              <div class="ui-g-2 fondo-blanco">P1</div>
+              <div class="ui-g-2 fondo-verde pareja1"  align="center" >
                 <span class="jugador">{{ pxp.jd1 }}</span>
+              </div>            
+
+              <div class="ui-g-2 fondo-verde pareja1" >                
+                <span class="jugador">{{ pxp.jr1 }}</span>
               </div>
+              <div class="ui-g-2 resultado" (click)="setMarcador(pistasArray[i],turnosArray[j],1)" ></div>
+              <div class="ui-g-2 resultado" (click)="setMarcador(pistasArray[i],turnosArray[j],2)" ></div>
+              <div class="ui-g-2 resultado" (click)="setMarcador(pistasArray[i],turnosArray[j],3)" ></div>
 
-              <div class="ui-g-1 fondo-blanco"></div>
+            </div>
 
-              <div class="ui-g-4 fondo-verde arriba izquierda" >                
-                <span class="jugador">{{ pxp.jd2 }}</span>
-              </div>
-              <div class="ui-g-1 resultado" (click)="setMarcador(pistasArray[i],turnosArray[j],1)" ></div>
-              <div class="ui-g-1 resultado" (click)="setMarcador(pistasArray[i],turnosArray[j],2)" ></div>
-              <div class="ui-g-1 resultado" (click)="setMarcador(pistasArray[i],turnosArray[j],3)" ></div>
-
+            <div class="ui-g" style="height: 15px;">
+              <div class="ui-g-2"></div>
+              <div class="ui-g-4 red"></div>
+              <div class="ui-g-6"></div>
             </div>
            
 
             <div class="ui-g">
-              <div class="ui-g-4 fondo-verde  derecho"  align="center" >
-                <span class="jugador">{{ pxp.jr1 }}</span>
+              <div class="ui-g-2 fondo-blanco">P2</div>
+              <div class="ui-g-2 fondo-verde pareja2"  align="center" >
+                <span class="jugador">{{ pxp.jd2 }}</span>
               </div>
 
-              <div class="ui-g-1 fondo-blanco"></div>
+              
 
-              <div class="ui-g-4 fondo-verde  izquierda" >
+              <div class="ui-g-2 fondo-verde pareja2" >
                 <span class="jugador">{{ pxp.jr2 }}</span>
               </div>
 
-              <div class="ui-g-1 resultado" (click)="setMarcador(pistasArray[i],turnosArray[j],1)" ></div>
-              <div class="ui-g-1 resultado" (click)="setMarcador(pistasArray[i],turnosArray[j],2)" ></div>
-              <div class="ui-g-1 resultado" (click)="setMarcador(pistasArray[i],turnosArray[j],3)" ></div>
+              <div class="ui-g-2 resultado" (click)="setMarcador(pistasArray[i],turnosArray[j],1)" ></div>
+              <div class="ui-g-2 resultado" (click)="setMarcador(pistasArray[i],turnosArray[j],2)" ></div>
+              <div class="ui-g-2 resultado" (click)="setMarcador(pistasArray[i],turnosArray[j],3)" ></div>
 
 
             </div>       
