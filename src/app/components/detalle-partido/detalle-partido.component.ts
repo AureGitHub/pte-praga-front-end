@@ -33,6 +33,7 @@ export class DetallePartidoComponent implements OnInit {
   selectdrive: any;
   selectreves: any;
   selectsuplente: any;
+  widthButton = {'width': '20%'};
 
   @ViewChild('divPistas') myDiv: ElementRef;
 
@@ -45,6 +46,14 @@ export class DetallePartidoComponent implements OnInit {
 
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+
+    if (window.innerWidth >= 700) {
+      this.widthButton = {'width': '20%'};
+
+    } else {
+      this.widthButton = {'width': '90%'};
+
+    }
   }
 
   ngOnInit() {
@@ -54,13 +63,13 @@ export class DetallePartidoComponent implements OnInit {
   }
 
 
+ 
+
   hacerparejas() {
     this.httpGralService.getDataById(apisUrl.hacerparejas, this.idpartido).subscribe(
       parejas => {
         this.alertService.success('V.I.C.T.O.R. ha realizado los cáculos...');
-        
         this.getPartidoxPista();
-
       });
   }
 

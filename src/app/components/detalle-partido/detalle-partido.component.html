@@ -89,8 +89,11 @@
 </div>
 <div class="ui-g-3"></div>
 
-<div class="ui-g-12 ui-md-12">  
-  <button  *ngIf="currentUser?.isAdmin && partido" (click)="hacerparejas()" size="90%" pButton type="button" label="V.I.C.T.O.R." icon="fa fa-2x fa-steam" ></button> 
+<div class="ui-g-12 ui-md-12" align="center" >  
+  <div class="myBoton">
+  <button  *ngIf="currentUser?.isAdmin && partido" (click)="hacerparejas()"  
+  pButton type="button" label="V.I.C.T.O.R." icon="fa fa-2x fa-steam"  iconPos="right"></button> 
+</div>
  </div>
 
 <div class="ui-g-12 ui-md-12">

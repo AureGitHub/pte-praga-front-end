@@ -17,3 +17,30 @@
 .reves{    
     background-color:#2A0A12;
 }
+
+
+@media  screen and (min-width: 700px) {
+    /* Desktop */
+    .myinput-size {
+      width: 80%;
+    }  
+  
+    .mypanel-size {
+  
+      margin-top:'20px';
+      margin: 0 auto;
+    }  
+  
+  
+    
+    .Myboton{
+     width: 20%;
+    }
+   
+  
+  
+  }
+
+
+
+
