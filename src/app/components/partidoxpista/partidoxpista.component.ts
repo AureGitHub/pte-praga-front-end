@@ -10,6 +10,7 @@ import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.servic
 export class PartidoxpistaComponent implements OnInit {
 
 
+  @Input() idpartido: any;  
   @Input() partidosxpistas: [];  
   @Input() pistasArray:Array<number> = [];
   @Input() turnosArray:Array<number> = [];
@@ -24,7 +25,7 @@ export class PartidoxpistaComponent implements OnInit {
 
 
   pxp: any;
-  pxp_setMarcador: never;
+  pxp_setMarcador: any;
   numSet: any;
 
   constructor(
@@ -43,22 +44,23 @@ export class PartidoxpistaComponent implements OnInit {
   }
 
   setTantao() {
-    for(var i=1;i<=10;i++){
-      this.tanteo.push({label:i, value:i});
+    for(var i=0;i<=10;i++){
+      this.tanteo.push({label:i === 0 ? '0' : i, value:i});
     }
     
   }
 
-  setMarcador(idpista,idturno, set){
 
-      this.pxp_setMarcador = this.partidosxpistas.find(a=> a['idpista'] === idpista && a['idturno'] === idturno);
+  setMarcador(pxp, set){
 
+      this.pxp_setMarcador = pxp;
       this.numSet =set;
+      this.displayDialog= true;
+      this.marcadorPartido = `${this.pxp_setMarcador['nombre']}    set ${set}` ;
 
+      this.selectTanteoPar1 = this.pxp_setMarcador[`set${this.numSet}`] ? this.pxp_setMarcador[`set${this.numSet}`].juegospareja1 : 0;
+      this.selectTanteoPar2 = this.pxp_setMarcador[`set${this.numSet}`] ? this.pxp_setMarcador[`set${this.numSet}`].juegospareja2 : 0;
 
-
-    this.displayDialog= true;
-    this.marcadorPartido = `${this.pxp_setMarcador['nombre']}    set ${set}` ;
   }
 
   saveSet(){
@@ -68,6 +70,8 @@ export class PartidoxpistaComponent implements OnInit {
     }
 
     let form ={
+      id: this.pxp_setMarcador[`set${this.numSet}`] ? this.pxp_setMarcador[`set${this.numSet}`].id : null,
+      idpartido: this.idpartido,
       idpartidoxpista :this.pxp_setMarcador['id'] ,
       idset: this.numSet,
       juegospareja1: this.selectTanteoPar1,
@@ -75,17 +79,21 @@ export class PartidoxpistaComponent implements OnInit {
     };
 
     this.httpGralService.addData(apisUrl.partidosxpistaxmarcador, form).subscribe(
-      set => {
+      partidosxpistaxmarcado => {
         this.alertService.success('Set guardado correctamente');
         this.displayDialog = false;
+        let pxpLocal : any;
+        pxpLocal = this.partidosxpistas.find(a => a['id'] === this.pxp_setMarcador['id']);
+        if(pxpLocal){
+          pxpLocal[`set${this.numSet}`] =partidosxpistaxmarcado;  
+        }
+
+       
+          
+
       });
 
    
-  }
-
-
-  getpistaxpartido(idpista,idturno){
-    this.pxp = this.partidosxpistas.find(a=> a['idpista'] === idpista && a['idturno'] === idturno);
   }
 
 }

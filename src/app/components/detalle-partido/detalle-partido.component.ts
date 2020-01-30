@@ -153,6 +153,7 @@ export class DetallePartidoComponent implements OnInit {
           }).subscribe(
             jugadores => {
               this.getJugadores();
+              this.getPartidoxPista();
               this.selectreves = null;
               this.selectdrive = null;
               this.selectsuplente = null;
