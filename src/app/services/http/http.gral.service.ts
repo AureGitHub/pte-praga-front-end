@@ -4,12 +4,13 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
 import { AlertService } from '../components/alert.service';
 import { AuthenticationService } from './authentication.service';
-
+import { environment } from '../../../environments/environment';
 
 // const server='api';  // from memory
 // const server = 'http://localhost:4000';     // from nodes js
-const server = 'https://pte-praga-back-end.herokuapp.com';
 
+
+const server = environment.apiUrl;
 
 export const apisUrl = {
   login : server + '/login',
