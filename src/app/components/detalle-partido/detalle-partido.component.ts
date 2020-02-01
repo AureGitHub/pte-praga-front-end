@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Partido } from 'src/app/models/partido';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
@@ -42,7 +42,8 @@ export class DetallePartidoComponent implements OnInit {
     private httpGralService: HttpGralService,
     private authenticationService: AuthenticationService,
     private confirmationService: ConfirmationService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
 
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
@@ -63,7 +64,25 @@ export class DetallePartidoComponent implements OnInit {
   }
 
 
- 
+  BorrarPartido(){
+
+    this.confirmationService.confirm({
+      message: 'Vas a borrar el partido  ¿Deseas continuar?',
+      header: 'Borrar partido',
+      icon: 'pi pi-remove',
+      acceptLabel: 'Si',
+      rejectLabel: 'No',
+      accept: () => {
+        this.httpGralService.deleteDataById(apisUrl.partido,this.partido.id).subscribe(
+            jugadores => {
+              this.router.navigate(['/']);
+            });
+      },
+      reject: () => {
+      }
+    });
+
+  }
 
   hacerparejas() {
     this.httpGralService.getDataById(apisUrl.hacerparejas, this.idpartido).subscribe(

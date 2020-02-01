@@ -2,12 +2,24 @@
 
 <div class="ui-g"  *ngIf="currentUser && partido">
  
-  <div class="ui-g-9 ui-md-9">
+  <div class="ui-g-8">
     <h3><i class="pi pi-calendar"></i> {{partido.dia}}</h3>  
   </div>
 
-  <div class="ui-g-3 ui-md-3">
+  <div class="ui-g-2">
     <h3><i class="pi pi-clock"></i>{{partido.duracion}}</h3>  
+  </div>
+
+  <div class="ui-g-2">
+    <button   
+    class="ui-button-danger"    
+    (click)="BorrarPartido()"
+    pButton
+    type="button"
+    icon="fa fa-2x fa-remove"
+    label=" "
+    *ngIf="currentUser?.isAdmin"
+  ></button>
   </div>
 
 
