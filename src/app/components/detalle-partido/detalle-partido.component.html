@@ -1,5 +1,31 @@
 <div class="ui-fluid">
 
+  <div class="ui-g"  *ngIf="currentUser && partido">
+    <div class="ui-g-4">
+
+     
+
+    </div>
+    <div class="ui-g-4">
+     
+
+    </div>
+    <div class="ui-g-4">
+      <button   
+      class="ui-button-danger"    
+      (click)="BorrarPartido()"
+      pButton
+      type="button"
+      icon="fa fa-2x fa-eraser"
+      label=" Borrar"
+      *ngIf="1===1 || ( currentUser?.isAdmin && partido.idpartido_estado!=1)">
+      </button>
+
+    </div>
+
+  </div>
+
+
 <div class="ui-g"  *ngIf="currentUser && partido">
  
   <div class="ui-g-8">
@@ -11,15 +37,7 @@
   </div>
 
   <div class="ui-g-2">
-    <button   
-    class="ui-button-danger"    
-    (click)="BorrarPartido()"
-    pButton
-    type="button"
-    icon="fa fa-2x fa-remove"
-    label=" "
-    *ngIf="currentUser?.isAdmin"
-  ></button>
+   
   </div>
 
 
@@ -99,14 +117,41 @@
         </p-header>
     </p-listbox>
 </div>
-<div class="ui-g-3"></div>
+<div class="ui-g-3">
 
-<div class="ui-g-12 ui-md-12" align="center" >  
-  <div class="myBoton">
-  <button  *ngIf="currentUser?.isAdmin && partido" (click)="hacerparejas()"  
-  pButton type="button" label="V.I.C.T.O.R." icon="fa fa-2x fa-steam"  iconPos="right"></button> 
 </div>
- </div>
+
+<div class="ui-g-4" align="center" >  
+    
+    <button  *ngIf="currentUser?.isAdmin && partido" (click)="hacerparejas()"    
+    pButton type="button" label="V.I.C.T.O.R." icon="fa fa-1x fa-steam"  iconPos="right"
+    [disabled]="partido.idpartido_estado!=1">
+  </button> 
+  
+</div>
+<div class="ui-g-4" align="center" >  
+  <button   
+        
+  (click)="CerrarPartido()"
+  pButton
+  class="ui-button-info"   
+  type="button"
+  icon="fa fa-2x fa-close"
+  label=" Cerrar"
+  [disabled]="partido.idpartido_estado!=1">
+  </button>
+</div>
+<div class="ui-g-4" align="center" >  
+  <button   
+      class="ui-button-success"    
+      (click)="FinalizarPartido()"
+      pButton
+      type="button"
+      icon="fa fa-2x fa-smile-o"
+      label=" Finalizar"
+      [disabled]="partido.idpartido_estado!=2">
+      </button>
+</div>
 
 <div class="ui-g-12 ui-md-12">
   <app-partidoxpista 

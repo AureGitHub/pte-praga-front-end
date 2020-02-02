@@ -40,9 +40,9 @@ export class InterceptorService implements HttpInterceptor {
   private handleErro<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      if(error.status === 403){
-        this.authenticationService.logout();
-      }
+      // if(error.status === 403){
+      //   this.authenticationService.logout();
+      // }
 
         const strError = '(' + operation + ') ' + error.status + ', ' + error.error.message ;
 

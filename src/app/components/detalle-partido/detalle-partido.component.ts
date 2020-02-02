@@ -84,12 +84,71 @@ export class DetallePartidoComponent implements OnInit {
 
   }
 
+  CerrarPartido(){
+
+    this.confirmationService.confirm({
+      message: 'Vas a cerrar el partido  ¿Deseas continuar?',
+      header: 'Cerrar partido',
+      icon: 'fa fa-2x fa-close',
+      acceptLabel: 'Si',
+      rejectLabel: 'No',
+      accept: () => {
+        this.httpGralService.getDataById(apisUrl.partidos_cierre,this.partido.id).subscribe(
+            partido => {
+              this.alertService.success('partido cerrado');
+              this.getPartido();
+            });
+      },
+      reject: () => {
+      }
+    });
+
+  }
+
+  FinalizarPartido(){
+
+    this.confirmationService.confirm({
+      message: 'Vas a finalizar el partido. Recuerda rellenar los marcadores antes de finalizar  ¿Deseas continuar?',
+      header: 'Finalizar partido',
+      icon: 'fa fa-2x fa-smile-o',
+      acceptLabel: 'Si',
+      rejectLabel: 'No',
+      accept: () => {
+        this.httpGralService.getDataById(apisUrl.partidos_finaliza,this.partido.id).subscribe(
+            partido => {
+              this.alertService.success('partido finalizado');
+              this.getPartido();
+            });
+      },
+      reject: () => {
+      }
+    });
+
+  }
+
   hacerparejas() {
-    this.httpGralService.getDataById(apisUrl.hacerparejas, this.idpartido).subscribe(
-      parejas => {
-        this.alertService.success('V.I.C.T.O.R. ha realizado los cáculos...');
-        this.getPartidoxPista();
-      });
+
+    this.confirmationService.confirm({
+      message: 'V.I.C.T.O.R. va a rehacer las parejas. Se perderá la información actual  ¿Deseas continuar?',
+      header: 'V.I.C.T.O.R.',
+      icon: 'fa fa-1x fa-steam',
+      acceptLabel: 'Si',
+      rejectLabel: 'No',
+      accept: () => {
+        this.httpGralService.getDataById(apisUrl.hacerparejas, this.idpartido).subscribe(
+          parejas => {
+            this.alertService.success('V.I.C.T.O.R. ha realizado los cáculos...');
+            this.getPartidoxPista();
+          });
+      },
+      reject: () => {
+      }
+    });
+
+
+
+
+   
   }
 
   getJugadores() {
