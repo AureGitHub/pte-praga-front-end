@@ -35,6 +35,8 @@ export const apisUrl = {
   partidosxpistaxmarcador : server + '/partidosxpistaxmarcador',
   partidos_cierre : server + '/partidos_cierre',
   partidos_finaliza : server + '/partidos_finaliza',
+  partidoxpistaxranking : server + '/partidoxpistaxranking',
+  
 };
 
 @Injectable({

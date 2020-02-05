@@ -16,7 +16,7 @@ export class DetallePartidoComponent implements OnInit {
 
   currentUser: any;
   partido: Partido = null;
-
+  partidoxpistaxranking = [];
   partidosxpistas = [];
   pistasArray = [];
   turnosArray = [];
@@ -170,6 +170,9 @@ export class DetallePartidoComponent implements OnInit {
         this.partido = data;
         this.getJugadores();
         this.getPartidoxPista();
+        if(this.partido && this.partido['idpartido_estado']===3){
+          this.getPartidoxPistaXRanking();
+        }
       });
 
   }
@@ -192,6 +195,14 @@ export class DetallePartidoComponent implements OnInit {
 
       });
   }
+
+  getPartidoxPistaXRanking() {
+    this.httpGralService.getDataById(apisUrl.partidoxpistaxranking, this.idpartido).subscribe(
+      pxpxr => {
+        this.partidoxpistaxranking =pxpxr;
+      });
+  }
+
 
   showDialogToAddJugador() {
     this.selectJugadores = [];
