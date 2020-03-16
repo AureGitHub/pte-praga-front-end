@@ -11,7 +11,7 @@ import { EstadoGuard } from './services/guard/estado.guard';
 import { CambiarPasswordComponent } from './components/cambiar-password/cambiar-password.component';
 import { ListaPartidosComponent } from './components/lista-partidos/lista-partidos.component';
 import { JugadoresComponent } from './components/jugadores/jugadores.component';
-import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-jugador.component';
+import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-jugador.component'; 
 
 
 const routes: Routes = [
