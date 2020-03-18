@@ -39,6 +39,11 @@
 
 @media screen and (max-width: 700px) {
   /* Mobile */
+
+  .mybutton-size {
+    width: 98%;
+  }
+
   .myinput-size {
       width: 98%;
       
@@ -57,6 +62,11 @@
 
 @media  screen and (min-width: 700px) {
   /* Desktop */
+
+  .mybutton-size {
+    width: 15%;
+  }
+
   .myinput-size {
     width: 80%;
   }  
