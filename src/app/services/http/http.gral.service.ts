@@ -11,32 +11,32 @@ import { environment } from '../../../environments/environment';
 
 
 const server = environment.apiUrl;
-
+const prefix  = '/api/ver1';
 export const apisUrl = {
-  login : server + '/login',
-  pedirCodigoForgetPass : server + '/pedirCodigoForgetPass', 
-  cambiarPasswordForget  : server + '/cambiarPasswordForget ', 
+  login : server + `${prefix}/login`,
+  pedirCodigoForgetPass : server + '/pedirCodigoForgetPass',
+  cambiarPasswordForget  : server + '/cambiarPasswordForget ',
   cambiar_password : server + '/cambiarPassword',
   ask_cod_conf_email : server + '/pedirCodigoEmail',
   conf_email : server + '/confirmarEmail',
   jugadores: server + '/jugadores',
   registro: server + '/registro',
-  partido: server + '/partidos',
+  partido: server + `${prefix}/partido`,
+  partidoPublic: server + `${prefix}/partido/public`,
   posicion: server + '/posicion',
   perfil: server + '/perfil',
   estadoJugador: server + '/estadoJugador',
 
-  partidoxjugador: server + '/partidoxjugador',
-  partidoxjugadorByIdPartido: server + '/partidoxjugadorByIdPartido',
+  partidoxjugador: server + `${prefix}/partidoxjugador`,
+  partidoxjugadorByIdPartido: server + `${prefix}/partidoxjugador`,
   partidoxjugadorAddByIdPartido: server + '/partidoxjugadorAddByIdPartido',
   partidoxjugadorAddArray: server + '/partidoxjugadorAddArray',
-  partidosxpistas: server + '/partidosxpista',
+  partidosxpistas: server + `${prefix}/partidoxpista`,
   hacerparejas : server + '/hacerparejas',
   partidosxpistaxmarcador : server + '/partidosxpistaxmarcador',
   partidos_cierre : server + '/partidos_cierre',
   partidos_finaliza : server + '/partidos_finaliza',
-  partidoxpistaxranking : server + '/partidoxpistaxranking',
-  
+  partidoxpistaxranking : server + `${prefix}/partidoxpistaxranking`,
 };
 
 @Injectable({
@@ -77,9 +77,6 @@ export class HttpGralService {
           if (response == null) {
             return null;
           }
-          if (response['x-access-token'] != null) {
-            this.authenticationService.refreshSecure(response);
-          }
           return response['data'];
         })
       );
@@ -91,9 +88,6 @@ export class HttpGralService {
           if (response == null) {
             return null;
           }
-          if (response['x-access-token'] != null) {
-            this.authenticationService.refreshSecure(response);
-          }
           return response['data'];
         })
       );
@@ -104,9 +98,6 @@ export class HttpGralService {
         map(response => {
           if (response == null) {
             return null;
-          }
-          if (response['x-access-token'] != null) {
-            this.authenticationService.refreshSecure(response);
           }
           return response['data'];
         })

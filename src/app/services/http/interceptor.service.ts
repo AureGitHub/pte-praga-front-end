@@ -16,6 +16,8 @@ import { User } from 'src/app/models/user';
 
 export class InterceptorService implements HttpInterceptor {
 
+  KeySecure = 'Authorization';
+
   currentUser: User;
 
     headers = new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json');
@@ -37,60 +39,49 @@ export class InterceptorService implements HttpInterceptor {
 
 
 
-  private handleErro<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // if(error.status === 403){
-      //   this.authenticationService.logout();
-      // }
-
-        const strError = '(' + operation + ') ' + error.status + ', ' + error.error.message ;
-
-        this.loadingService.mostar(false);
-        // TODO: send the error to remote logging infrastructure
-        this.alertService.error(strError, false, 30000);
-
-        return throwError(error); 
-
-        // TODO: better job of transforming error for user consumption
-
-        // Let the app keep running by returning an empty result.
-        return of(result as T);
-    };
-    } 
-
-
-
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    // const token: string = localStorage.getItem('token');
-
 
     this.loadingService.mostar(true);
 
-    // if (token) {
-    //   request = req.clone({
-    //     setHeaders: {
-    //       authorization: `Bearer ${ token }`
-    //     }
-    //   });
-    // }
-
     if (this.currentUser && this.currentUser.token) {
-      req = req.clone({headers: req.headers.set('x-access-token', this.currentUser.token)});
+      req = req.clone({headers: req.headers.set('authorization', this.currentUser.token)});
     }
 
     req = req.clone({headers: req.headers.set('Content-Type', 'application/json')});
     req = req.clone({headers: req.headers.set('Accept', 'application/json')});
 
-    
-
     return next.handle(req).pipe(
-        tap(_ => {
+        tap(evt => {
           this.loadingService.mostar(false);
-        } ),
-      catchError(this.handleErro<any>('operacion'))
-    );
+          if (evt instanceof HttpResponse) {
+              if(evt.body)
+              {
+                if (evt.body['authorization']) {
+                  this.authenticationService.refreshSecure(evt.body['authorization']);
+                }
+
+              }
+          }
+        }),
+      // catchError(this.handleErro<any>('operacion'))
+      catchError((err: any) => {
+        this.loadingService.mostar(false);
+        if (err instanceof HttpErrorResponse) {
+
+          let strError = '';
+          if(err.status === 500) {
+            strError =  err.status + ', ' + (err.error.message ? err.error.message : err.error);
+          } else  if (err.status === 0) {
+            strError =  `${err.status} , El servidor no está disponible. (${err.url})`;
+          } else {
+            strError =  err.status + ', ' + (err.error.error ? err.error.error : err.error);
+
+          }
+          this.alertService.error(strError, false, 30000);
+        }
+        return of(err);
+      }
+      ));
   }
 
 }

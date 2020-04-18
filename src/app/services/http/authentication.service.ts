@@ -29,16 +29,16 @@ export class AuthenticationService {
         // Para salir del paso... ataco al backend fake
 
         refreshSecure(dataServer){
-          if(dataServer['x-access-token']){ 
-            const user: any  = dataServer['x-access-token'].user;
-            user.token = dataServer['x-access-token'].token;
-            user.expire = dataServer['x-access-token'].expire;
-            user.isAdmin = user.idperfil === 1;
+          if (dataServer){ 
+            const user: any  = dataServer.user;
+            user.token = dataServer.token;
+            user.expire = dataServer.expire;
+            user.isAdmin = user.IsAdmin;
+            user.IsJugador = user.IsJugador;
             user.isConectado = true;
             localStorage.setItem('currentUser', JSON.stringify(user));
             this.currentUserSubject.next(user);
           }
-          
         }
 
 

@@ -60,8 +60,8 @@ export class ListaPartidosComponent implements OnInit {
     ];
     }
 
-        getPartidos(){      
-      this.httpGralService.getDatas(apisUrl.partido).subscribe(
+        getPartidos(){
+      this.httpGralService.getDatas(apisUrl.partidoPublic).subscribe(
       data => {
         this.partidos = data;      
       },
