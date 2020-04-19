@@ -18,13 +18,13 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('login') myForm: MyFormComponent;
 
-  //private myForm: MyFormComponent;
-
   formDataTemplate = form_login;
 
   formDataTemplateEmail = form_email;
 
   formDataTemplateNewPass = form_newpass;
+
+  urlLogin = apisUrl.login;
 
 
   constructor(
@@ -50,14 +50,7 @@ export class LoginComponent implements OnInit {
 
 
   public submit = (formulario) => {
-
-
-    this.httpGralService.addData(apisUrl.login, formulario)
-          .subscribe(dataServer => {
-            // this.authenticationService.login(dataServer);
-            this.router.navigate(['/']);
-          });
-
+    this.router.navigate(['/']);
   }
 
   public submitEmail = (formulario) => {

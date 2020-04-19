@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertService } from 'src/app/services/components/alert.service';
-import { DatePipe } from '@angular/common';
-
+import { HttpGralService } from 'src/app/services/http/http.gral.service';
 
 @Component({
   selector: 'app-my-form',
@@ -25,6 +24,7 @@ export class MyFormComponent implements OnInit {
   @Input() formDataTemplate: any;
   @Input() formButtonLabel: any;
   @Input() formButtonIcon: any;
+  @Input() urlEntidad: any;
 
   ButtonLabel = 'Guardar';
   ButtonIcon = 'pi pi-save';
@@ -33,9 +33,9 @@ export class MyFormComponent implements OnInit {
   @Output() EventEmitterForm: EventEmitter<any> = new EventEmitter();
 
   constructor(
+    private httpGralService: HttpGralService,
     private alertService: AlertService,
-    private datePipe: DatePipe,
-  ) { }
+      ) { }
 
   ngOnInit() {
 
@@ -145,7 +145,26 @@ export class MyFormComponent implements OnInit {
 
     this.alertService.clear();
     if (this.myFormGroup.valid) {
-      this.EventEmitterForm.emit(this.myFormGroup.value);
+
+      if (!this.myFormGroup.value['id'] || this.myFormGroup.value['id'] === 0 || this.urlEntidad.includes('login')) {
+        // alta
+        this.httpGralService.addData(this.urlEntidad, this.myFormGroup.value)
+        .subscribe(item => {
+          this.EventEmitterForm.emit(item);
+          if (!this.urlEntidad.includes('login')) {
+            this.alertService.success(`Se ha creado el nuevo elemento`);
+          }
+        });
+
+      } else {
+        // update
+        this.httpGralService.updateData(this.urlEntidad, this.myFormGroup.value)
+        .subscribe(item => {
+          this.EventEmitterForm.emit(item);
+          this.alertService.success(`Se ha modificado el elemento`);
+        });
+
+      }
 
     } else {
       this.alertService.error('Errores en el formulario');
@@ -190,7 +209,6 @@ export class MyFormComponent implements OnInit {
 
         const input_template_fecha = this.formDataTemplate.find(a => a.name === prop);
 
-
         if (input_template_fecha.type === 'calendar') {
 
           // lo muestro en español... lo convierto a inglish para poder setarlo al calendar
@@ -198,31 +216,13 @@ export class MyFormComponent implements OnInit {
           const anno = data[prop].split(' ')[0].split('/')[2];
           const mes = data[prop].split(' ')[0].split('/')[1];
           const dia = data[prop].split(' ')[0].split('/')[0];
-
-          //this.myFormGroup.get('dia').setValue(new Date(anno + '-' + mes + '-' + dia + ' ' + hora));
-          //this.myFormGroup.get(prop).setValue(data[prop]);
-
-          let docDate = anno + '-' + mes + '-' + dia + 'T' + hora + ':00.000Z';
+          const docDate = anno + '-' + mes + '-' + dia + 'T' + hora + ':00.000Z';
           this.myFormGroup.get(prop).setValue(docDate.slice(0, -1));
-
-          //'docdatetime': new FormControl(new Date(docDate).toISOString().slice(0, -1))
-
-
         } else {
           this.myFormGroup.get(prop).setValue(data[prop]);
-
         }
       }
-
-
-
     }
-
-    // this.myFormGroup.reset(data);
-    // this.myFormGroup.get('dia').setValue(new Date('2019-10-10'));
-
   }
-
-
 }
 

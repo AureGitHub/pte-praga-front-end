@@ -1,91 +1,58 @@
+<div class="mypanel-size-local">
 
-
-<div class="ui-g-12" align="center">
-    <div class="mybutton-size">
-    <button
-      class="ui-button-success"
-      
-      (click)="showDialogToAdd()"
-      pButton
-      type="button"
-      icon="fa fa-2x fa-plus-square-o"
-      label="Añadir partido"
-      *ngIf="currentUser?.isConectado"
-    ></button>
-</div>
-</div>
-
-<div class="ui-g-12">
-    <p-dataView #dv [value]="partidos" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="brand"
-[sortField]="sortField" [sortOrder]="sortOrder">
-<p-header>
-</p-header>
-<ng-template let-partido pTemplate="listItem">
-    <div class="ui-g-12">
-        <div class="car-details">
-            <div>
-                <img src="assets/images/CargadorPelotas.ico">
-                <div class="ui-g">
-                    <div class="ui-g-12"><i class="pi pi-calendar"></i> Día: <b>{{partido.dia}}</b></div>
-                    <div class="ui-g-12"> <i class="pi pi-clock"></i> Tiempo: <b>{{partido.duracion}}</b></div>
-                    <div class="ui-g-12">Pistas: <b>{{partido.pistas}}</b></div>
-                    <div class="ui-g-12">Apuntados: <b>{{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}</b></div>
-                    <div class="ui-g-12" *ngIf="currentUser?.id === partido.idcreador && partido && partido.idpartido_estado===1">
-                        <b><i (click)="onEdit(partido)"  class="pi pi-pencil azul icono-link"> Editar</i>  </b>
-                    </div>
-                    <div class="ui-g-12" *ngIf="currentUser && !partido.idpartidoxjugador">
-                        <b><i (click)="Apuntate(partido)"  class="pi pi-thumbs-up verde icono-link"> Apúntate</i></b>
-                    </div>
-                    <div class="ui-g-12" *ngIf="currentUser && partido.idpartidoxjugador">
-                        <b><i (click)="Borrate(partido)" class="pi pi-thumbs-down rojo icono-link"> Borrarte</i></b>
-                    </div>
-                </div>
-            </div>            
-            <button *ngIf="currentUser" pButton type="button" icon="pi pi-info" [routerLink]="['/detalle-partido', partido.id]"></button>
+    <div class="ui-g-12" align="center">
+        <div class="mybutton-size">
+            <button class="ui-button-success" (click)="showDialogToAdd()" pButton type="button"
+                icon="fa fa-2x fa-plus-square-o" label="Añadir partido" *ngIf="currentUser?.isConectado"></button>
         </div>
     </div>
 
+    <div class="ui-g-12">
+        <p-dataView #dv [value]="partidos" [paginator]="true" [rows]="10" paginatorPosition="both" filterBy="brand"
+            [sortField]="sortField" [sortOrder]="sortOrder">
+            <p-header>
+            </p-header>
+            <ng-template let-partido pTemplate="listItem">
+                <div class="ui-g-12">
+                    <div class="car-details">
+                        <div>
+                            <img src="assets/images/CargadorPelotas.ico">
+                            <div class="ui-g">
+                                <div class="ui-g-12"><i class="pi pi-calendar"></i> Día: <b>{{partido.dia}}</b></div>
+                                <div class="ui-g-12"> <i class="pi pi-clock"></i> Tiempo: <b>{{partido.duracion}}</b>
+                                </div>
+                                <div class="ui-g-12">Pistas: <b>{{partido.pistas}}</b></div>
+                                <div class="ui-g-12">Apuntados:
+                                    <b>{{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}</b></div>
+                                <div class="ui-g-12"
+                                    *ngIf="currentUser?.id === partido.idcreador && partido && partido.idpartido_estado===1">
+                                    <b><i (click)="onEdit(partido)" class="pi pi-pencil azul icono-link"> Editar</i>
+                                    </b>
+                                </div>
+                                <div class="ui-g-12" *ngIf="currentUser && !partido.idpartidoxjugador">
+                                    <b><i (click)="Apuntate(partido)" class="pi pi-thumbs-up verde icono-link">
+                                            Apúntate</i></b>
+                                </div>
+                                <div class="ui-g-12" *ngIf="currentUser && partido.idpartidoxjugador">
+                                    <b><i (click)="Borrate(partido)" class="pi pi-thumbs-down rojo icono-link">
+                                            Borrarte</i></b>
+                                </div>
+                            </div>
+                        </div>
+                        <button *ngIf="currentUser" pButton type="button" icon="pi pi-info"
+                            [routerLink]="['/detalle-partido', partido.id]"></button>
+                    </div>
+                </div>
 
-    <!-- <div class="ui-g" class="item_partido_normal">        
-        <div class="ui-g-9 ui-md-9">
-            <i class="pi pi-calendar"></i>  <b>{{partido.dia}}</b>  
-        </div>
-        <div class="ui-g-3 ui-md-3">
-            <i class="pi pi-clock"></i> {{partido.duracion}}
-        </div>
-        <div class="ui-g-6 ui-md-3" title="pistas">
-            <i style="margin: 3px;" class="fa verde fa-square"></i>  <b>{{partido.pistas}}</b> 
-        </div>
-        <div class="ui-g-6 ui-md-3" title="jugadores">
-            <i class="pi pi-users"></i> {{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}
-        </div>      
-        <div class="ui-g-4 ui-md-3" title="Apuntarse" *ngIf="currentUser && !partido.idpartidoxjugador ">
-            <i (click)="Apuntate(partido)"  class="pi pi-thumbs-up verde icono-link"></i>
-        </div>
-        <div class="ui-g-4 ui-md-3" title="Borrarse" *ngIf="currentUser && partido.idpartidoxjugador">
-            <i (click)="Borrate(partido)" class="pi pi-thumbs-down rojo icono-link"></i>
-        </div>
-        <div class="ui-g-4 ui-md-3" title="Informacion" *ngIf="currentUser">
-            <i [routerLink]="['/detalle-partido', partido.id]" class="pi pi-info info icono-link"></i> 
-        </div>
+            </ng-template>
+        </p-dataView>
+    </div>
 
-        <div class="ui-g-4 ui-md-3" title="Edit" *ngIf="currentUser?.id === partido.idcreador && partido && partido.idpartido_estado===1">
-            <i (click)="onEdit(partido)"  class="pi pi-pencil azul icono-link"></i>  
-        </div>
 
-    </div> -->
-</ng-template>
-</p-dataView>
+    <p-dialog header="Partido" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="false"
+        [resizable]="false" [style]="{'max-width': '800px'}">
+        <app-my-form (EventEmitterForm)="submit($event)" [urlEntidad]="urlEntidad"
+            [formDataTemplate]="formDataTemplate"></app-my-form>
+    </p-dialog>
+
 </div>
-
-
-<p-dialog header="Partido" [(visible)]="displayDialog" [responsive]="true"
-showEffect="fade" [modal]="false"  [resizable]="false" [style]="{'max-width': '800px'}">
-    <app-my-form (EventEmitterForm)="submit($event)"   [formDataTemplate]="formDataTemplate"></app-my-form> 
-</p-dialog>
-
-
-
-
-
-

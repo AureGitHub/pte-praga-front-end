@@ -8,10 +8,6 @@ import { form_partido } from 'src/app/forms/form-partido';
 import { MyFormComponent } from '../comun/my-form/my-form.component';
 import { AlertService } from 'src/app/services/components/alert.service';
 
-
- 
-
-
 @Component({
   selector: 'app-lista-partidos',
   templateUrl: './lista-partidos.component.html',
@@ -20,11 +16,10 @@ import { AlertService } from 'src/app/services/components/alert.service';
 export class ListaPartidosComponent implements OnInit {
 
   @ViewChild(MyFormComponent)
-
   private myForm: MyFormComponent;
   displayDialog: boolean;
   formDataTemplate = form_partido;
-
+  urlEntidad =  apisUrl.partido;
   newPartido = false;
 
   public loading = false;
@@ -60,17 +55,17 @@ export class ListaPartidosComponent implements OnInit {
     ];
     }
 
-        getPartidos(){
+        getPartidos() {
       this.httpGralService.getDatas(apisUrl.partidoPublic).subscribe(
       data => {
-        this.partidos = data;      
+        this.partidos = data;
       },
       error => {
       }
       );
   }
 
-    showDialogToAdd(){
+    showDialogToAdd() {
       this.myForm.SetFormData({idcreador: this.currentUser.id});
       this.newPartido = true;
       this.displayDialog = true;
@@ -80,32 +75,12 @@ export class ListaPartidosComponent implements OnInit {
     onEdit(formulario) {
       this.newPartido = false;
       this.displayDialog = true;
-      //formulario.dia = new Date(formulario.dia);
-      // formulario.hora = new Date(formulario.hora);
       this.myForm.SetFormData(formulario);
     }
 
     submit(formulario) {
-
-      //formulario.dia = this.datePipe.transform(new  Date(formulario.dia), 'yyyy-MM-dd HH:mm');
-      
-
-      if (this.newPartido) { 
-        this.httpGralService.addData(apisUrl.partido, formulario)
-          .subscribe(partido => {
-            this.getPartidos();
-            this.displayDialog = false;
-            this.alertService.success('Se ha creado el partido');
-          });
-      } else {
-        this.httpGralService.updateData(apisUrl.partido, formulario)
-          .subscribe(() => {
-            this.getPartidos();
-            this.displayDialog = false;
-            this.alertService.success('Se ha modificado el partido');
-          });
-        }
-
+      this.getPartidos();
+      this.displayDialog = false;
   }
 
 
@@ -132,7 +107,7 @@ onDialogHide() {
     this.selectedPartido = null;
 }
 
-Apuntate(partido: any){
+Apuntate(partido: any) {
 
   this.confirmationService.confirm({
     message: '¿Te vas a apuntar al partido. Continuar?',
@@ -147,10 +122,10 @@ Apuntate(partido: any){
     reject: () => {
     }
 });
-  
+
 }
 
-Borrate(partido: any){
+Borrate(partido: any) {
 
 
   this.confirmationService.confirm({
@@ -160,7 +135,7 @@ Borrate(partido: any){
     acceptLabel: 'Si',
     rejectLabel: 'No',
     accept: () => {
-      this.httpGralService.deleteData(apisUrl.partidoxjugador, {idjugador: this.currentUser.id, idpartido: partido.id }).subscribe(
+      this.httpGralService.deleteDataById(apisUrl.partidoxjugador,  partido.id ).subscribe(
         result => {
           this.getPartidos();
       });

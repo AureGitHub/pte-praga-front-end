@@ -41,6 +41,7 @@ export class InterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    this.alertService.clear();
     this.loadingService.mostar(true);
 
     if (this.currentUser && this.currentUser.token) {
@@ -74,7 +75,9 @@ export class InterceptorService implements HttpInterceptor {
           } else  if (err.status === 0) {
             strError =  `${err.status} , El servidor no está disponible. (${err.url})`;
           } else {
-            strError =  err.status + ', ' + (err.error.error ? err.error.error : err.error);
+            const inError = err.error.error ? err.error.error : null;
+            const inMessage = err.error.message ? err.error.message : null;
+            strError =  err.status + ', ' + (inError ? inError : (inMessage ? inMessage : err.error));
 
           }
           this.alertService.error(strError, false, 30000);

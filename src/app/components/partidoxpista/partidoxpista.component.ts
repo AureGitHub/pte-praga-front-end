@@ -10,10 +10,10 @@ import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.servic
 export class PartidoxpistaComponent implements OnInit {
 
 
-  @Input() idpartido: any;  
-  @Input() partidosxpistas: [];  
-  @Input() pistasArray:Array<number> = [];
-  @Input() turnosArray:Array<number> = [];
+  @Input() idpartido: any;
+  @Input() partidosxpistas: [];
+  @Input() pistasArray: Array<number> = [];
+  @Input() turnosArray: Array<number> = [];
 
   displayDialog = false;
 
@@ -31,31 +31,31 @@ export class PartidoxpistaComponent implements OnInit {
   constructor(
     private alertService: AlertService,
     private httpGralService: HttpGralService,
-  ) { 
+  ) {
 
     this.setTantao();
 
-    
-  
+
+
   }
 
   ngOnInit() {
-    
+
   }
 
   setTantao() {
-    for(var i=0;i<=10;i++){
-      this.tanteo.push({label:i === 0 ? '0' : i, value:i});
+    for (let i = 0; i <= 10; i++) {
+      this.tanteo.push({label: i === 0 ? '0' : i, value: i});
     }
-    
+
   }
 
 
-  setMarcador(pxp, set){
+  setMarcador(pxp, set) {
 
       this.pxp_setMarcador = pxp;
-      this.numSet =set;
-      this.displayDialog= true;
+      this.numSet = set;
+      this.displayDialog = true;
       this.marcadorPartido = `${this.pxp_setMarcador['nombre']}    set ${set}` ;
 
       this.selectTanteoPar1 = this.pxp_setMarcador[`set${this.numSet}`] ? this.pxp_setMarcador[`set${this.numSet}`].juegospareja1 : 0;
@@ -63,37 +63,44 @@ export class PartidoxpistaComponent implements OnInit {
 
   }
 
-  saveSet(){
-    if(!(this.selectTanteoPar1 && this.selectTanteoPar2)){
+  saveSet() {
+    if (!(this.selectTanteoPar1 && this.selectTanteoPar2)) {
       this.alertService.error('Tiene que introducir el marcador para los dos jugadores');
-      return;  
+      return;
     }
 
-    let form ={
+    const form = {
       id: this.pxp_setMarcador[`set${this.numSet}`] ? this.pxp_setMarcador[`set${this.numSet}`].id : null,
       idpartido: this.idpartido,
-      idpartidoxpista :this.pxp_setMarcador['id'] ,
+      idpartidoxpista : this.pxp_setMarcador['id'] ,
       idset: this.numSet,
       juegospareja1: this.selectTanteoPar1,
       juegospareja2: this.selectTanteoPar2
     };
 
-    this.httpGralService.addData(apisUrl.partidosxpistaxmarcador, form).subscribe(
-      partidosxpistaxmarcado => {
-        this.alertService.success('Set guardado correctamente');
-        this.displayDialog = false;
-        let pxpLocal : any;
-        pxpLocal = this.partidosxpistas.find(a => a['id'] === this.pxp_setMarcador['id']);
-        if(pxpLocal){
-          pxpLocal[`set${this.numSet}`] =partidosxpistaxmarcado;  
-        }
-
-       
-          
-
-      });
-
-   
+    if (form.id) {
+      this.httpGralService.updateData(apisUrl.partidosxpistaxmarcador, form).subscribe(
+        partidosxpistaxmarcado => {
+          this.updateMarcadorEnLista(partidosxpistaxmarcado);
+        });
+    } else {
+      this.httpGralService.addData(apisUrl.partidosxpistaxmarcador, form).subscribe(
+        partidosxpistaxmarcado => {
+          this.updateMarcadorEnLista(partidosxpistaxmarcado);
+        });
+    }
   }
 
+  updateMarcadorEnLista(partidosxpistaxmarcado) {
+    this.alertService.success('Set guardado correctamente');
+    this.displayDialog = false;
+    let pxpLocal: any;
+    pxpLocal = this.partidosxpistas.find(a => a['id'] === this.pxp_setMarcador['id']);
+    if (pxpLocal) {
+      pxpLocal[`set${this.numSet}`] = partidosxpistaxmarcado;
+    }
+  }
+
+
 }
+

@@ -8,7 +8,7 @@ import { AlertService } from 'src/app/services/components/alert.service';
 
 
 @Component({
-  selector: 'detalle-partido',
+  selector: 'app-detalle-partido',
   templateUrl: './detalle-partido.component.html',
   styleUrls: ['./detalle-partido.component.css']
 })
@@ -64,7 +64,7 @@ export class DetallePartidoComponent implements OnInit {
   }
 
 
-  BorrarPartido(){
+  BorrarPartido() {
 
     this.confirmationService.confirm({
       message: 'Vas a borrar el partido  ¿Deseas continuar?',
@@ -73,7 +73,7 @@ export class DetallePartidoComponent implements OnInit {
       acceptLabel: 'Si',
       rejectLabel: 'No',
       accept: () => {
-        this.httpGralService.deleteDataById(apisUrl.partido,this.partido.id).subscribe(
+        this.httpGralService.deleteDataById(apisUrl.partido, this.partido.id).subscribe(
             jugadores => {
               this.router.navigate(['/']);
             });
@@ -84,7 +84,7 @@ export class DetallePartidoComponent implements OnInit {
 
   }
 
-  CerrarPartido(){
+  CerrarPartido() {
 
     this.confirmationService.confirm({
       message: 'Vas a cerrar el partido  ¿Deseas continuar?',
@@ -93,7 +93,7 @@ export class DetallePartidoComponent implements OnInit {
       acceptLabel: 'Si',
       rejectLabel: 'No',
       accept: () => {
-        this.httpGralService.getDataById(apisUrl.partidos_cierre,this.partido.id).subscribe(
+        this.httpGralService.getDataById(apisUrl.partidos_cierre, this.partido.id).subscribe(
             partido => {
               this.alertService.success('partido cerrado');
               this.getPartido();
@@ -105,7 +105,7 @@ export class DetallePartidoComponent implements OnInit {
 
   }
 
-  FinalizarPartido(){
+  FinalizarPartido() {
 
     this.confirmationService.confirm({
       message: 'Vas a finalizar el partido. Recuerda rellenar los marcadores antes de finalizar  ¿Deseas continuar?',
@@ -114,7 +114,7 @@ export class DetallePartidoComponent implements OnInit {
       acceptLabel: 'Si',
       rejectLabel: 'No',
       accept: () => {
-        this.httpGralService.getDataById(apisUrl.partidos_finaliza,this.partido.id).subscribe(
+        this.httpGralService.getDataById(apisUrl.partidos_finaliza, this.partido.id).subscribe(
             partido => {
               this.alertService.success('partido finalizado');
               this.getPartido();
@@ -144,11 +144,6 @@ export class DetallePartidoComponent implements OnInit {
       reject: () => {
       }
     });
-
-
-
-
-   
   }
 
   getJugadores() {
@@ -170,7 +165,7 @@ export class DetallePartidoComponent implements OnInit {
         this.partido = data;
         this.getJugadores();
         this.getPartidoxPista();
-        if(this.partido && this.partido['idpartido_estado']===3){
+        if (this.partido && this.partido['idpartido_estado'] === 3) {
           this.getPartidoxPistaXRanking();
         }
       });
@@ -199,7 +194,7 @@ export class DetallePartidoComponent implements OnInit {
   getPartidoxPistaXRanking() {
     this.httpGralService.getDataById(apisUrl.partidoxpistaxranking, this.idpartido).subscribe(
       pxpxr => {
-        this.partidoxpistaxranking =pxpxr;
+        this.partidoxpistaxranking = pxpxr;
       });
   }
 
@@ -216,7 +211,7 @@ export class DetallePartidoComponent implements OnInit {
 
   AddNewJugadores() {
 
-    const formualio = { idpartido: this.idpartido, JugadoresAdd: this.selectJugadores }
+    const formualio = { idpartido: this.idpartido, JugadoresAdd: this.selectJugadores };
 
     this.httpGralService.addData(apisUrl.partidoxjugadorAddArray, formualio).subscribe(
       jugadores => {

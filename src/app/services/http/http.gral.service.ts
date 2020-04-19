@@ -33,7 +33,7 @@ export const apisUrl = {
   partidoxjugadorAddArray: server + '/partidoxjugadorAddArray',
   partidosxpistas: server + `${prefix}/partidoxpista`,
   hacerparejas : server + '/hacerparejas',
-  partidosxpistaxmarcador : server + '/partidosxpistaxmarcador',
+  partidosxpistaxmarcador : server + `${prefix}/partidoxpistaxmarcador`,
   partidos_cierre : server + '/partidos_cierre',
   partidos_finaliza : server + '/partidos_finaliza',
   partidoxpistaxranking : server + `${prefix}/partidoxpistaxranking`,
@@ -112,7 +112,7 @@ export class HttpGralService {
         'Content-Type': 'application/json'
       }),
       body: obj
-    }
+    };
 
       return this.http.delete<any>(url, options).pipe(
         map(response => {

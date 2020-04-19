@@ -30,10 +30,12 @@
         </div>
       
       <div class="ui-g-12 ui-md-12">
-        <app-my-form #login (EventEmitterForm)="submit($event)" 
+        <app-my-form #login
+        (EventEmitterForm)="submit($event)"        
         [formDataTemplate]="formDataTemplate"                   
         [formButtonLabel]="'Login'"
-        [formButtonIcon]="'pi pi-power-off'">       
+        [formButtonIcon]="'pi pi-power-off'"
+        [urlEntidad]="urlLogin">       
         </app-my-form>
       </div>
 
