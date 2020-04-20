@@ -38,7 +38,7 @@ import { ListaPartidosComponent } from './components/lista-partidos/lista-partid
 import { JugadoresComponent } from './components/jugadores/jugadores.component';
 import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-jugador.component';
 import { PartidoxpistaComponent } from './components/partidoxpista/partidoxpista.component';
-
+import { UserIdleModule } from 'angular-user-idle';
 
 const appRoutes: Routes = [ ];
 
@@ -72,9 +72,12 @@ const appRoutes: Routes = [ ];
         ReactiveFormsModule,
         MyprimengModule,
         HttpClientModule,
-        //HttpClientInMemoryWebApiModule.forRoot(InMemHeroService),
+        // HttpClientInMemoryWebApiModule.forRoot(InMemHeroService),
         NgxLoadingModule.forRoot({}),
-        
+         // Optionally you can set time for `idle`, `timeout` and `ping` in seconds.
+        // Default values: `idle` is 600 (10 minutes), `timeout` is 300 (5 minutes) 
+        // and `ping` is 120 (2 minutes).
+        UserIdleModule.forRoot({idle: 10, timeout: 10, ping: 120})
 
     ],
     providers: [

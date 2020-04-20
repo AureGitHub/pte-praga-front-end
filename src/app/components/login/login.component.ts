@@ -6,6 +6,8 @@ import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.servic
 import form_email from 'src/app/forms/form_email';
 import form_newpass from 'src/app/forms/form_newpass';
 import { AlertService } from 'src/app/services/components/alert.service';
+import { UserIdleService } from 'angular-user-idle';
+import { AuthenticationService } from 'src/app/services/http/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -28,15 +30,35 @@ export class LoginComponent implements OnInit {
 
 
   constructor(
+    private userIdle: UserIdleService,
     private router: Router,
     private httpGralService: HttpGralService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private authenticationService: AuthenticationService,
+    
 
   ) { }
 
   ngOnInit() {
 
   }
+
+  stop() {
+    this.userIdle.stopTimer();
+  }
+ 
+  stopWatching() {
+    this.userIdle.stopWatching();
+  }
+ 
+  startWatching() {
+    this.userIdle.startWatching();
+  }
+ 
+  restart() {
+    this.userIdle.resetTimer();
+  }
+
 
   doFake() {
 
@@ -50,6 +72,11 @@ export class LoginComponent implements OnInit {
 
 
   public submit = (formulario) => {
+    this.userIdle.startWatching();
+    this.userIdle.onTimerStart().subscribe(count => console.log(count));
+    // Start watch when time is up.
+    this.userIdle.onTimeout().subscribe(() => this.authenticationService.logout());
+
     this.router.navigate(['/']);
   }
 
