@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DetallePartidoComponent } from './components/detalle-partido/detalle-partido.component';
 import { NoAuthComponent } from './components/no-auth/no-auth.component';
 import { NoFoundComponent } from './components/no-found/no-found.component';
+import { SessionExpiredComponent } from './components/session-expired/session-expired.component';
 import { RoleGuard } from './services/guard/roles.guard';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'confirm-email', component: ConfirmEmailComponent },
   { path: 'cambiar-password', component: CambiarPasswordComponent },
   { path: 'not-found', component: NoFoundComponent },
+  { path: 'session-expired', component: SessionExpiredComponent },
   { path: '**', redirectTo: 'not-found' },
   // {
   //   path: 'heroes',

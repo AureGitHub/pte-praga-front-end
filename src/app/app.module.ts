@@ -26,6 +26,7 @@ import { DatePipe } from '@angular/common';
 import { DetallePartidoComponent } from './components/detalle-partido/detalle-partido.component';
 import { NoAuthComponent } from './components/no-auth/no-auth.component';
 import { NoFoundComponent } from './components/no-found/no-found.component';
+import { SessionExpiredComponent } from './components/session-expired/session-expired.component';
 import { AuthGuard } from './services/guard';
 import { RoleGuard } from './services/guard/roles.guard';
 import { ComunMenuComponent } from './components/header/comun-menu/comun-menu.component';
@@ -38,7 +39,8 @@ import { ListaPartidosComponent } from './components/lista-partidos/lista-partid
 import { JugadoresComponent } from './components/jugadores/jugadores.component';
 import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-jugador.component';
 import { PartidoxpistaComponent } from './components/partidoxpista/partidoxpista.component';
-import { UserIdleModule } from 'angular-user-idle';
+import { GlobalService } from './services/global/global.service';
+import { TimeoutService } from './services/timeout.service';
 
 const appRoutes: Routes = [ ];
 
@@ -56,6 +58,7 @@ const appRoutes: Routes = [ ];
         JugadoresComponent,
         NoAuthComponent,
         NoFoundComponent,
+        SessionExpiredComponent,
         ComunMenuComponent,
         MyFormComponent,
         RegistroComponent,
@@ -75,12 +78,12 @@ const appRoutes: Routes = [ ];
         // HttpClientInMemoryWebApiModule.forRoot(InMemHeroService),
         NgxLoadingModule.forRoot({}),
          // Optionally you can set time for `idle`, `timeout` and `ping` in seconds.
-        // Default values: `idle` is 600 (10 minutes), `timeout` is 300 (5 minutes) 
+        // Default values: `idle` is 600 (10 minutes), `timeout` is 300 (5 minutes)
         // and `ping` is 120 (2 minutes).
-        UserIdleModule.forRoot({idle: 10, timeout: 10, ping: 120})
 
     ],
     providers: [
+        GlobalService,
         EstadoGuard,
         AuthGuard,
         RoleGuard,
@@ -95,7 +98,8 @@ const appRoutes: Routes = [ ];
         MessageService,
         HttpGralService,
         AuthenticationService,
-        ConfirmationService
+        ConfirmationService,
+        TimeoutService
     ],
     bootstrap: [AppComponent]
 })

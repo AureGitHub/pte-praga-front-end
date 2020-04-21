@@ -1,0 +1,13 @@
+<div class="mypanel-size-local" align="center">
+<p-card header="SESIÓN EXPIRADA" subheader="" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+    <p-header>
+    </p-header>
+    <div align="left">
+        <p> Su sesión ha sido finalizado por permanecer {{timeout}} minutos sin usar la aplicación. </p>
+        <p>Para poder conectarse tiene que volver a la página de Login</p>
+    </div>
+    <p-footer>
+        <button pButton type="button" label="Ir Login" routerLink="/login" style="margin-right: .25em"></button>        
+    </p-footer>
+</p-card>
+</div>

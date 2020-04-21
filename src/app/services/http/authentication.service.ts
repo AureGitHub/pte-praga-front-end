@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { timeout } from 'rxjs/operators';
+import { TimeoutService } from '../timeout.service';
 
 
 @Injectable({
@@ -11,7 +13,7 @@ export class AuthenticationService {
   public currentUser: Observable<any>;
 
     constructor(
-
+      private timeoutService: TimeoutService
       ) {
         this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
@@ -22,31 +24,24 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-
-    // habrá que hacer algo parecido para el login contra el backend real
-
-
-        // Para salir del paso... ataco al backend fake
-
-        refreshSecure(dataServer){
-          if (dataServer){ 
-            const user: any  = dataServer.user;
-            user.token = dataServer.token;
-            user.expire = dataServer.expire;
-            user.isAdmin = user.IsAdmin;
-            user.IsJugador = user.IsJugador;
-            user.isConectado = true;
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.currentUserSubject.next(user);
-          }
-        }
-
-
-
+    refreshSecure(dataServer) {
+      if (dataServer) {
+        const user: any  = dataServer.user;
+        user.token = dataServer.token;
+        user.expire = dataServer.expire;
+        user.timeout = dataServer.timeout;
+        user.isAdmin = user.IsAdmin;
+        user.IsJugador = user.IsJugador;
+        user.isConectado = true;
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+      }
+    }
 
     logout() {
         // remove user from local storage and set current user to null
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+        this.timeoutService.ClearTiempoEspera();
     }
 }

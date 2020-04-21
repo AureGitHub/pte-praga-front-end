@@ -4,6 +4,7 @@ import { AuthenticationService } from './services/http/authentication.service';
 
 
 
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit {
 
     constructor(
         private authenticationService: AuthenticationService,
-
+      
     ) {
         this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
@@ -24,7 +25,6 @@ export class AppComponent implements OnInit {
      }
 
     ngOnInit() {
-        // this.authenticationService.logout();
     }
 
 }
