@@ -64,7 +64,7 @@
   /* Desktop */
 
   .mybutton-size {
-    width: 15%;
+    width: 25%;
   }
 
   .myinput-size {
@@ -85,6 +85,10 @@
 
 }
 
+
+.panelGridCenter {
+  margin: 0 auto;
+}
 
 .dark-theme {
   background-color: #3f3f3f;

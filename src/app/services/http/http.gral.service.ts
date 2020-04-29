@@ -29,7 +29,7 @@ export const apisUrl = {
 
   partidoxjugador: server + `${prefix}/partidoxjugador`,
   partidoxjugadorByIdPartido: server + `${prefix}/partidoxjugador`,
-  partidoxjugadorAddByIdPartido: server + '/partidoxjugadorAddByIdPartido',
+  partidoxjugadorAddToPartido: server + `${prefix}/partidoxjugador/AddToPartido`,
   partidoxjugadorAddArray: server + '/partidoxjugadorAddArray',
   partidosxpistas: server + `${prefix}/partidoxpista`,
   hacerparejas : server + '/hacerparejas',

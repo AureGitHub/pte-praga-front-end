@@ -27,7 +27,7 @@
 }
 
 .red{
-    background-image: url("../../../assets/images/redPadel.PNG");
+    background-image: url("../../../../assets/images/redPadel.PNG");
     background-repeat: repeat-x;
     background-size: cover;
 }

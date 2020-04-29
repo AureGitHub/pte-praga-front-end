@@ -9,4 +9,5 @@ export interface Partido {
     idcreador?;
     esCreador?;
     idpartidoxjugador?;
+    idpartido_estado;
 }

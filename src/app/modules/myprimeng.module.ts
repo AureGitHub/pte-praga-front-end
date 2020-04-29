@@ -21,7 +21,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import {CalendarModule} from 'primeng/calendar';
 import {CardModule} from 'primeng/card';
 import {ListboxModule} from 'primeng/listbox';
-
+import {TabViewModule} from 'primeng/tabview';
 
 @NgModule({
   declarations: [],
@@ -44,9 +44,10 @@ import {ListboxModule} from 'primeng/listbox';
     TooltipModule,
     CalendarModule,
     CardModule,
-    ListboxModule
-    
-    
+    ListboxModule,
+    TabViewModule
+
+
   ],
   exports: [
     CommonModule,
@@ -65,10 +66,11 @@ import {ListboxModule} from 'primeng/listbox';
     TableModule,
     DialogModule,
     TooltipModule,
-    CalendarModule, 
+    CalendarModule,
     CardModule,
-    ListboxModule
-    
+    ListboxModule,
+    TabViewModule
+
   ]
 })
 export class MyprimengModule { }

@@ -25,11 +25,9 @@ export class DetallePartidoComponent implements OnInit {
   reves = [];
   suplentes = [];
   idpartido: any;
+  idpartido_estado: any;
 
-  displayDialog = false;
-
-  newJugadores = [];
-  selectJugadores = [];
+ 
   selectdrive: any;
   selectreves: any;
   selectsuplente: any;
@@ -146,24 +144,12 @@ export class DetallePartidoComponent implements OnInit {
     });
   }
 
-  getJugadores() {
-    this.httpGralService.getDataById(apisUrl.partidoxjugadorByIdPartido, this.idpartido).subscribe(
-      jugadores => {
-
-        this.drives = jugadores.filter(a => a.idposicion === 1 && a.idpartidoxjugador_estado === 1);
-        this.reves = jugadores.filter(a => a.idposicion === 2 && a.idpartidoxjugador_estado === 1);
-        this.suplentes = jugadores.filter(a => a.idpartidoxjugador_estado === 2);
-        this.partido.jugadoresapuntados = jugadores.length;
-
-      });
-  }
-
   getPartido() {
 
     this.httpGralService.getDataById(apisUrl.partido, this.idpartido).subscribe(
       data => {
         this.partido = data;
-        this.getJugadores();
+        this.idpartido_estado = this.partido.idpartido_estado;
         this.getPartidoxPista();
         if (this.partido && this.partido['idpartido_estado'] === 3) {
           this.getPartidoxPistaXRanking();
@@ -199,26 +185,7 @@ export class DetallePartidoComponent implements OnInit {
   }
 
 
-  showDialogToAddJugador() {
-    this.selectJugadores = [];
-    this.displayDialog = true;
-    this.httpGralService.getDataById(apisUrl.partidoxjugadorAddByIdPartido, this.idpartido).subscribe(
-      jugadores => {
-        this.newJugadores = jugadores;
-      });
-
-  }
-
-  AddNewJugadores() {
-
-    const formualio = { idpartido: this.idpartido, JugadoresAdd: this.selectJugadores };
-
-    this.httpGralService.addData(apisUrl.partidoxjugadorAddArray, formualio).subscribe(
-      jugadores => {
-        this.getJugadores();
-        this.displayDialog = false;
-      });
-  }
+ 
 
   borrar(formulario: any) {
 
@@ -236,7 +203,6 @@ export class DetallePartidoComponent implements OnInit {
             idpartidoxjugador_estado: formulario.idpartidoxjugador_estado
           }).subscribe(
             jugadores => {
-              this.getJugadores();
               this.getPartidoxPista();
               this.selectreves = null;
               this.selectdrive = null;

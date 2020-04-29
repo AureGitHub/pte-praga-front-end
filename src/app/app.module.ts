@@ -38,9 +38,10 @@ import { CambiarPasswordComponent } from './components/cambiar-password/cambiar-
 import { ListaPartidosComponent } from './components/lista-partidos/lista-partidos.component';
 import { JugadoresComponent } from './components/jugadores/jugadores.component';
 import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-jugador.component';
-import { PartidoxpistaComponent } from './components/partidoxpista/partidoxpista.component';
+import { PartidoxpistaComponent } from './components/detalle-partido/partidoxpista/partidoxpista.component';
 import { GlobalService } from './services/global/global.service';
 import { TimeoutService } from './services/timeout.service';
+import { GestionJugadoresComponent } from './components/detalle-partido/gestion-jugadores/gestion-jugadores.component';
 
 const appRoutes: Routes = [ ];
 
@@ -65,7 +66,8 @@ const appRoutes: Routes = [ ];
         ConfirmEmailComponent,
         CambiarPasswordComponent,
         DetalleJugadorComponent,
-        PartidoxpistaComponent
+        PartidoxpistaComponent,
+        GestionJugadoresComponent
     ],
     imports: [
         BrowserModule,
