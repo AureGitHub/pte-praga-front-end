@@ -13,6 +13,7 @@ export class GestionJugadoresComponent implements OnInit {
   @Input() idpartido: any;
   @Input() currentUser: any;
   @Input() idpartido_estado: any;
+  @Input() partido: any;
 
   jugadoresSeleccionados: [];
   seleccionadosCount: any;
@@ -36,30 +37,33 @@ export class GestionJugadoresComponent implements OnInit {
     this.getJugadores();
   }
 
-  getJugadores() {
-    this.httpGralService.getDataById(apisUrl.partidoxjugadorByIdPartido, this.idpartido).subscribe(
-      jugadores => {
+  SetJugadoresEnLst(jugadores) {
+    this.jugadoresSeleccionados = jugadores.filter(a => a.idpartidoxjugador_estado === 1);
+    this.jugadoresSuplentes = jugadores.filter(a => a.idpartidoxjugador_estado === 2);
+    this.seleccionadosCount = this.jugadoresSeleccionados.length;
+    this.suplentesCount = this.jugadoresSuplentes.length;
 
-        this.jugadoresSeleccionados = jugadores.filter(a => a.idpartidoxjugador_estado === 1);
-        this.jugadoresSuplentes = jugadores.filter(a => a.idpartidoxjugador_estado === 2);
-        this.seleccionadosCount = this.jugadoresSeleccionados.length;
-        this.suplentesCount = this.jugadoresSuplentes.length;
+    this.partido.jugadoresapuntados = jugadores.length;
 
-      });
   }
 
-  borrarJugador(jugador){
+  getJugadores() {
+    this.httpGralService.getDataById(apisUrl.partidoxjugadorByIdPartido, this.idpartido)
+    .subscribe(jugadores =>  this.SetJugadoresEnLst(jugadores));
+  }
+
+  borrarJugador(jugador) {
     this.confirmationService.confirm({
-      message: `Vas a borrar al jugador ${jugador.nombre}   ¿Deseas continuar?`,
+      message: `Vas a borrar al jugador ${jugador.alias}   ¿Deseas continuar?`,
       header: 'Borrar partido',
       icon: 'pi pi-remove',
       acceptLabel: 'Si',
       rejectLabel: 'No',
       accept: () => {
-        // this.httpGralService.deleteDataById(apisUrl.partido, this.partido.id).subscribe(
-        //     jugadores => {
-        //       this.router.navigate(['/']);
-        //     });
+        this.httpGralService.deleteDataById(apisUrl.partidoxjugador,  jugador.idpartidoxjugador).subscribe(
+            jugadores => {
+              this.SetJugadoresEnLst(jugadores);
+            });
       },
       reject: () => {
       }
@@ -80,10 +84,11 @@ export class GestionJugadoresComponent implements OnInit {
 
     const formualio = { idpartido: this.idpartido, JugadoresAdd: this.selectJugadores };
 
-    this.httpGralService.addData(apisUrl.partidoxjugadorAddArray, formualio).subscribe(
-      jugadores => {
-        this.displayDialog = false;
-      });
+    this.httpGralService.addData(apisUrl.partidoxjugadorCreateAny, formualio)
+    .subscribe(jugadores => {
+      this.displayDialog = false;
+      this.SetJugadoresEnLst(jugadores);
+    } );
   }
 
 

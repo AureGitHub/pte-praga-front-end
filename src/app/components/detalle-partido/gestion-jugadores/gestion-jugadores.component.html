@@ -4,7 +4,7 @@
     <p-header>
     </p-header>
     <div class="panelGridCenter" (click)="showDialogToAddJugador()" *ngIf="currentUser?.isAdmin &&  idpartido_estado==1">
-        <i class="fa fa-2x fa-plus-square-o"></i> (Añadir jugador)
+        <i class="fa fa-1x fa-plus-square-o"></i> (Añadir jugador)
     </div>
     
     <p-tabView>
@@ -18,7 +18,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-jugador>
                     <tr (click)="borrarJugador(jugador)">
-                        <td>{{jugador.nombre}}</td>
+                        <td>{{jugador.alias}}</td>
                         <td>{{jugador.posicion}}</td>                        
                     </tr>
                 </ng-template>
@@ -56,7 +56,7 @@ showEffect="fade"
 [style]="{'max-width': '800px'}"
 >
 
-<p-listbox [options]="newJugadores" [(ngModel)]="selectJugadores" multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="nombre">
+<p-listbox [options]="newJugadores" [(ngModel)]="selectJugadores" multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="alias">
   <p-header>
     <i class="fa fa-user"></i>
     Jugadores

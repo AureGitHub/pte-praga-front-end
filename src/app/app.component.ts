@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
 
     constructor(
         private authenticationService: AuthenticationService,
-      
     ) {
         this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
@@ -25,6 +24,10 @@ export class AppComponent implements OnInit {
      }
 
     ngOnInit() {
+
+        // si se aranca la aplicación
+        this.authenticationService.Check();
+
     }
 
 }

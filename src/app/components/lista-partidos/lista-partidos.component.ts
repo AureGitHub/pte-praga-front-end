@@ -135,7 +135,7 @@ Borrate(partido: any) {
     acceptLabel: 'Si',
     rejectLabel: 'No',
     accept: () => {
-      this.httpGralService.deleteDataById(apisUrl.partidoxjugador,  partido.id ).subscribe(
+      this.httpGralService.deleteDataById(apisUrl.partidoxjugador,  partido.idpartidoxjugador ).subscribe(
         result => {
           this.getPartidos();
       });

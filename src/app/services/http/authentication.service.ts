@@ -38,6 +38,22 @@ export class AuthenticationService {
       }
     }
 
+    Check() {
+      const userData = JSON.parse(localStorage.getItem('currentUser'));
+      if (!userData) {
+        this.logout();
+        return;
+      }
+
+      const DateInToken = new Date(userData.expire).getTime();
+
+      if (DateInToken <= Date.now()) {
+        this.logout();
+        return;
+      }
+
+    }
+
     logout() {
         // remove user from local storage and set current user to null
         localStorage.removeItem('currentUser');

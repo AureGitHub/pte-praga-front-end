@@ -1,148 +1,24 @@
 <div class="ui-fluid mypanel-size-local">
 
-  <div class="ui-g"  *ngIf="1===1 || ( currentUser?.isAdmin && idpartido_estado!=1)">
-    
-    <div class="ui-g-12" align="right">
-      <div class="mybutton-size">
-      <button   
-      class="ui-button-danger"    
-      (click)="BorrarPartido()"
-      pButton
-      type="button"
-      icon="fa fa-2x fa-eraser"
-      label=" Borrar partido">
-      </button>
+  <div class="ui-g" *ngIf="currentUser && partido">
+    <div class="ui-g-6"><i class="pi pi-calendar"></i> Día: <b>{{partido.dia}}</b></div>
+    <div class="ui-g-6"> <i class="pi pi-clock"></i> Tiempo: <b>{{partido.duracion}}</b>
     </div>
-
-    </div>
-
-  </div>
-
-
-<div class="ui-g"  *ngIf="currentUser && partido">
- 
-  <div class="ui-g-8">
-    <h3><i class="pi pi-calendar"></i> {{partido.dia}}</h3>  
-  </div>
-
-  <div class="ui-g-2">
-    <h3><i class="pi pi-clock"></i>{{partido.duracion}}</h3>  
-  </div>
-
-  <div class="ui-g-2">
-   
-  </div>
-
-
-  <div class="ui-g-6 ui-md-6">
-    <h3>Pistas: {{partido.pistas}} </h3>
-  </div>
-
-  <div class="ui-g-6 ui-md-6">
-    <h3>Jugadores: {{partido.jugadoresapuntados}}/{{partido.jugadorestotal}} </h3>
-  </div>  
-  <div class="ui-g-12" align="center">
-    <div class="mybutton-size">
-
-    <!-- <button   
-    class="ui-button-success"    
-    (click)="showDialogToAddJugador()"
-    pButton
-    type="button"
-    icon="fa fa-2x fa-plus-square-o"
-    label="Añadir jugador"
-    *ngIf="currentUser?.isAdmin &&  partido['idpartido_estado']==1"></button> -->
-</div>
-</div>
-  </div>
-
-
-
-
-      <app-gestion-jugadores [currentUser]="currentUser" [idpartido_estado]="idpartido_estado"  [idpartido]="idpartido"></app-gestion-jugadores>
-  
-  
-
-
-
-  <!-- <div class="ui-g-6 ui-md-6">     
+    <div class="ui-g-6">Pistas: <b>{{partido.pistas}}</b></div>
+    <div class="ui-g-6">Apuntados:
+        <b>{{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}</b>      
+    </div>   
     
-    <p-listbox [options]="drives" [(ngModel)]="selectdrive" 
-         checkbox="checkbox"  optionLabel="alias">
-        <p-header>
-          <div class="ui-g-6">
-            <i class="fa fa-user"></i>
-            Drive
-          </div>
-          <div class="ui-g-6">
-           
-
-              <button
-              class="ui-button-danger"              
-              (click)="borrarDrive()"
-              pButton
-              type="button"
-              icon="fa fa-eraser"
-              label="Borrar"
-              *ngIf="currentUser?.isAdmin && partido && selectdrive && partido['idpartido_estado']==1">
-            </button>
-
-            
-          
-          </div>    
-        </p-header>
-    </p-listbox>
+    <div class="ui-g-12 derecha"   *ngIf="1===1 || ( currentUser?.isAdmin && idpartido_estado!=1)">
+      <i (click)="BorrarPartido()" class="fa fa-1x fa-eraser rojo icono-link">Borrar partido</i>
+  </div>
+    
+</div>
+<hr>
       
-  </div>
-
-
- <div class="ui-g-6 ui-md-6">  
-  <p-listbox [options]="reves" [(ngModel)]="selectreves" 
-   checkbox="checkbox"  optionLabel="alias">
-  <p-header>
-    <div class="ui-g-6">
-      <i class="fa fa-user"></i>
-      Revés
-    </div>
-    <div class="ui-g-6">
-
-
-      <button
-      class="ui-button-danger"              
-      (click)="borrarReves()"
-      pButton
-      type="button"
-      icon="fa fa-eraser"
-      label="Borrar"
-      *ngIf="currentUser?.isAdmin && partido && selectreves && partido['idpartido_estado']==1">
-    </button>
-
-    </div>    
-  </p-header>
-</p-listbox>
-</div> 
-
-<div class="ui-g-3"></div>
-<div class="ui-g-6">
-  <p-listbox [options]="suplentes" [(ngModel)]="selectsuplente" 
-         checkbox="checkbox"  optionLabel="alias">
-        <p-header>
-          <div class="ui-g-6">
-            <i class="fa fa-user"></i>
-            Suplentes
-          </div>
-          <div class="ui-g-6">
-            <div (click)="borrarSuplentes()" class="rojo icono-link" *ngIf="currentUser?.isAdmin && partido && selectsuplente">
-              <i class="fa fa-eraser"></i>
-              Borrar
-            </div>      
-          </div>    
-        </p-header>
-    </p-listbox>
-</div>
-<div class="ui-g-3">
-
-</div> -->
+  <app-gestion-jugadores [currentUser]="currentUser" [idpartido_estado]="idpartido_estado" [partido]="partido"  [idpartido]="idpartido"></app-gestion-jugadores>
+  
+  
 
 <div class="ui-g-4" align="center"  *ngIf="idpartido_estado!=3">  
 

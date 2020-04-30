@@ -29,6 +29,15 @@
   vertical-align:middle;
  }
 
+ .derecha{
+  text-align: right;
+  vertical-align:middle;
+ }
+ .izquierda{
+  text-align: left;
+  vertical-align:middle;
+ }
+
 .my-container{
   
     margin: 0 auto;
