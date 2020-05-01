@@ -21,22 +21,22 @@
                                 <div class="ui-g-12"><i class="pi pi-calendar"></i> Día: <b>{{partido.dia}}</b></div>
                                 <div class="ui-g-12"> <i class="pi pi-clock"></i> Tiempo: <b>{{partido.duracion}}</b>
                                 </div>
-                                <div class="ui-g-12">Pistas: <b>{{partido.pistas}}</b></div>
-                                <div class="ui-g-12">Apuntados:
+                                <div class="ui-g-6">Pistas: <b>{{partido.pistas}}</b></div>
+                                <div class="ui-g-6">Apuntados:
                                     <b>{{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}</b></div>
-                                <div class="ui-g-12"
-                                    *ngIf="currentUser?.id === partido.idcreador && partido && partido.idpartido_estado===1">
-                                    <b><i (click)="onEdit(partido)" class="pi pi-pencil azul icono-link"> Editar</i>
-                                    </b>
-                                </div>
-                                <div class="ui-g-12" *ngIf="currentUser && !partido.idpartidoxjugador">
+                                <div class="ui-g-4" *ngIf="currentUser && !partido.idpartidoxjugador">
                                     <b><i (click)="Apuntate(partido)" class="pi pi-thumbs-up verde icono-link">
                                             Apúntate</i></b>
                                 </div>
-                                <div class="ui-g-12" *ngIf="currentUser && partido.idpartidoxjugador">
+                                <div class="ui-g-4" *ngIf="currentUser && partido.idpartidoxjugador">
                                     <b><i (click)="Borrate(partido)" class="pi pi-thumbs-down rojo icono-link">
                                             Borrarte</i></b>
                                 </div>
+                                <div class="ui-g-4"
+                                *ngIf="currentUser?.id === partido.idcreador && partido && partido.idpartido_estado===1">
+                                <b><i (click)="onEdit(partido)" class="pi pi-pencil azul icono-link"> Editar</i>
+                                </b>
+                            </div>
                             </div>
                         </div>
                         <button *ngIf="currentUser" pButton type="button" icon="pi pi-info"

@@ -42,6 +42,7 @@ import { PartidoxpistaComponent } from './components/detalle-partido/partidoxpis
 import { GlobalService } from './services/global/global.service';
 import { TimeoutService } from './services/timeout.service';
 import { GestionJugadoresComponent } from './components/detalle-partido/gestion-jugadores/gestion-jugadores.component';
+import { CombosService } from './services/combos/combos.service';
 
 const appRoutes: Routes = [ ];
 
@@ -101,7 +102,8 @@ const appRoutes: Routes = [ ];
         HttpGralService,
         AuthenticationService,
         ConfirmationService,
-        TimeoutService
+        TimeoutService,
+        CombosService
     ],
     bootstrap: [AppComponent]
 })

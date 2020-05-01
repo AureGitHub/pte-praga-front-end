@@ -6,6 +6,7 @@ import { ConfirmationService } from 'primeng/api';
 import { AlertService } from 'src/app/services/components/alert.service';
 import { MyFormComponent } from '../comun/my-form/my-form.component';
 import form_jugador from 'src/app/forms/form_jugador';
+import { CombosService } from 'src/app/services/combos/combos.service';
 
 
 
@@ -26,6 +27,7 @@ export class JugadoresComponent implements OnInit {
   private myForm: MyFormComponent;
   displayDialog: boolean;
   formDataTemplate = form_jugador;
+  urlEntidad =  apisUrl.jugador;
 
   newUser: boolean;
 
@@ -39,7 +41,8 @@ export class JugadoresComponent implements OnInit {
   constructor(
     private alertService: AlertService,
     private confirmationService: ConfirmationService,
-    private httpGralService: HttpGralService
+    private httpGralService: HttpGralService,
+    private combosService: CombosService
     ) { }
 
     ngOnInit() {
@@ -60,32 +63,28 @@ export class JugadoresComponent implements OnInit {
 
   SetformDataTemplate() {
 
-    this.httpGralService.getDatas(apisUrl.posicion).subscribe(
-      lstpos => {
-
+    this.combosService.getCombo('posicion').subscribe(
+      data => {
         const itemTemplatePos = this.formDataTemplate.find(a => a.name === 'idposicion' );
-        itemTemplatePos.options = lstpos;
+        itemTemplatePos.options = data;
+    });
 
-        this.httpGralService.getDatas(apisUrl.perfil).subscribe(
-          lstperfil => {
-            const itemTemplatePer = this.formDataTemplate.find(a => a.name === 'idperfil' );
-            itemTemplatePer.options = lstperfil;
+    this.combosService.getCombo('perfil').subscribe(
+      data => {
+        const itemTemplatePos = this.formDataTemplate.find(a => a.name === 'idperfil' );
+        itemTemplatePos.options = data;
+    });
 
-            this.httpGralService.getDatas(apisUrl.estadoJugador).subscribe(
-              lstestados => {
-                const itemTemplateEstado = this.formDataTemplate.find(a => a.name === 'idestado' );
-                itemTemplateEstado.options = lstestados;
+    this.combosService.getCombo('jugadorestado').subscribe(
+      data => {
+        const itemTemplatePos = this.formDataTemplate.find(a => a.name === 'idestado' );
+        itemTemplatePos.options = data;
+    });
 
-                  });
-
-
-              });
-
-      });
   }
 
   getUsers() {
-    this.httpGralService.getDatas(apisUrl.jugadores).subscribe(
+    this.httpGralService.getDatas(apisUrl.jugador).subscribe(
       data => {
         this.users = data;
       });
@@ -104,24 +103,37 @@ export class JugadoresComponent implements OnInit {
 
   submit(formulario) {
 
-      if (this.newUser) {
-        this.httpGralService.addData(apisUrl.jugadores, formulario)
-          .subscribe(user => {
-            if(user){
-              this.displayDialog = false;
-                this.getUsers();
-                this.alertService.success('Se ha creado el usuario. Contraseña: 123456. DEBE CAMBIARLA');
-            }
+    // intentar mejorar no ir a BD
 
-          });
-      } else {
-        this.httpGralService.updateData(apisUrl.jugadores, formulario)
-          .subscribe(() => {
-            this.getUsers();
-            this.alertService.success('operacion ejecutada correctamente');
-            this.displayDialog = false;
-          });
-        }
+    this.displayDialog = false;
+    if (this.newUser) {
+      this.users.push(formulario);
+
+      this.users.sort((a, b) => (a.alias > b.alias) ? 1 : -1);
+
+    } else {
+      this.getUsers();
+    }
+
+
+      // if (this.newUser) {
+      //   this.httpGralService.addData(apisUrl.jugador, formulario)
+      //     .subscribe(user => {
+      //       if (user) {
+      //         this.displayDialog = false;
+      //           this.getUsers();
+      //           this.alertService.success('Se ha creado el usuario. Contraseña: 123456. DEBE CAMBIARLA');
+      //       }
+
+      //     });
+      // } else {
+      //   this.httpGralService.updateData(apisUrl.jugador, formulario)
+      //     .subscribe(() => {
+      //       this.getUsers();
+      //       this.alertService.success('operacion ejecutada correctamente');
+      //       this.displayDialog = false;
+      //     });
+      //   }
 
   }
 
@@ -132,10 +144,10 @@ export class JugadoresComponent implements OnInit {
       header: 'Borrado usuario',
       icon: 'pi pi-user-minus',
       accept: () => {
-        this.httpGralService.deleteDataById(apisUrl.jugadores, idUser)
-        .subscribe(() => {
+        this.httpGralService.deleteDataById(apisUrl.jugador, idUser)
+        .subscribe((idBorrado) => {
           this.alertService.success('operacion ejecutada correctamente');
-          this.getUsers();
+          this.users = this.users.filter(a => a.id !== idBorrado);
         });
       },
       reject: () => {

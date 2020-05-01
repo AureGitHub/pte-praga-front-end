@@ -5,6 +5,7 @@ import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.servic
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
 import { User } from 'src/app/models/user';
 import { AlertService } from 'src/app/services/components/alert.service';
+import { CombosService } from 'src/app/services/combos/combos.service';
 
 @Component({
   selector: 'app-detalle-jugador',
@@ -13,6 +14,7 @@ import { AlertService } from 'src/app/services/components/alert.service';
 })
 export class DetalleJugadorComponent implements OnInit {
 
+  urlEntidad =  apisUrl.jugador;
   currentUser: User;
 
   @ViewChild(MyFormComponent)
@@ -25,6 +27,7 @@ export class DetalleJugadorComponent implements OnInit {
     private httpGralService: HttpGralService,
     private authenticationService: AuthenticationService,
     private alertService: AlertService,
+    private combosService: CombosService
   ) {
     this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
@@ -38,16 +41,15 @@ export class DetalleJugadorComponent implements OnInit {
 
   SetformDataTemplate() {
 
-    this.httpGralService.getDatas(apisUrl.posicion).subscribe(
-      lstpos => {
+    this.combosService.getCombo('posicion').subscribe(
+      data => {
         const itemTemplatePos = this.formDataTemplate.find(a => a.name === 'idposicion' );
-        itemTemplatePos.options = lstpos;
-
-      });
+        itemTemplatePos.options = data;
+    });
   }
 
   getDatosUser() {
-    this.httpGralService.getDataById(apisUrl.jugadores, this.currentUser.id).subscribe(
+    this.httpGralService.getDataById(apisUrl.jugador, this.currentUser.id).subscribe(
       user => {
         this.myForm.SetFormData(user);
       });
@@ -56,10 +58,12 @@ export class DetalleJugadorComponent implements OnInit {
 
   public submit = (formulario) => {
 
-    this.httpGralService.updateData(apisUrl.jugadores, formulario)
-          .subscribe(dataServer => {
-            this.alertService.success('operacion ejecutada correctamente');
-          });
+    // refrescar jugador logado...
+    
+    // this.httpGralService.updateData(apisUrl.jugador, formulario)
+    //       .subscribe(dataServer => {
+    //         this.alertService.success('operacion ejecutada correctamente');
+    //       });
 
   }
 

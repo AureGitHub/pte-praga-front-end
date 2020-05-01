@@ -19,13 +19,12 @@ export const apisUrl = {
   cambiar_password : server + '/cambiarPassword',
   ask_cod_conf_email : server + '/pedirCodigoEmail',
   conf_email : server + '/confirmarEmail',
-  jugadores: server + '/jugadores',
+  jugador: server + `${prefix}/jugador`,
   registro: server + '/registro',
   partido: server + `${prefix}/partido`,
   partidoPublic: server + `${prefix}/partido/public`,
-  posicion: server + '/posicion',
-  perfil: server + '/perfil',
-  estadoJugador: server + '/estadoJugador',
+  codigos: server + `${prefix}/codigos`,
+
 
   partidoxjugador: server + `${prefix}/partidoxjugador`,
   partidoxjugadorByIdPartido: server + `${prefix}/partidoxjugador`,

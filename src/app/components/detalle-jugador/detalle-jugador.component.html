@@ -3,7 +3,8 @@
       <div class="ui-g centrado">
       <div class="ui-g-12 ui-md-12">
         <app-my-form (EventEmitterForm)="submit($event)" 
-        [formDataTemplate]="formDataTemplate"                   
+        [formDataTemplate]="formDataTemplate"    
+        [urlEntidad]="urlEntidad"
         [formButtonLabel]="'Guardar'"
         [formButtonIcon]="'pi pi-save'">       
         </app-my-form>

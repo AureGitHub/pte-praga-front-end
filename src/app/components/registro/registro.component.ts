@@ -3,6 +3,7 @@ import form_registro from 'src/app/forms/form_registro';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
 import { AlertService } from 'src/app/services/components/alert.service';
 import { Router } from '@angular/router';
+import { CombosService } from 'src/app/services/combos/combos.service';
 
 @Component({
   selector: 'app-registro',
@@ -16,21 +17,19 @@ export class RegistroComponent implements OnInit {
     private httpGralService: HttpGralService,
     private alertService: AlertService,
     private router: Router,
+    private combosService: CombosService
   ) { }
 
   ngOnInit() {
-    this.SetformDataTemplate();
+    this.SetformDataTemplate(); 
   }
 
   SetformDataTemplate() {
-
-    this.httpGralService.getDatas(apisUrl.posicion).subscribe(
-      lstpos => {
-
+    this.combosService.getCombo('posicion').subscribe(
+      data => {
         const itemTemplatePos = this.formDataTemplate.find(a => a.name === 'idposicion' );
-        itemTemplatePos.options = lstpos;
-
-      });
+        itemTemplatePos.options = data;
+    });
   }
   public submit = (formulario) => {
 
