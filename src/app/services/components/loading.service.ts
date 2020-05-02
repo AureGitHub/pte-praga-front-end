@@ -3,15 +3,13 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class LoadingService {
 
-    private subject = new Subject<any>();
 
-    getEstadoLoading(): Observable<any> {
-        return this.subject.asObservable();
+    isLoading = new Subject<boolean>();
+    show() {
+        this.isLoading.next(true);
     }
-
-    mostar(estado: boolean) {
-        this.subject.next(estado);
+    hide() {
+        this.isLoading.next(false);
     }
-
 
 }

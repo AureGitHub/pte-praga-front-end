@@ -15,10 +15,10 @@ import validator from 'validator';
 export class ConfirmEmailComponent implements OnInit {
 
   currentUser: User;
-  ButtonAsk= false;
-  ButtonConf= false;
+  ButtonAsk = false;
+  ButtonConf = false;
   CodConfirmacion: any;
-  
+  VerPanelConfirmacion = false;
   constructor(
 
     private httpGralService: HttpGralService,
@@ -26,7 +26,7 @@ export class ConfirmEmailComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
 
-  ) { 
+  ) {
 
     this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
@@ -35,43 +35,35 @@ export class ConfirmEmailComponent implements OnInit {
   }
 
   ngOnInit() {
-
-   
   }
 
-  doPedirCodigo(){
-    this.ButtonAsk = true;
+  doPedirCodigo() {
     this.httpGralService.getDatas(apisUrl.ask_cod_conf_email)
     .subscribe(
       sal => {
-      this.ButtonAsk = false;
       if (sal) {
-        
           this.alertService.success('Se ha enviado el código de confirmación a su correo (' + this.currentUser.email + ')' );
-         
-      }     
+      }
     },
     error => {
-      this.ButtonAsk = false;
     });
   }
 
-  doEnviarCodigo(){
-    if(!validator.isUUID(this.CodConfirmacion)){
-      this.alertService.error('Código con formato incorrecto (no es un UUID)',false,3000 );          
+  doEnviarCodigo() {
+    if (!validator.isUUID(this.CodConfirmacion)) {
+      this.alertService.error('Código con formato incorrecto (no es un UUID)', false, 3000 );
       return;
     }
 
     this.ButtonConf = true;
     this.httpGralService.addData(apisUrl.conf_email, {codConfirmEmail: this.CodConfirmacion})
-    .subscribe(sal => {      
+    .subscribe(sal => {
       this.ButtonConf = false;
-      if (sal) {        
-          this.alertService.success('Su correo ' + this.currentUser.email + ' se ha confirmado' );   
-          this.router.navigate(['/']);       
-      }
-      else{
-        this.alertService.error('Código de confirmación incorrecto',false,3000 ); 
+      if (sal) {
+          this.alertService.success('Su correo ' + this.currentUser.email + ' se ha confirmado' );
+          this.router.navigate(['/']);
+      } else {
+        this.alertService.error('Código de confirmación incorrecto', false, 3000 );
       }
     },
     error => {
@@ -79,7 +71,7 @@ export class ConfirmEmailComponent implements OnInit {
     }
     );
 
-    
+
   }
 
 }

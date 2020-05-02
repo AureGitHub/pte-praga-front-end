@@ -112,29 +112,8 @@ export class JugadoresComponent implements OnInit {
       this.users.sort((a, b) => (a.alias > b.alias) ? 1 : -1);
 
     } else {
-      this.getUsers();
+       this.getUsers();
     }
-
-
-      // if (this.newUser) {
-      //   this.httpGralService.addData(apisUrl.jugador, formulario)
-      //     .subscribe(user => {
-      //       if (user) {
-      //         this.displayDialog = false;
-      //           this.getUsers();
-      //           this.alertService.success('Se ha creado el usuario. Contraseña: 123456. DEBE CAMBIARLA');
-      //       }
-
-      //     });
-      // } else {
-      //   this.httpGralService.updateData(apisUrl.jugador, formulario)
-      //     .subscribe(() => {
-      //       this.getUsers();
-      //       this.alertService.success('operacion ejecutada correctamente');
-      //       this.displayDialog = false;
-      //     });
-      //   }
-
   }
 
   delete(idUser) {
@@ -152,7 +131,7 @@ export class JugadoresComponent implements OnInit {
       },
       reject: () => {
       }
-  });
+    });
   }
 
 

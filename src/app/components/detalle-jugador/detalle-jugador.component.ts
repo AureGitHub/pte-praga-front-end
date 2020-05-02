@@ -56,15 +56,6 @@ export class DetalleJugadorComponent implements OnInit {
 
   }
 
-  public submit = (formulario) => {
-
-    // refrescar jugador logado...
-    
-    // this.httpGralService.updateData(apisUrl.jugador, formulario)
-    //       .subscribe(dataServer => {
-    //         this.alertService.success('operacion ejecutada correctamente');
-    //       });
-
-  }
+  public submit = (formulario) => { };
 
 }

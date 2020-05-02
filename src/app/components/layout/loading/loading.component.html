@@ -1,1 +1,3 @@
-﻿<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
+﻿<ngx-loading [show]="loading | async" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+
+

@@ -23,7 +23,7 @@ export const apisUrl = {
   registro: server + '/registro',
   partido: server + `${prefix}/partido`,
   partidoPublic: server + `${prefix}/partido/public`,
-  codigos: server + `${prefix}/codigos`,
+  codigos: server + `${prefix}/codigos/public`,
 
 
   partidoxjugador: server + `${prefix}/partidoxjugador`,

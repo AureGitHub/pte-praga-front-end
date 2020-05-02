@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import form_registro from 'src/app/forms/form_registro';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
 import { AlertService } from 'src/app/services/components/alert.service';
 import { Router } from '@angular/router';
 import { CombosService } from 'src/app/services/combos/combos.service';
+import { ConfirmationService } from 'primeng/api';
+import { MyFormComponent } from '../comun/my-form/my-form.component';
 
 @Component({
   selector: 'app-registro',
@@ -12,17 +14,27 @@ import { CombosService } from 'src/app/services/combos/combos.service';
 })
 export class RegistroComponent implements OnInit {
 
+  @ViewChild(MyFormComponent) myForm: MyFormComponent;
+  urlEntidad =  `${apisUrl.jugador}/public`;
+
   formDataTemplate = form_registro;
   constructor(
     private httpGralService: HttpGralService,
     private alertService: AlertService,
     private router: Router,
-    private combosService: CombosService
+    private combosService: CombosService,
+    private confirmationService: ConfirmationService,
   ) { }
 
   ngOnInit() {
-    this.SetformDataTemplate(); 
+    this.SetformDataTemplate();
   }
+
+  doFake() {
+
+    this.myForm.SetFormData({alias: '666', idposicion: 1, email: 'aure@gmail.es', nombre: '111111111111111111',
+    password : 'jas11jas11', confirm_password : 'jas11jas11'});
+      }
 
   SetformDataTemplate() {
     this.combosService.getCombo('posicion').subscribe(
@@ -33,20 +45,14 @@ export class RegistroComponent implements OnInit {
   }
   public submit = (formulario) => {
 
-    this.httpGralService.addData(apisUrl.registro, formulario)
-          .subscribe(user => {
-            if (user) {
-                this.alertService.success('operacion ejecutada correctamente');
-                this.router.navigate(['/login']);
-            }
-          });
-
-    // this.httpGralService.addData(apisUrl.login, formulario)
-    //       .subscribe(dataServer => {
-    //         this.authenticationService.login(dataServer);
-    //         this.router.navigate(['/']);
-    //       });
-
+    this.confirmationService.confirm({
+      message: 'Te has registrado correctamente. Inicia sesión para continuar',
+      header: 'Registrado correctamente',
+      icon: 'fa fa-info-circle',
+      accept: () => {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 
 }

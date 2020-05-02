@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
-import { catchError, map, tap, timeout } from 'rxjs/operators';
+import { catchError, map, tap, timeout, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AlertService } from '../components/alert.service';
 import { LoadingService } from '../components/loading.service';
@@ -42,7 +42,7 @@ export class InterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     this.alertService.clear();
-    this.loadingService.mostar(true);
+    this.loadingService.show();
 
     if (this.currentUser && this.currentUser.token) {
       req = req.clone({headers: req.headers.set(this.globalService.KeySecure, this.currentUser.token)});
@@ -53,7 +53,6 @@ export class InterceptorService implements HttpInterceptor {
 
     return next.handle(req).pipe(
         tap(evt => {
-          this.loadingService.mostar(false);
           if (evt instanceof HttpResponse) {
               if (evt.body) {
                 if (evt.body[this.globalService.KeySecure]) {
@@ -70,9 +69,7 @@ export class InterceptorService implements HttpInterceptor {
         }),
       // catchError(this.handleErro<any>('operacion'))
       catchError((err: any) => {
-        this.loadingService.mostar(false);
         if (err instanceof HttpErrorResponse) {
-
           let strError = '';
           if (err.status === 500) {
             strError =  err.status + ', ' + (err.error.message ? err.error.message : err.error);
@@ -92,7 +89,8 @@ export class InterceptorService implements HttpInterceptor {
         }
         return of(err);
       }
-      ));
+      ),
+      finalize(() => this.loadingService.hide()));
   }
 
 }

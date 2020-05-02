@@ -44,8 +44,6 @@ import { TimeoutService } from './services/timeout.service';
 import { GestionJugadoresComponent } from './components/detalle-partido/gestion-jugadores/gestion-jugadores.component';
 import { CombosService } from './services/combos/combos.service';
 
-const appRoutes: Routes = [ ];
-
 @NgModule({
     declarations: [
         AppComponent,

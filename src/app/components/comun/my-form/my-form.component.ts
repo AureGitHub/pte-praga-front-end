@@ -144,6 +144,14 @@ export class MyFormComponent implements OnInit {
   onsubmit() {
 
     this.alertService.clear();
+    if (this.myFormGroup.value.hasOwnProperty('password') &&
+    this.myFormGroup.value.hasOwnProperty('confirm_password')){
+      if ( this.myFormGroup.value['password'] !== this.myFormGroup.value['confirm_password']){
+        this.alertService.error('La password y su confirmación no son iguales');
+        return;
+      }
+    }
+
     if (this.myFormGroup.valid) {
 
       if (!this.myFormGroup.value['id'] || this.myFormGroup.value['id'] === 0 || this.urlEntidad.includes('login')) {
