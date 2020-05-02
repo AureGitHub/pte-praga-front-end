@@ -12,14 +12,16 @@ import { EstadoGuard } from './services/guard/estado.guard';
 import { CambiarPasswordComponent } from './components/cambiar-password/cambiar-password.component';
 import { ListaPartidosComponent } from './components/lista-partidos/lista-partidos.component';
 import { JugadoresComponent } from './components/jugadores/jugadores.component';
-import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-jugador.component'; 
+import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-jugador.component';
+import { PasswordOlvidadaComponent } from './components/password-olvidada/password-olvidada.component';
 
 
 const routes: Routes = [
-  { path: '', component: ListaPartidosComponent, canActivate: [EstadoGuard] },
+  { path: '', component: ListaPartidosComponent },
   { path: '404', component: NoAuthComponent },
   { path: 'home',      component: ListaPartidosComponent, canActivate: [EstadoGuard] },
   { path: 'login',      component: LoginComponent },
+  { path: 'password-olvidada',      component: PasswordOlvidadaComponent },
   { path: 'detalle-partido/:id', component: DetallePartidoComponent, canActivate: [EstadoGuard, RoleGuard],  data: {idperfil: [1, 2] } },
   { path: 'detalle-jugador', component: DetalleJugadorComponent, canActivate: [EstadoGuard]},
   {path: 'jugadores', component : JugadoresComponent, canActivate: [EstadoGuard, RoleGuard],  data: {idperfil: [1] }},

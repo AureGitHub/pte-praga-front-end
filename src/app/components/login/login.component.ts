@@ -2,11 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import form_login from 'src/app/forms/form-login';
 import { MyFormComponent } from '../comun/my-form/my-form.component';
-import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
-import form_email from 'src/app/forms/form_email';
-import form_newpass from 'src/app/forms/form_newpass';
-import { AlertService } from 'src/app/services/components/alert.service';
-import { AuthenticationService } from 'src/app/services/http/authentication.service';
+import { apisUrl } from 'src/app/services/http/http.gral.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -15,75 +13,23 @@ import { AuthenticationService } from 'src/app/services/http/authentication.serv
 })
 export class LoginComponent implements OnInit {
 
-  display = false;
-
-  @ViewChild('login') myForm: MyFormComponent;
-
+  @ViewChild('login') myFormLogin: MyFormComponent;
   formDataTemplate = form_login;
-
-  formDataTemplateEmail = form_email;
-
-  formDataTemplateNewPass = form_newpass;
-
   urlLogin = apisUrl.login;
 
-
-  constructor(   
+  constructor(
     private router: Router,
-    private httpGralService: HttpGralService,
-    private alertService: AlertService,
-    
-
   ) {
    }
 
   ngOnInit() {
-
   }
 
   doFake() {
-
-    this.myForm.SetFormData({id: 666, email: 'aure@gmail.es', password : 'jas11jas11'});
-      }
-
-
-      showDialog() {
-        this.display = true;
-    }
-
+    this.myFormLogin.SetFormData({id: 666, email: 'aure.desande@gmail.com', password : 'jas11jas11'});
+  }
 
   public submit = (formulario) => {
-
-    // call this method if you want to override default 20 minute timeout
-   
-
-    // Start watch when time is up.
     this.router.navigate(['/']);
   }
-
-  public submitEmail = (formulario) => {
-
-
-    this.httpGralService.addData(apisUrl.pedirCodigoForgetPass, formulario)
-          .subscribe(dataServer => {
-            this.alertService.success('Codigo solicitado correctamente. En breve estará en su email');
-          });
-
-  }
-
-  public submitNewPass = (formulario) => {
-
-
-    this.httpGralService.addData(apisUrl.cambiarPasswordForget, formulario)
-          .subscribe(dataServer => {
-            this.alertService.success('Su password ha sido modificada correctamente');
-            this.display=false;
-            
-          });
-
-  }
-
-
-  
-
 }

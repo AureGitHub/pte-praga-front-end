@@ -32,7 +32,7 @@ export class RegistroComponent implements OnInit {
 
   doFake() {
 
-    this.myForm.SetFormData({alias: '666', idposicion: 1, email: 'aure@gmail.es', nombre: '111111111111111111',
+    this.myForm.SetFormData({alias: '666', idposicion: 1, email: 'auredeveloper@gmail.com', nombre: '111111111111111111',
     password : 'jas11jas11', confirm_password : 'jas11jas11'});
       }
 
@@ -46,11 +46,14 @@ export class RegistroComponent implements OnInit {
   public submit = (formulario) => {
 
     this.confirmationService.confirm({
-      message: 'Te has registrado correctamente. Inicia sesión para continuar',
+      rejectVisible: false,
+      acceptLabel: 'OK',
+      message: `Te has registrado correctamente. Se ha enviado un código a su email para finalizar el registro.
+      Pulse OK  para confirmar su email.`,
       header: 'Registrado correctamente',
       icon: 'fa fa-info-circle',
       accept: () => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/confirm-email']);
       }
     });
   }

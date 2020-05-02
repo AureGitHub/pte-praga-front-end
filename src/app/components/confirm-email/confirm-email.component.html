@@ -1,20 +1,20 @@
 <div class="mypanel-size-local">
     <p-card  header="Confirmación de email"  subheader="{{currentUser?.email}}" [style]="{width: '360px'}" styleClass="panelGridCenter">
         <div>Tienes que confirmar el email</div>
-        <div>Solicita un código para confirmar el email</div>
+        <div>Si no ha recibo un correo con el código de confirmación, puede Solicita un código para confirmar de nuevo</div>
         <div> </div>
         <div> <button (click)="doPedirCodigo()"   pButton type="button" label="Solicitar código" icon="pi pi-key" ></button> </div>
         <div> </div>
         <div>Al pulsar el botón "Solicitar código", se le enviará un mensaje a su email  con el código de confirmacion </div>
     </p-card>
     <br>
-    <p-card  header="Introduce el código" [style]="{width: '360px'}" styleClass="panelGridCenter" *ngIf="VerPanelConfirmacion">    
+    <p-card  header="Introduce el código" [style]="{width: '360px'}" styleClass="panelGridCenter" >    
         <div><div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
             <input type="text" style="width: 100%;" [(ngModel)]="CodConfirmacion"  pInputText placeholder="Código de confirmación">         
         </div></div>
         <div> </div>
-        <div> <button (click)="doEnviarCodigo()"  [disabled]="ButtonConf"  class="ui-button-success"  pButton type="button" label="Confirmar" icon="pi pi-check" ></button> </div>
+        <div> <button (click)="doEnviarCodigo()"   class="ui-button-success"  pButton type="button" label="Confirmar" icon="pi pi-check" ></button> </div>
         <div> </div>
         <div>Introduce el código recibido y pulsa Confirmar</div>
     </p-card>

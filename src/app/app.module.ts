@@ -43,6 +43,7 @@ import { GlobalService } from './services/global/global.service';
 import { TimeoutService } from './services/timeout.service';
 import { GestionJugadoresComponent } from './components/detalle-partido/gestion-jugadores/gestion-jugadores.component';
 import { CombosService } from './services/combos/combos.service';
+import { PasswordOlvidadaComponent } from './components/password-olvidada/password-olvidada.component';
 
 @NgModule({
     declarations: [
@@ -66,7 +67,8 @@ import { CombosService } from './services/combos/combos.service';
         CambiarPasswordComponent,
         DetalleJugadorComponent,
         PartidoxpistaComponent,
-        GestionJugadoresComponent
+        GestionJugadoresComponent,
+        PasswordOlvidadaComponent
     ],
     imports: [
         BrowserModule,

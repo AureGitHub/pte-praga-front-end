@@ -145,8 +145,8 @@ export class MyFormComponent implements OnInit {
 
     this.alertService.clear();
     if (this.myFormGroup.value.hasOwnProperty('password') &&
-    this.myFormGroup.value.hasOwnProperty('confirm_password')){
-      if ( this.myFormGroup.value['password'] !== this.myFormGroup.value['confirm_password']){
+    this.myFormGroup.value.hasOwnProperty('confirm_password')) {
+      if ( this.myFormGroup.value['password'] !== this.myFormGroup.value['confirm_password']) {
         this.alertService.error('La password y su confirmación no son iguales');
         return;
       }
@@ -160,7 +160,7 @@ export class MyFormComponent implements OnInit {
         .subscribe(item => {
           this.EventEmitterForm.emit(item);
           if (!this.urlEntidad.includes('login')) {
-            this.alertService.success(`Se ha creado el nuevo elemento`);
+           // this.alertService.success(`Se ha creado el nuevo elemento`);
           }
         });
 
@@ -169,7 +169,7 @@ export class MyFormComponent implements OnInit {
         this.httpGralService.updateData(this.urlEntidad, this.myFormGroup.value)
         .subscribe(item => {
           this.EventEmitterForm.emit(item);
-          this.alertService.success(`Se ha modificado el elemento`);
+         // this.alertService.success(`Se ha modificado el elemento`);
         });
 
       }

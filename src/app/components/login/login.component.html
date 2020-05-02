@@ -1,25 +1,5 @@
 
-  <div class="mypanel-size-local">
-
-    <p-dialog header="Nueva contraseña" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" 
-         [baseZIndex]="1000">
-    <p>Se enviará un código a su correo con el que podrá establecer la nueva contraseña.</p>
-        <p>
-          <app-my-form (EventEmitterForm)="submitEmail($event)" 
-          [formDataTemplate]="formDataTemplateEmail"                   
-          [formButtonLabel]="'enviar'"
-          [formButtonIcon]="'pi pi-envelope'">       
-          </app-my-form>
-        </p>
-        <p>Una vez recibido el código, introduzcalo a continuación y establezca su nueva contraseña.</p>
-        <p>
-          <app-my-form (EventEmitterForm)="submitNewPass($event)" 
-          [formDataTemplate]="formDataTemplateNewPass"                   
-          [formButtonLabel]="'Guardar'"
-          [formButtonIcon]="'pi pi-save'">       
-          </app-my-form>
-        </p>
-</p-dialog>
+  <div class="mypanel-size-local">  
 
     <p-panel header="Conectarse" size="6" styleClass="mypanel-size">
 
@@ -40,18 +20,13 @@
       </div>
 
       <div class="ui-g-12 ui-md-12">
-        <i (click)="showDialog()" class="fa fa-key fa-4 icono-link"> <b> He olvidado mi contraseña</b></i>
-      </div>
-
-      <div class="ui-g-12 ui-md-12">
-        <button [routerLink]="['/registro']"   class="ui-button-success"  pButton type="button" label="registro" icon="pi pi-user-plus" ></button> 
+        <i [routerLink]="['/password-olvidada']" class="fa fa-key fa-4 icono-link"> <b> He olvidado mi contraseña</b></i>
       </div>
       <div class="ui-g-12 ui-md-12">
         <button (click)="doFake()" style="width:30%;color: red"  pButton type="button" label="Fake" icon="pi pi-star-o" ></button> 
       </div>
 
     </div>
-    </p-panel>
-  
+    </p-panel>  
   </div>
   

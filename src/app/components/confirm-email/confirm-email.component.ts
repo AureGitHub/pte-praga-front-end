@@ -16,9 +16,8 @@ export class ConfirmEmailComponent implements OnInit {
 
   currentUser: User;
   ButtonAsk = false;
-  ButtonConf = false;
   CodConfirmacion: any;
-  VerPanelConfirmacion = false;
+
   constructor(
 
     private httpGralService: HttpGralService,
@@ -38,7 +37,7 @@ export class ConfirmEmailComponent implements OnInit {
   }
 
   doPedirCodigo() {
-    this.httpGralService.getDatas(apisUrl.ask_cod_conf_email)
+    this.httpGralService.getDatas(apisUrl.jugador_ConfirmarEmail)
     .subscribe(
       sal => {
       if (sal) {
@@ -55,10 +54,8 @@ export class ConfirmEmailComponent implements OnInit {
       return;
     }
 
-    this.ButtonConf = true;
-    this.httpGralService.addData(apisUrl.conf_email, {codConfirmEmail: this.CodConfirmacion})
+    this.httpGralService.updateData(apisUrl.jugador_ConfirmarEmail, {uuid : this.CodConfirmacion})
     .subscribe(sal => {
-      this.ButtonConf = false;
       if (sal) {
           this.alertService.success('Su correo ' + this.currentUser.email + ' se ha confirmado' );
           this.router.navigate(['/']);
@@ -67,7 +64,6 @@ export class ConfirmEmailComponent implements OnInit {
       }
     },
     error => {
-      this.ButtonConf = false;
     }
     );
 
