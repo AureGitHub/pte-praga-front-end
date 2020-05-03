@@ -3,6 +3,7 @@ export interface Partido {
     dia?;
     hora?;
     duracion?;
+    turnos?;
     pistas?;
     jugadorestotal?;
     jugadoresapuntados?;

@@ -1,11 +1,11 @@
 <div class="ui-fluid mypanel-size-local">
 
   <div class="ui-g" *ngIf="currentUser && partido">
-    <div class="ui-g-6"><i class="pi pi-calendar"></i> Día: <b>{{partido.dia}}</b></div>
-    <div class="ui-g-6"> <i class="pi pi-clock"></i> Tiempo: <b>{{partido.duracion}}</b>
-    </div>
-    <div class="ui-g-6">Pistas: <b>{{partido.pistas}}</b></div>
-    <div class="ui-g-6">Apuntados:
+    <div class="ui-g-12"><i class="pi pi-calendar"></i> Día: <b>{{partido.dia}}</b></div>
+    <div class="ui-g-6"> <i class="pi pi-clock"></i> Tiempo: <b>{{partido.duracion}}</b></div>
+    <div class="ui-g-6"> <i class="pi pi-clock"></i> Turnos: <b>{{partido.turnos}}</b></div>
+    <div class="ui-g-6"><i class="fa verde fa-square"></i> Pistas: <b>{{partido.pistas}}</b></div>
+    <div class="ui-g-6"><i class="pi pi-users"></i> Apuntados:
         <b>{{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}</b>      
     </div>   
     
@@ -17,6 +17,8 @@
 <hr>
       
   <app-gestion-jugadores [currentUser]="currentUser" [idpartido_estado]="idpartido_estado" [partido]="partido"  [idpartido]="idpartido"></app-gestion-jugadores>
+  <br>
+  <app-gestion-pistas [currentUser]="currentUser" [idpartido_estado]="idpartido_estado" [partido]="partido"  [idpartido]="idpartido"></app-gestion-pistas>
   
   
 
@@ -55,7 +57,7 @@
       [disabled]="idpartido_estado!=2">
       </button>
 </div>
-
+<!-- 
 <div class="ui-g-12 ui-md-12" *ngIf="idpartido_estado===3">
 
   <p-table [value]="partidoxpistaxranking">
@@ -84,7 +86,7 @@
   [turnosArray]="turnosArray" 
   [idpartido]="idpartido"
   [partidosxpistas]="partidosxpistas"></app-partidoxpista>
-</div>
+</div> -->
 
 </div>
 

@@ -3,8 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import {  Routes } from '@angular/router';
-
 import { MyprimengModule } from './modules/myprimeng.module';
 import { HeaderComponent } from './components/header/header.component';
 import { SideMenuComponent } from './components/header/side-menu/side-menu.component';
@@ -44,6 +42,7 @@ import { TimeoutService } from './services/timeout.service';
 import { GestionJugadoresComponent } from './components/detalle-partido/gestion-jugadores/gestion-jugadores.component';
 import { CombosService } from './services/combos/combos.service';
 import { PasswordOlvidadaComponent } from './components/password-olvidada/password-olvidada.component';
+import { GestionPistasComponent } from './components/detalle-partido/gestion-pistas/gestion-pistas.component';
 
 @NgModule({
     declarations: [
@@ -68,7 +67,8 @@ import { PasswordOlvidadaComponent } from './components/password-olvidada/passwo
         DetalleJugadorComponent,
         PartidoxpistaComponent,
         GestionJugadoresComponent,
-        PasswordOlvidadaComponent
+        PasswordOlvidadaComponent,
+        GestionPistasComponent
     ],
     imports: [
         BrowserModule,
@@ -78,11 +78,7 @@ import { PasswordOlvidadaComponent } from './components/password-olvidada/passwo
         ReactiveFormsModule,
         MyprimengModule,
         HttpClientModule,
-        // HttpClientInMemoryWebApiModule.forRoot(InMemHeroService),
-        NgxLoadingModule.forRoot({}),
-         // Optionally you can set time for `idle`, `timeout` and `ping` in seconds.
-        // Default values: `idle` is 600 (10 minutes), `timeout` is 300 (5 minutes)
-        // and `ping` is 120 (2 minutes).
+        NgxLoadingModule.forRoot({}),         
 
     ],
     providers: [

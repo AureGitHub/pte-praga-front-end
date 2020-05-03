@@ -19,10 +19,10 @@
                             <img src="assets/images/CargadorPelotas.ico">
                             <div class="ui-g">
                                 <div class="ui-g-12"><i class="pi pi-calendar"></i> Día: <b>{{partido.dia}}</b></div>
-                                <div class="ui-g-12"> <i class="pi pi-clock"></i> Tiempo: <b>{{partido.duracion}}</b>
-                                </div>
-                                <div class="ui-g-6">Pistas: <b>{{partido.pistas}}</b></div>
-                                <div class="ui-g-6">Apuntados:
+                                <div class="ui-g-6"> <i class="pi pi-clock"></i> Tiempo: <b>{{partido.duracion}}</b></div>
+                                <div class="ui-g-6"> <i class="pi pi-clock"></i> Turnos: <b>{{partido.turnos}}</b></div>
+                                <div class="ui-g-6"><i class="fa verde fa-square"> </i>Pistas: <b>{{partido.pistas}}</b></div>
+                                <div class="ui-g-6"><i class="pi pi-users"></i> Apuntados:
                                     <b>{{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}</b></div>
                                 <div class="ui-g-4" *ngIf="currentUser && !partido.idpartidoxjugador">
                                     <b><i (click)="Apuntate(partido)" class="pi pi-thumbs-up verde icono-link">

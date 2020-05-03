@@ -20,7 +20,7 @@
                                 </ng-container>
 
                                 <ng-container  *ngSwitchCase="'number'">
-                                    <input type="number" pInputText formControlName="{{form_elem.name}}" style="width: 100%;"   placeholder="{{form_elem.placeholder}}"/>                            
+                                    <input type="number" pInputText formControlName="{{form_elem.name}}" style="width: 100%;" value="{{form_elem?.default}}"   placeholder="{{form_elem.placeholder}}"/>                            
                                 </ng-container>
 
                                 <ng-container  *ngSwitchCase="'email'">

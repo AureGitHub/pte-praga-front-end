@@ -120,13 +120,6 @@ export class MyFormComponent implements OnInit {
               case 'confirm_password':
                 // validators.push(Validators.compose([this.passwordMatchValidator]));
               break;
-
-
-
-
-
-
-
             }
         });
         newControl.setValidators(validators);

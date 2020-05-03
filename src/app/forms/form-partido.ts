@@ -18,18 +18,6 @@ export const form_partido = [
     ]
   },
 
-  // {
-  //   'name': 'hora',
-  //   'placeholder': 'Hora',
-  //   'type': 'calendar-hora',
-  //   'icon': 'pi pi-clock',
-  //   'validators': [
-      
-  //   ]
-  // },
-
-
-
   {
     'name': 'duracion',
     'placeholder': 'Duración',
@@ -52,15 +40,17 @@ export const form_partido = [
       {'name' : 'max', value : 4, 'mensaje': 'Máximo 4 pistas'},
     ]
   },
-  // {
-  //   'name': 'jugadorestotal',
-  //   'placeholder': 'Total jugadores',
-  //   'type': 'number',
-  //   'icon': 'pi pi-users',
-  //   'validators': [
-  //     {'name' : 'required', 'mensaje': 'Campo obligatorio'}
-  //   ]
-  // },
+  {
+    'name': 'turnos',
+    'placeholder': 'Turnos',
+    'default' : 3,
+    'type': 'number',
+    'icon': 'pi pi-clock',
+    'validators': [
+      {'name' : 'required', 'mensaje': 'Campo obligatorio'},
+      {'name' : 'max', value : 4, 'mensaje': 'Máximo 4 turnos'},
+    ]
+  },
 
   ];
 
