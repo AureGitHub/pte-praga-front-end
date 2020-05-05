@@ -1,73 +1,62 @@
-<h3>Vertical Alignment - Per Column</h3>
-<div class="p-grid vertical-container">
-    <div class="p-col p-col-align-center">
-        <div class="box">4</div>
-    </div>
-    <div class="p-col p-col-align-center">
-        <div class="box">4</div>
-    </div>
-    <div class="p-col p-col-align-end">
-        <div class="box">4</div>
-    </div>
-</div>
-
-<p-card header="PARTIDOS" subheader="" style="height: 100%;"  styleClass="ui-card-shadow panelGridCenter">
+<p-card header="PARTIDOS" subheader=""   styleClass="ui-card-shadow panelGridCenter">
     <p-header>
     </p-header>
     <p-tabView>
         <p-tabPanel header="Turnos">
-            <p-carousel style="height: 100%;"  *ngIf="partidoxpista && partidoxpista.length > 0" [value]="partidoxpista"  orientation="vertical" [numScroll]="partido.pistas" [numVisible]="partido.pistas">
-                <ng-template let-pxp pTemplate="item">
-                    <div class="divPistas">
-                        <div class="ui-g ">
-                            <div class="ui-g-12 tiluloPista centrado">{{pxp.nombre}}</div>
-                        </div>
-                        <div class="ui-g ">
-                          <div class="ui-g-1 fondo-blanco">P1</div>
-                          <div class="ui-g-4 fondo-verde pareja1"  align="center" >
-                            <span class="jugador">{{ pxp.jd1 }}</span>
-                          </div>            
-                
-                          <div class="ui-g-4 fondo-verde pareja1" >                
-                            <span class="jugador">{{ pxp.jr1 }}</span>
-                          </div>
-                          <div class="ui-g-1 resultado" (click)="setMarcador(pxp,1)">{{pxp?.set1?.juegospareja1}}</div>
-                          <div class="ui-g-1 resultado" (click)="setMarcador(pxp,2)">{{pxp?.set2?.juegospareja1}}</div>
-                          <div class="ui-g-1 resultado" (click)="setMarcador(pxp,3)">{{pxp?.set3?.juegospareja1}}</div>
-                        </div>
-                
-                        <div class="ui-g" style="height: 15px;">              
-                          <div class="ui-g-1 "></div>
-                          <div class="ui-g-1 red"></div>
-                          <div class="ui-g-1 red"></div>
-                          <div class="ui-g-1 red"></div>
-                          <div class="ui-g-1 red"></div>
-                          <div class="ui-g-1 red"></div>
-                          <div class="ui-g-1 red"></div>
-                          <div class="ui-g-1 red"></div>
-                          <div class="ui-g-1 red"></div>
-                          <div class="ui-g-1 red"></div>
-                          <div class="ui-g-1 red"></div>
-                          <div class="ui-g-1 red"></div>              
-                        </div>  
-                        
-                        <div class="ui-g">
-                          <div class="ui-g-1 fondo-blanco">P2</div>
-                          <div class="ui-g-4 fondo-verde pareja2"  align="center" >
-                            <span class="jugador">{{ pxp.jd2 }}</span>
-                          </div>        
-                          <div class="ui-g-4 fondo-verde pareja2" >
-                            <span class="jugador">{{ pxp.jr2 }}</span>
-                          </div>
-                          <div class="ui-g-1 resultado" (click)="setMarcador(pxp,1)">{{pxp?.set1?.juegospareja2}}</div>
-                          <div class="ui-g-1 resultado" (click)="setMarcador(pxp,2)">{{pxp?.set2?.juegospareja2}}</div>
-                          <div class="ui-g-1 resultado" (click)="setMarcador(pxp,3)">{{pxp?.set3?.juegospareja2}}</div>
-                        </div>  
-            
-                    </div>     
-                   <br>
-                </ng-template>
-            </p-carousel>
+
+          <p-dataView #dv *ngIf="partidoxpista && partidoxpista.length > 0" [value]="partidoxpista" [paginator]="true" [rows]="partido.pistas" paginatorPosition="both">
+          <p-header>
+          </p-header>
+          <ng-template let-pxp pTemplate="listItem">
+            <div class="divPistas">
+              <div class="ui-g ">
+                  <div class="ui-g-12  centrado"><span class="tiluloPista">Turno {{pxp.idturno}} - Pista {{pxp.idpista}}</span></div>
+              </div>
+              <div class="ui-g ">
+                <div class="ui-g-1 fondo-blanco">P1</div>
+                <div class="ui-g-4 fondo-verde pareja1"  align="center" >
+                  <span class="jugador">{{ pxp.jd1 }}</span>
+                </div>            
+      
+                <div class="ui-g-4 fondo-verde pareja1" >                
+                  <span class="jugador">{{ pxp.jr1 }}</span>
+                </div>
+                <div class="ui-g-1 resultado" (click)="setMarcador(pxp,1)">{{pxp?.set1?.juegospareja1}}</div>
+                <div class="ui-g-1 resultado" (click)="setMarcador(pxp,2)">{{pxp?.set2?.juegospareja1}}</div>
+                <div class="ui-g-1 resultado" (click)="setMarcador(pxp,3)">{{pxp?.set3?.juegospareja1}}</div>
+              </div>
+      
+              <div class="ui-g" style="height: 15px;">              
+                <div class="ui-g-1 "></div>
+                <div class="ui-g-1 red"></div>
+                <div class="ui-g-1 red"></div>
+                <div class="ui-g-1 red"></div>
+                <div class="ui-g-1 red"></div>
+                <div class="ui-g-1 red"></div>
+                <div class="ui-g-1 red"></div>
+                <div class="ui-g-1 red"></div>
+                <div class="ui-g-1 red"></div>
+                <div class="ui-g-1 red"></div>
+                <div class="ui-g-1 red"></div>
+                <div class="ui-g-1 red"></div>              
+              </div>  
+              
+              <div class="ui-g">
+                <div class="ui-g-1 fondo-blanco">P2</div>
+                <div class="ui-g-4 fondo-verde pareja2"  align="center" >
+                  <span class="jugador">{{ pxp.jd2 }}</span>
+                </div>        
+                <div class="ui-g-4 fondo-verde pareja2" >
+                  <span class="jugador">{{ pxp.jr2 }}</span>
+                </div>
+                <div class="ui-g-1 resultado" (click)="setMarcador(pxp,1)">{{pxp?.set1?.juegospareja2}}</div>
+                <div class="ui-g-1 resultado" (click)="setMarcador(pxp,2)">{{pxp?.set2?.juegospareja2}}</div>
+                <div class="ui-g-1 resultado" (click)="setMarcador(pxp,3)">{{pxp?.set3?.juegospareja2}}</div>
+              </div>    
+          </div>     
+         <br>
+          </ng-template>
+      </p-dataView>
         </p-tabPanel>
         <p-tabPanel header="Clasificación">           
         </p-tabPanel>

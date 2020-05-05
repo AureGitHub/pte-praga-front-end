@@ -18,6 +18,11 @@
       
   <app-gestion-jugadores [currentUser]="currentUser" [idpartido_estado]="idpartido_estado" [partido]="partido"  [idpartido]="idpartido"></app-gestion-jugadores>
   <br>
+  <button  *ngIf="currentUser?.isAdmin && partido" (click)="hacerparejas()"  styleClass="panelGridCenter"   
+  pButton type="button" label="V.I.C.T.O.R." icon="fa fa-1x fa-steam"  iconPos="right"
+  [disabled]="idpartido_estado!=1">
+</button> 
+<br>
   <app-gestion-pistas [currentUser]="currentUser" [idpartido_estado]="idpartido_estado" [partido]="partido"  [idpartido]="idpartido"></app-gestion-pistas>
   
   
@@ -27,10 +32,7 @@
 
 
     
-    <button  *ngIf="currentUser?.isAdmin && partido" (click)="hacerparejas()"    
-    pButton type="button" label="V.I.C.T.O.R." icon="fa fa-1x fa-steam"  iconPos="right"
-    [disabled]="idpartido_estado!=1">
-  </button> 
+
   
 </div>
 <div class="ui-g-4" align="center"  *ngIf="idpartido_estado!=3">  

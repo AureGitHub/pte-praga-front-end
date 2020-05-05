@@ -78,7 +78,7 @@ import { GestionPistasComponent } from './components/detalle-partido/gestion-pis
         ReactiveFormsModule,
         MyprimengModule,
         HttpClientModule,
-        NgxLoadingModule.forRoot({}),         
+        NgxLoadingModule.forRoot({}),
 
     ],
     providers: [
