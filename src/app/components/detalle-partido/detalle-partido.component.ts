@@ -5,7 +5,9 @@ import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.servic
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
 import { ConfirmationService } from 'primeng/api';
 import { AlertService } from 'src/app/services/components/alert.service';
-
+import { MyFormComponent } from '../comun/my-form/my-form.component';
+import { form_partido } from 'src/app/forms/form-partido';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-detalle-partido',
@@ -16,24 +18,27 @@ export class DetallePartidoComponent implements OnInit {
 
   currentUser: any;
   partido: Partido = null;
-  partidoxpistaxranking = [];
-  partidosxpistas = [];
-  pistasArray = [];
-  turnosArray = [];
 
-  drives = [];
-  reves = [];
-  suplentes = [];
+
   idpartido: any;
   idpartido_estado: any;
-
- 
   selectdrive: any;
   selectreves: any;
   selectsuplente: any;
   widthButton = {'width': '20%'};
 
   @ViewChild('divPistas') myDiv: ElementRef;
+
+  @ViewChild(MyFormComponent)
+  private myForm: MyFormComponent;
+  displayDialog: boolean;
+  formDataTemplate = form_partido;
+  urlEntidad =  apisUrl.partido;
+  newPartido = false;
+
+  public currentPartido: Observable<any>;
+  private currentPartidoSubject: BehaviorSubject<any>;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -45,6 +50,8 @@ export class DetallePartidoComponent implements OnInit {
 
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+
+
 
     if (window.innerWidth >= 700) {
       this.widthButton = {'width': '20%'};
@@ -61,6 +68,25 @@ export class DetallePartidoComponent implements OnInit {
     this.getPartido();
   }
 
+
+  getPartido() {
+
+    this.httpGralService.getDataById(apisUrl.partido, this.idpartido).subscribe(
+      data => {
+
+        this.currentPartidoSubject = new BehaviorSubject<any>(data);
+      this.currentPartido = this.currentPartidoSubject.asObservable();
+
+        this.partido = data;
+        // this.currentPartidoSubject.next(data);
+        this.idpartido_estado = this.partido.idpartido_estado;
+      //  this.getPartidoxPistaxJugador();
+        if (this.partido && this.partido['idpartido_estado'] === 3) {
+      //    this.getPartidoxPistaXRanking();
+        }
+      });
+
+  }
 
   BorrarPartido() {
 
@@ -136,7 +162,7 @@ export class DetallePartidoComponent implements OnInit {
         this.httpGralService.getDataById(apisUrl.hacerparejas, this.idpartido).subscribe(
           parejas => {
             this.alertService.success('V.I.C.T.O.R. ha realizado los cáculos...');
-            this.getPartidoxPista();
+           // this.getPartidoxPistaxJugador();
           });
       },
       reject: () => {
@@ -144,48 +170,29 @@ export class DetallePartidoComponent implements OnInit {
     });
   }
 
-  getPartido() {
 
-    this.httpGralService.getDataById(apisUrl.partido, this.idpartido).subscribe(
-      data => {
-        this.partido = data;
-        this.idpartido_estado = this.partido.idpartido_estado;
-        this.getPartidoxPista();
-        if (this.partido && this.partido['idpartido_estado'] === 3) {
-          this.getPartidoxPistaXRanking();
-        }
-      });
 
-  }
-  getPartidoxPista() {
-    this.httpGralService.getDataById(apisUrl.partidosxpistas, this.idpartido).subscribe(
-      pxp => {
-        this.pistasArray = [];
-        this.partidosxpistas = pxp;
-        for (let i = 1; i <= this.partido.pistas; i++) {
-          this.pistasArray.push(i);
-        }
 
-        const maxTurno = Math.max.apply(Math, this.partidosxpistas.map(function(o) { return o.idturno; }));
-
-        this.turnosArray = [];
-
-        for (let i = 1; i <= maxTurno; i++) {
-          this.turnosArray.push(i);
-        }
-
-      });
+  onEdit(formulario) {
+    this.displayDialog = true;
+    this.myForm.SetFormData(formulario);
   }
 
-  getPartidoxPistaXRanking() {
-    this.httpGralService.getDataById(apisUrl.partidoxpistaxranking, this.idpartido).subscribe(
-      pxpxr => {
-        this.partidoxpistaxranking = pxpxr;
-      });
+  showDialogToAdd() {
+    this.myForm.SetFormData({idcreador: this.currentUser.id});
+    this.newPartido = true;
+    this.displayDialog = true;
+
   }
 
 
- 
+
+  submitEdit(formulario) {
+    this.displayDialog = false;
+    this.partido = formulario;
+    this.currentPartidoSubject.next(formulario);
+}
+
 
   borrar(formulario: any) {
 
@@ -203,7 +210,6 @@ export class DetallePartidoComponent implements OnInit {
             idpartidoxjugador_estado: formulario.idpartidoxjugador_estado
           }).subscribe(
             jugadores => {
-              this.getPartidoxPista();
               this.selectreves = null;
               this.selectdrive = null;
               this.selectsuplente = null;

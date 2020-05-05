@@ -11,47 +11,29 @@ import { AlertService } from 'src/app/services/components/alert.service';
 })
 export class GestionPistasComponent implements OnInit {
 
-  @Input() idpartido: any;
-  @Input() currentUser: any;
-  @Input() idpartido_estado: any;
-  @Input() partido: any;
-
+  @Input() currentPartido: any;
+  partido: any;
   partidoxpista = [];
-  responsiveOptions;
   constructor(
     private httpGralService: HttpGralService,
     private confirmationService: ConfirmationService,
     private alertService: AlertService,
   ) {
-    this.responsiveOptions = [
-      {
-          breakpoint: '1024px',
-          numVisible: 3,
-          numScroll: 3
-      },
-      {
-          breakpoint: '768px',
-          numVisible: 2,
-          numScroll: 2
-      },
-      {
-          breakpoint: '560px',
-          numVisible: 1,
-          numScroll: 1
-      }
-  ];
   }
 
   ngOnInit() {
-    this.getPartidoxPista();
+    this.currentPartido.subscribe(data => {
+      this.partido = data;
+      this.getPartidoxPista();
+    });
   }
 
   getPartidoxPista() {
-    this.httpGralService.getDataById(apisUrl.partidosxpistas, this.idpartido).subscribe(
+    this.httpGralService.getDataById(apisUrl.partidoxpistaxjugador, this.partido.id).subscribe(
       pxp => {
         this.partidoxpista = pxp;
       });
   }
 
-  setMarcador(a,b){}
+  setMarcador(a, b) {}
 }

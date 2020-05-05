@@ -3,7 +3,7 @@
 <p-card header="JUGADORES" subheader=""  styleClass="ui-card-shadow panelGridCenter">
     <p-header>
     </p-header>
-    <div class="panelGridCenter" (click)="showDialogToAddJugador()" *ngIf="currentUser?.isAdmin &&  idpartido_estado==1">
+    <div class="panelGridCenter" (click)="showDialogToAddJugador()" *ngIf="currentUser?.isAdmin &&  partido.idpartido_estado==1">
         <i class="fa fa-1x fa-plus-square-o"></i> (Añadir jugador)
     </div>
     
@@ -33,8 +33,8 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-jugador>
-                    <tr>
-                        <td>{{jugador.nombre}}</td>
+                    <tr (click)="borrarJugador(jugador)">
+                        <td>{{jugador.alias}}</td>
                         <td>{{jugador.posicion}}</td>                        
                     </tr>
                 </ng-template>
@@ -42,7 +42,26 @@
         </p-tabPanel>
     </p-tabView>
     <p-footer>
-             
+        
+        <div class="ui-g">
+            <div class="ui-g-5">
+                <button  *ngIf="currentUser?.isAdmin && partido" (click)="hacerparejasAleatorio()"  styleClass="panelGridCenter"   
+                pButton type="button" label="Aleatoria" icon="fa fa-1x fa-steam"  iconPos="right" class="ui-button-secondary"
+                [disabled]="partido.idpartido_estado!=1">
+                 </button> 
+            </div>
+            <div class="ui-g-2">
+            </div>
+            <div class="ui-g-5">
+                <button  *ngIf="currentUser?.isAdmin && partido" (click)="hacerparejasPorRanking()"  styleClass="panelGridCenter"   
+                pButton type="button" label="V.I.C.T.O.R." icon="fa fa-1x fa-steam"  iconPos="right"
+                [disabled]="partido.idpartido_estado!=1">
+              </button> 
+            </div>
+        </div>
+       
+       
+     
     </p-footer>
 </p-card>
 

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
 import { ConfirmationService } from 'primeng/api';
 import { AlertService } from 'src/app/services/components/alert.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-gestion-jugadores',
@@ -10,10 +11,11 @@ import { AlertService } from 'src/app/services/components/alert.service';
 })
 export class GestionJugadoresComponent implements OnInit {
 
-  @Input() idpartido: any;
+
   @Input() currentUser: any;
-  @Input() idpartido_estado: any;
-  @Input() partido: any;
+  @Input() currentPartido: any;
+  @Input() currentPartidoSubject: BehaviorSubject<any>;
+   partido: any;
 
   jugadoresSeleccionados: [];
   seleccionadosCount: any;
@@ -34,7 +36,16 @@ export class GestionJugadoresComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getJugadores();
+
+    this.currentPartido.subscribe(data => {
+      this.partido = data;
+      this.getJugadores();
+    });
+  }
+
+  getJugadores() {
+    this.httpGralService.getDataById(apisUrl.partidoxjugadorByIdPartido, this.partido.id)
+    .subscribe(jugadores =>  this.SetJugadoresEnLst(jugadores));
   }
 
   SetJugadoresEnLst(jugadores) {
@@ -47,10 +58,7 @@ export class GestionJugadoresComponent implements OnInit {
 
   }
 
-  getJugadores() {
-    this.httpGralService.getDataById(apisUrl.partidoxjugadorByIdPartido, this.idpartido)
-    .subscribe(jugadores =>  this.SetJugadoresEnLst(jugadores));
-  }
+
 
   borrarJugador(jugador) {
     this.confirmationService.confirm({
@@ -73,7 +81,7 @@ export class GestionJugadoresComponent implements OnInit {
   showDialogToAddJugador() {
     this.selectJugadores = [];
     this.displayDialog = true;
-    this.httpGralService.getDataById(apisUrl.partidoxjugadorAddToPartido, this.idpartido).subscribe(
+    this.httpGralService.getDataById(apisUrl.partidoxjugadorAddToPartido, this.partido.id).subscribe(
       jugadores => {
         this.newJugadores = jugadores;
       });
@@ -82,13 +90,39 @@ export class GestionJugadoresComponent implements OnInit {
 
   AddNewJugadores() {
 
-    const formualio = { idpartido: this.idpartido, JugadoresAdd: this.selectJugadores };
+    const formualio = { idpartido: this.partido.id, JugadoresAdd: this.selectJugadores };
 
     this.httpGralService.addData(apisUrl.partidoxjugadorCreateAny, formualio)
     .subscribe(jugadores => {
       this.displayDialog = false;
       this.SetJugadoresEnLst(jugadores);
     } );
+  }
+
+  hacerparejasAleatorio() {
+    this.confirmationService.confirm({
+      message: 'Vas a rehacer las parejas de forma aleatoria. Las parejas actuales se perderán. ¿Deseas continuar?',
+      header: 'Parejas aleatoria',
+      icon: 'fa fa-2x fa-steam',
+      acceptLabel: 'Si',
+      rejectLabel: 'No',
+      accept: () => {
+        this.httpGralService.getDataById(apisUrl.partidoxpistaxjugadorParejaAleatorio, this.partido.id).subscribe(
+            partido => {
+              this.alertService.success('parejas formadas!!');
+              // desde aqui tengo que refrescar los partidoxpistaxmarcador !!!!
+              // this.getPartido();
+              this.currentPartidoSubject.next(this.partido);
+            });
+      },
+      reject: () => {
+      }
+    });
+
+  }
+
+  hacerparejasPorRanking() {
+
   }
 
 

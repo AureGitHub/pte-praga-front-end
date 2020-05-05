@@ -72,11 +72,6 @@ export class ListaPartidosComponent implements OnInit {
 
     }
 
-    onEdit(formulario) {
-      this.newPartido = false;
-      this.displayDialog = true;
-      this.myForm.SetFormData(formulario);
-    }
 
     submit(formulario) {
       this.getPartidos();

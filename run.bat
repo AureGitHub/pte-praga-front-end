@@ -1,1 +1,1 @@
-ng serve
+npm start

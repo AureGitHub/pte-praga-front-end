@@ -12,8 +12,8 @@
             [sortField]="sortField" [sortOrder]="sortOrder">
             <p-header>
             </p-header>
-            <ng-template let-partido pTemplate="listItem">
-                <div class="ui-g">
+            <ng-template let-partido pTemplate="listItem"> 
+                <div class="ui-g divItem">
                     <div class="ui-g-12"><i class="pi pi-calendar"></i> Día: <b>{{partido.dia}}</b></div>
                     <div class="ui-g-6"> <i class="pi pi-clock"></i> Tiempo: <b>{{partido.duracion}}</b></div>
                     <div class="ui-g-6"> <i class="pi pi-clock"></i> Turnos: <b>{{partido.turnos}}</b></div>
@@ -31,7 +31,7 @@
                                 Borrarte</i></b>
                     </div>
                     <div class="ui-g-12" *ngIf="currentUser?.id === partido.idcreador && partido && partido.idpartido_estado===1">
-                        <b><i (click)="onEdit(partido)" class="pi pi-pencil azul icono-link"> Editar</i>
+                        <b>
                         </b>
                     </div>
                 </div>
@@ -40,20 +40,12 @@
                         <button pButton type="button" label="Ver partido" icon="pi pi-info"
                         [routerLink]="['/detalle-partido', partido.id]"></button> 
                     </div>
-                    <div class="ui-g-12">
-                        <hr>
-                    </div>
                 </div>
-                <br>
             </ng-template>
         </p-dataView>
     </div>
 
 
-    <p-dialog header="Partido" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="false"
-        [resizable]="false" [style]="{'max-width': '800px'}">
-        <app-my-form (EventEmitterForm)="submit($event)" [urlEntidad]="urlEntidad"
-            [formDataTemplate]="formDataTemplate"></app-my-form>
-    </p-dialog>
+   
 
 </div>

@@ -15,7 +15,7 @@ const prefix  = '/api/ver1';
 export const apisUrl = {
   login : server + `${prefix}/login`,
   pedirCodigoForgetPass : server + '/pedirCodigoForgetPass',
-  cambiarPasswordForget  : server + '/cambiarPasswordForget ',  
+  cambiarPasswordForget  : server + '/cambiarPasswordForget ',
   jugador_ConfirmarEmail : server + `${prefix}/jugadorconfirmar/email`,
   jugador_ConfirmarPassword : server + `${prefix}/jugadorconfirmar/password/public`,
   jugador_CambiarPasswordOlvidada : server + `${prefix}/jugador/cambiarpasswordOlvidada/public`,
@@ -31,7 +31,8 @@ export const apisUrl = {
   partidoxjugadorByIdPartido: server + `${prefix}/partidoxjugador`,
   partidoxjugadorAddToPartido: server + `${prefix}/partidoxjugador/AddToPartido`,
   partidoxjugadorCreateAny: server +  `${prefix}/partidoxjugador/CreateAny`,
-  partidosxpistas: server + `${prefix}/partidoxpista`,
+  partidoxpistaxjugador: server + `${prefix}/partidoxpistaxjugador`,
+  partidoxpistaxjugadorParejaAleatorio : server + `${prefix}/partidoxpistaxjugador/ParejasAleatorio`,
   hacerparejas : server + '/hacerparejas',
   partidosxpistaxmarcador : server + `${prefix}/partidoxpistaxmarcador`,
   partidos_cierre : server + '/partidos_cierre',

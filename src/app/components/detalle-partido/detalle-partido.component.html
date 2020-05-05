@@ -8,30 +8,24 @@
     <div class="ui-g-6"><i class="pi pi-users"></i> Apuntados:
         <b>{{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}</b>      
     </div>   
-    
-    <div class="ui-g-12 derecha"   *ngIf="1===1 || ( currentUser?.isAdmin && idpartido_estado!=1)">
-      <i (click)="BorrarPartido()" class="fa fa-1x fa-eraser rojo icono-link">Borrar partido</i>
-  </div>
+
+    <div class="ui-g-6"  *ngIf="1===1 || ( currentUser?.isAdmin && idpartido_estado!=1)">
+      <i (click)="BorrarPartido()" class="fa fa-1x fa-eraser rojo icono-link"> Borrar partido</i>    
+  </div>   
+  <div class="ui-g-6">
+    <i (click)="onEdit(partido)" class="pi pi-pencil azul icono-link"> Editar</i>
+</div>   
     
 </div>
 <hr>
       
-  <app-gestion-jugadores [currentUser]="currentUser" [idpartido_estado]="idpartido_estado" [partido]="partido"  [idpartido]="idpartido"></app-gestion-jugadores>
-  <br>
-  <button  *ngIf="currentUser?.isAdmin && partido" (click)="hacerparejas()"  styleClass="panelGridCenter"   
-  pButton type="button" label="V.I.C.T.O.R." icon="fa fa-1x fa-steam"  iconPos="right"
-  [disabled]="idpartido_estado!=1">
-</button> 
-<br>
-  <app-gestion-pistas [currentUser]="currentUser" [idpartido_estado]="idpartido_estado" [partido]="partido"  [idpartido]="idpartido"></app-gestion-pistas>
+  <app-gestion-jugadores *ngIf="currentPartido" [currentPartidoSubject]="currentPartidoSubject"  [currentPartido]="currentPartido" [currentUser]="currentUser"></app-gestion-jugadores>
+
+  <app-gestion-pistas *ngIf="currentPartido"  [currentPartido]="currentPartido"></app-gestion-pistas>
   
   
 
 <div class="ui-g-4" align="center"  *ngIf="idpartido_estado!=3">  
-
-
-
-    
 
   
 </div>
@@ -59,36 +53,11 @@
       [disabled]="idpartido_estado!=2">
       </button>
 </div>
-<!-- 
-<div class="ui-g-12 ui-md-12" *ngIf="idpartido_estado===3">
-
-  <p-table [value]="partidoxpistaxranking">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Pareja</th>
-            <th>Ganados</th>
-            <th>Juegos</th>            
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-ppr>
-        <tr>
-            <td align="center">{{ppr['drive']}}-{{ppr['reves']}} </td>
-            <td align="center">{{ppr['ganados']}}</td>
-            <td align="center">{{ppr['juegos']}}</td>            
-        </tr>
-    </ng-template>
-</p-table>
-
-  
-</div>
-
-<div class="ui-g-12 ui-md-12">
-  <app-partidoxpista 
-  [pistasArray]="pistasArray" 
-  [turnosArray]="turnosArray" 
-  [idpartido]="idpartido"
-  [partidosxpistas]="partidosxpistas"></app-partidoxpista>
-</div> -->
+<p-dialog header="Partido" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="false"
+[resizable]="false" [style]="{'max-width': '800px'}">
+<app-my-form (EventEmitterForm)="submitEdit($event)" [urlEntidad]="urlEntidad"
+    [formDataTemplate]="formDataTemplate"></app-my-form>
+</p-dialog>
 
 </div>
 
