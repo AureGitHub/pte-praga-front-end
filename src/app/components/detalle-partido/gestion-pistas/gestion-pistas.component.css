@@ -7,6 +7,10 @@
     font-weight: bold;
 }
 
+.letra-pequena{
+    font-size: 10px;
+}
+
 .tiluloPista{
     color: white;
     font-size: 16px;

@@ -48,7 +48,7 @@ export const form_partido = [
     'icon': 'pi pi-clock',
     'validators': [
       {'name' : 'required', 'mensaje': 'Campo obligatorio'},
-      {'name' : 'max', value : 4, 'mensaje': 'Máximo 4 turnos'},
+      {'name' : 'max', value : 6, 'mensaje': 'Máximo 4 turnos'},
     ]
   },
 

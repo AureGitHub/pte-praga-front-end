@@ -37,7 +37,7 @@ export class DetallePartidoComponent implements OnInit {
   newPartido = false;
 
   public currentPartido: Observable<any>;
-  private currentPartidoSubject: BehaviorSubject<any>;
+  public currentPartidoSubject: BehaviorSubject<any>;
 
 
   constructor(
@@ -171,8 +171,6 @@ export class DetallePartidoComponent implements OnInit {
   }
 
 
-
-
   onEdit(formulario) {
     this.displayDialog = true;
     this.myForm.SetFormData(formulario);
@@ -185,55 +183,11 @@ export class DetallePartidoComponent implements OnInit {
 
   }
 
-
-
   submitEdit(formulario) {
     this.displayDialog = false;
     this.partido = formulario;
     this.currentPartidoSubject.next(formulario);
 }
-
-
-  borrar(formulario: any) {
-
-    this.confirmationService.confirm({
-      message: 'Vas a borrar a ' + formulario.alias + ' del partido  ¿Deseas borrarte?',
-      header: 'Bórrate del partido',
-      icon: 'pi pi-thumbs-down',
-      acceptLabel: 'Si',
-      rejectLabel: 'No',
-      accept: () => {
-        this.httpGralService.deleteData(apisUrl.partidoxjugador,
-          {
-            idpartido: this.idpartido,
-            idjugador: formulario.id,
-            idpartidoxjugador_estado: formulario.idpartidoxjugador_estado
-          }).subscribe(
-            jugadores => {
-              this.selectreves = null;
-              this.selectdrive = null;
-              this.selectsuplente = null;
-            });
-      },
-      reject: () => {
-      }
-    });
-
-
-  }
-
-  borrarReves() {
-    this.borrar(this.selectreves);
-  }
-
-  borrarDrive() {
-    this.borrar(this.selectdrive);
-  }
-
-  borrarSuplentes() {
-    this.borrar(this.selectsuplente);
-  }
-
 
 
 }

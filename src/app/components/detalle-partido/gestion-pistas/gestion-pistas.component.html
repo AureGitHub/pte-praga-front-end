@@ -13,7 +13,7 @@
                   <div class="ui-g-12  centrado"><span class="tiluloPista">Turno {{pxp.idturno}} - Pista {{pxp.idpista}}</span></div>
               </div>
               <div class="ui-g ">
-                <div class="ui-g-1 fondo-blanco">P1</div>
+                <div class="ui-g-1 fondo-blanco letra-pequena">P1</div>
                 <div class="ui-g-4 fondo-verde pareja1"  align="center" >
                   <span class="jugador">{{ pxp.jd1 }}</span>
                 </div>            
@@ -42,7 +42,7 @@
               </div>  
               
               <div class="ui-g">
-                <div class="ui-g-1 fondo-blanco">P2</div>
+                <div class="ui-g-1 fondo-blanco  letra-pequena">P2</div>
                 <div class="ui-g-4 fondo-verde pareja2"  align="center" >
                   <span class="jugador">{{ pxp.jd2 }}</span>
                 </div>        
@@ -66,5 +66,57 @@
              
     </p-footer>
 </p-card>
+
+<p-dialog
+header="Añadir Marcador al partido " 
+[(visible)]="displayDialog"
+[responsive]="true"
+showEffect="fade"
+[modal]="false"
+[resizable]="false"        
+[style]="{'max-width': '800px'}">
+
+<div class="ui-fluid">
+  <div class="ui-g">
+    <div class="ui-g-12"  align="center" >
+          <h3>{{pxpSelectMarcador?.nombre}}     SET {{setSelectMarcador}}</h3>
+      </div>
+
+      <div class="ui-g-6"  align="center" >
+        <span class="jugador">{{pxpSelectMarcador?.jd1}} - {{pxpSelectMarcador?.jr1}}</span>
+      </div>
+
+    <div class="ui-g-6"  align="center" >
+      <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon">
+                <i class="fa fa-bomb"></i>
+            </span>            
+            <p-dropdown [options]="tanteo" [(ngModel)]="selectTanteoPar1" editable="true" placeholder="Numero set pareja 1"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="ui-g-6"  align="center" >
+      <span class="jugador">{{pxpSelectMarcador?.jd2}} - {{pxpSelectMarcador?.jr2}}</span>
+      
+     </div>
+
+    <div class="ui-g-6"  align="left" >
+      <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon">
+              <i class="fa fa-bomb"></i>
+            </span>
+            <p-dropdown [options]="tanteo" [(ngModel)]="selectTanteoPar2" editable="true" placeholder="Numero set pareja 2"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="ui-g-12"  align="center" >
+      <p-button icon="fa fa-save" iconPos="right" label="Guardar" (click)="saveSet()"></p-button>
+    </div>
+
+
+  </div>
+
+</div>
+  </p-dialog>
 
 
