@@ -41,27 +41,7 @@
             </p-table>
         </p-tabPanel>
     </p-tabView>
-    <p-footer>
-        
-        <div class="ui-g">
-            <div class="ui-g-5">
-                <button  *ngIf="currentUser?.isAdmin && partido" (click)="hacerparejasAleatorio()"  styleClass="panelGridCenter"   
-                pButton type="button" label="Aleatoria" icon="fa fa-1x fa-steam"  iconPos="right" class="ui-button-secondary"
-                [disabled]="partido.idpartido_estado!=1">
-                 </button> 
-            </div>
-            <div class="ui-g-2">
-            </div>
-            <div class="ui-g-5">
-                <button  *ngIf="currentUser?.isAdmin && partido" (click)="hacerparejasPorRanking()"  styleClass="panelGridCenter"   
-                pButton type="button" label="V.I.C.T.O.R." icon="fa fa-1x fa-steam"  iconPos="right"
-                [disabled]="partido.idpartido_estado!=1">
-              </button> 
-            </div>
-        </div>
-       
-       
-     
+    <p-footer>    
     </p-footer>
 </p-card>
 

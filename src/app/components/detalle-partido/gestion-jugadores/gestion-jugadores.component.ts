@@ -99,31 +99,7 @@ export class GestionJugadoresComponent implements OnInit {
     } );
   }
 
-  hacerparejasAleatorio() {
-    this.confirmationService.confirm({
-      message: 'Vas a rehacer las parejas de forma aleatoria. Las parejas actuales se perderán. ¿Deseas continuar?',
-      header: 'Parejas aleatoria',
-      icon: 'fa fa-2x fa-steam',
-      acceptLabel: 'Si',
-      rejectLabel: 'No',
-      accept: () => {
-        this.httpGralService.getDataById(apisUrl.partidoxpistaxjugadorParejaAleatorio, this.partido.id).subscribe(
-            partido => {
-              this.alertService.success('parejas formadas!!');
-              // desde aqui tengo que refrescar los partidoxpistaxmarcador !!!!
-              // this.getPartido();
-              this.currentPartidoSubject.next(this.partido);
-            });
-      },
-      reject: () => {
-      }
-    });
 
-  }
-
-  hacerparejasPorRanking() {
-
-  }
 
 
 
