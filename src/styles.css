@@ -2,6 +2,13 @@
 
 
 
+.classBoton{
+  cursor: pointer;
+  background-color: #F5DA81;
+  color: black;
+  padding: 7px;
+  border-radius: 10px;
+}
 
 .icono-link{
   cursor: pointer;

@@ -8,6 +8,10 @@
   padding: 5px;
 }
 
+.classBoton:hover {
+  background-color: #B45F04;
+}
+
 .img_pp{
   width:30%;
   max-width:40px;

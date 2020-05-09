@@ -1,8 +1,7 @@
 <p-card header="PARTIDOS" subheader=""   styleClass="ui-card-shadow panelGridCenter">
     <p-header>
     </p-header>
-    <p-tabView>
-        <p-tabPanel header="Turnos">
+  
 
           <p-dataView #dv *ngIf="partidoxpista && partidoxpista.length > 0" [value]="partidoxpista" [paginator]="true" [rows]="partido.pistas" paginatorPosition="both">
           <p-header>
@@ -13,55 +12,34 @@
                   <div class="ui-g-12  centrado"><span class="tiluloPista">Turno {{pxp.idturno}} - Pista {{pxp.idpista}}</span></div>
               </div>
               <div class="ui-g ">
-                <div class="ui-g-1 fondo-blanco letra-pequena">P1</div>
-                <div class="ui-g-4 fondo-verde pareja1"  align="center" >
-                  <span class="jugador">{{ pxp.jd1 }}</span>
-                </div>            
-      
-                <div class="ui-g-4 fondo-verde pareja1" >                
-                  <span class="jugador">{{ pxp.jr1 }}</span>
+                <div class="ui-g-7 fondo-verde pareja1"  align="center" >
+                  <span class="jugador">{{ pxp.jd1 }} - {{ pxp.jr1 }} </span>
                 </div>
-                <div class="ui-g-1 resultado" (click)="setMarcador(pxp,1)">{{pxp?.set1?.juegospareja1}}</div>
-                <div class="ui-g-1 resultado" (click)="setMarcador(pxp,2)">{{pxp?.set2?.juegospareja1}}</div>
-                <div class="ui-g-1 resultado" (click)="setMarcador(pxp,3)">{{pxp?.set3?.juegospareja1}}</div>
+                <div class="ui-g-1 resultado" (click)="partido?.cerrado && setMarcador(pxp,1)">{{pxp?.set1?.juegospareja1}}</div>
+                <div class="ui-g-1 resultado" (click)="partido?.cerrado && setMarcador(pxp,2)">{{pxp?.set2?.juegospareja1}}</div>
+                <div class="ui-g-1 resultado" (click)="partido?.cerrado && setMarcador(pxp,3)">{{pxp?.set3?.juegospareja1}}</div>
+                <div class="ui-g-1 resultado" (click)="partido?.cerrado && setMarcador(pxp,4)">{{pxp?.set4?.juegospareja1}}</div>
+                <div class="ui-g-1 resultado" (click)="partido?.cerrado && setMarcador(pxp,5)">{{pxp?.set5?.juegospareja1}}</div>
               </div>
       
-              <div class="ui-g" style="height: 15px;">              
-                <div class="ui-g-1 "></div>
-                <div class="ui-g-1 red"></div>
-                <div class="ui-g-1 red"></div>
-                <div class="ui-g-1 red"></div>
-                <div class="ui-g-1 red"></div>
-                <div class="ui-g-1 red"></div>
-                <div class="ui-g-1 red"></div>
-                <div class="ui-g-1 red"></div>
-                <div class="ui-g-1 red"></div>
-                <div class="ui-g-1 red"></div>
-                <div class="ui-g-1 red"></div>
-                <div class="ui-g-1 red"></div>              
+              <div class="ui-g" style="height: 10px;">              
+                <div class="ui-g-12 red"></div>
               </div>  
               
               <div class="ui-g">
-                <div class="ui-g-1 fondo-blanco  letra-pequena">P2</div>
-                <div class="ui-g-4 fondo-verde pareja2"  align="center" >
-                  <span class="jugador">{{ pxp.jd2 }}</span>
+                <div class="ui-g-7 fondo-verde pareja2"  align="center" >
+                  <span class="jugador">{{ pxp.jd2 }} - {{ pxp.jr2 }}</span>
                 </div>        
-                <div class="ui-g-4 fondo-verde pareja2" >
-                  <span class="jugador">{{ pxp.jr2 }}</span>
-                </div>
-                <div class="ui-g-1 resultado" (click)="setMarcador(pxp,1)">{{pxp?.set1?.juegospareja2}}</div>
-                <div class="ui-g-1 resultado" (click)="setMarcador(pxp,2)">{{pxp?.set2?.juegospareja2}}</div>
-                <div class="ui-g-1 resultado" (click)="setMarcador(pxp,3)">{{pxp?.set3?.juegospareja2}}</div>
+                <div class="ui-g-1 resultado" (click)="partido?.cerrado && setMarcador(pxp,1)">{{pxp?.set1?.juegospareja2}}</div>
+                <div class="ui-g-1 resultado" (click)="partido?.cerrado && setMarcador(pxp,2)">{{pxp?.set2?.juegospareja2}}</div>
+                <div class="ui-g-1 resultado" (click)="partido?.cerrado && setMarcador(pxp,3)">{{pxp?.set3?.juegospareja2}}</div>
+                <div class="ui-g-1 resultado" (click)="partido?.cerrado && setMarcador(pxp,4)">{{pxp?.set4?.juegospareja2}}</div>
+                <div class="ui-g-1 resultado" (click)="partido?.cerrado && setMarcador(pxp,5)">{{pxp?.set5?.juegospareja2}}</div>
               </div>    
           </div>     
          <br>
           </ng-template>
-      </p-dataView>
-        </p-tabPanel>
-        <p-tabPanel header="Clasificación">           
-        </p-tabPanel>
-    </p-tabView>
-   
+      </p-dataView>   
     <p-footer>
              
     </p-footer>
@@ -74,7 +52,7 @@ header="Añadir Marcador al partido "
 showEffect="fade"
 [modal]="false"
 [resizable]="false"        
-[style]="{'max-width': '800px'}">
+[style]="{'max-width': '300px'}">
 
 <div class="ui-fluid">
   <div class="ui-g">
@@ -82,11 +60,11 @@ showEffect="fade"
           <h3>{{pxpSelectMarcador?.nombre}}     SET {{setSelectMarcador}}</h3>
       </div>
 
-      <div class="ui-g-6"  align="center" >
+      <div class="ui-g-6"  align="left" >
         <span class="jugador">{{pxpSelectMarcador?.jd1}} - {{pxpSelectMarcador?.jr1}}</span>
       </div>
 
-    <div class="ui-g-6"  align="center" >
+    <div class="ui-g-6"  align="lef">
       <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon">
                 <i class="fa fa-bomb"></i>
@@ -94,10 +72,9 @@ showEffect="fade"
             <p-dropdown [options]="tanteo" [(ngModel)]="selectTanteoPar1" editable="true" placeholder="Numero set pareja 1"></p-dropdown>
       </div>
     </div>
-
-    <div class="ui-g-6"  align="center" >
-      <span class="jugador">{{pxpSelectMarcador?.jd2}} - {{pxpSelectMarcador?.jr2}}</span>
-      
+   
+    <div class="ui-g-6"  align="left" >
+      <span class="jugador">{{pxpSelectMarcador?.jd2}} - {{pxpSelectMarcador?.jr2}}</span>      
      </div>
 
     <div class="ui-g-6"  align="left" >
@@ -107,10 +84,18 @@ showEffect="fade"
             </span>
             <p-dropdown [options]="tanteo" [(ngModel)]="selectTanteoPar2" editable="true" placeholder="Numero set pareja 2"></p-dropdown>
       </div>
+     
     </div>
 
     <div class="ui-g-12"  align="center" >
-      <p-button icon="fa fa-save" iconPos="right" label="Guardar" (click)="saveSet()"></p-button>
+      <div class="ui-g-6"  align="center">        
+        <p-button icon="fa fa-save" iconPos="right" label="Guardar" (click)="saveSet()"></p-button> 
+       </div>
+       <div class="ui-g-6"  align="center">        
+        <p-button *ngIf="puedeBorrarMarcador()" icon="fa fa-1x fa-eraser" iconPos="right" label="Borrar" (click)="borrarSet()" styleClass="ui-button-danger"></p-button>
+       </div>
+      
+      
     </div>
 
 

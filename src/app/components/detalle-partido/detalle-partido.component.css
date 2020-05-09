@@ -1,3 +1,22 @@
+.partido_estado{
+  font-size: 16px;
+  text-transform: uppercase;
+  color: green;
+  font-weight: bold;
+}
+
+.partido_abierto{
+  color: green;
+}
+
+.partido_cerrado{
+  color: goldenrod;
+}
+
+.partido_finalizado{
+  color:cornflowerblue;
+
+}
 
 .comun-detalle-partido{
     border-width: 1;

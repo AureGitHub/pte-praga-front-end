@@ -10,5 +10,9 @@ export interface Partido {
     idcreador?;
     esCreador?;
     idpartidoxjugador?;
-    idpartido_estado;
+    idpartido_estado?;
+    estado_des?;
+    abierto?;
+    cerrado?;
+    finalizado?;
 }

@@ -1,11 +1,9 @@
 <div class="mypanel-size-local">
 
-    <div class="ui-g-12" align="center">
-        <div class="mybutton-size">
-            <button class="ui-button-success" (click)="showDialogToAdd()" pButton type="button"
-                icon="fa fa-2x fa-plus-square-o" label="Añadir partido" *ngIf="currentUser?.isConectado"></button>
-        </div>
-    </div>
+
+    <div class="ui-g-12 izquierda" *ngIf="currentUser">
+        <span class="classBoton"  (click)="showDialogToAdd()"><i class="fa fa-1x fa-plus-square-o"> </i> Nuevo partido</span>
+     </div>
 
     <div class="ui-g-12">
         <p-dataView #dv [value]="partidos" [paginator]="true" [rows]="10" paginatorPosition="both" filterBy="brand"
@@ -21,7 +19,11 @@
                     <div class="ui-g-7"><i class="pi pi-users"></i> Apuntados:
                         <b>{{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}</b>
                     </div>
-                  
+                     <div class="ui-g-12 derecha" *ngIf="currentUser">
+                        <span class="classBoton"  [routerLink]="['/detalle-partido', partido.id]"><i class="fa fa-eye"> </i> Ir al partido</span>
+                     </div>
+                     
+
                     <div class="ui-g-12" *ngIf="currentUser && !partido.idpartidoxjugador">
                         <b><i (click)="Apuntate(partido)" class="pi pi-thumbs-up verde icono-link">
                                 Apúntate</i></b>
@@ -30,22 +32,16 @@
                         <b><i (click)="Borrate(partido)" class="pi pi-thumbs-down rojo icono-link">
                                 Borrarte</i></b>
                     </div>
-                    <div class="ui-g-12" *ngIf="currentUser?.id === partido.idcreador && partido && partido.idpartido_estado===1">
-                        <b>
-                        </b>
-                    </div>
-                </div>
-                <div class="ui-g">
-                    <div class="ui-g-12 botones panelGridCenter" *ngIf="currentUser">
-                        <button pButton type="button" label="Ver partido" icon="pi pi-info"
-                        [routerLink]="['/detalle-partido', partido.id]"></button> 
-                    </div>
+                    
                 </div>
             </ng-template>
         </p-dataView>
     </div>
 
-
-   
+    <p-dialog header="Partido" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="false"
+    [resizable]="false" [style]="{'max-width': '800px'}">
+    <app-my-form (EventEmitterForm)="submit($event)" [urlEntidad]="urlEntidad"
+        [formDataTemplate]="formDataTemplate"></app-my-form>
+    </p-dialog>
 
 </div>

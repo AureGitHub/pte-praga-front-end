@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
- // apiUrl: 'http://192.168.1.133:4000',
+  apiUrl: 'http://192.168.1.133:4000',
  // apiUrl: 'http://localhost:4000',
-   apiUrl: 'https://pte-praga-back-end.herokuapp.com',
+ //  apiUrl: 'https://pte-praga-back-end.herokuapp.com',
 };
 
 /*

@@ -3,7 +3,7 @@
 <p-card header="JUGADORES" subheader=""  styleClass="ui-card-shadow panelGridCenter">
     <p-header>
     </p-header>
-    <div class="panelGridCenter" (click)="showDialogToAddJugador()" *ngIf="currentUser?.isAdmin &&  partido.idpartido_estado==1">
+    <div class="panelGridCenter" (click)="showDialogToAddJugador()" *ngIf="currentUser?.isAdmin &&  partido.abierto">
         <i class="fa fa-1x fa-plus-square-o"></i> (Añadir jugador)
     </div>
     
@@ -17,7 +17,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-jugador>
-                    <tr (click)="borrarJugador(jugador)">
+                    <tr (click)="partido.abierto && borrarJugador(jugador)">
                         <td>{{jugador.alias}}</td>
                         <td>{{jugador.posicion}}</td>                        
                     </tr>
@@ -33,7 +33,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-jugador>
-                    <tr (click)="borrarJugador(jugador)">
+                    <tr (click)="partido.abierto && borrarJugador(jugador)">
                         <td>{{jugador.alias}}</td>
                         <td>{{jugador.posicion}}</td>                        
                     </tr>

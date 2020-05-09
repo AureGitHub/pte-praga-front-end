@@ -22,7 +22,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {CardModule} from 'primeng/card';
 import {ListboxModule} from 'primeng/listbox';
 import {TabViewModule} from 'primeng/tabview';
-import {CarouselModule} from 'primeng/carousel';
+import {SplitButtonModule} from 'primeng/splitbutton';
 
 @NgModule({
   declarations: [],
@@ -47,7 +47,7 @@ import {CarouselModule} from 'primeng/carousel';
     CardModule,
     ListboxModule,
     TabViewModule,
-    CarouselModule
+    SplitButtonModule
 
 
   ],
@@ -72,7 +72,8 @@ import {CarouselModule} from 'primeng/carousel';
     CardModule,
     ListboxModule,
     TabViewModule,
-    CarouselModule
+    SplitButtonModule
+
 
   ]
 })

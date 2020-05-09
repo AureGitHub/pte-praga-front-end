@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Partido } from 'src/app/models/partido';
 import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.service';
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MenuItem } from 'primeng/api';
 import { AlertService } from 'src/app/services/components/alert.service';
 import { MyFormComponent } from '../comun/my-form/my-form.component';
 import { form_partido } from 'src/app/forms/form-partido';
@@ -15,6 +15,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./detalle-partido.component.css']
 })
 export class DetallePartidoComponent implements OnInit {
+
+
+  items: MenuItem[];
 
   currentUser: any;
   partido: Partido = null;
@@ -36,6 +39,8 @@ export class DetallePartidoComponent implements OnInit {
   urlEntidad =  apisUrl.partido;
   newPartido = false;
 
+  propietarioOrAdmin = false;
+
   public currentPartido: Observable<any>;
   public currentPartidoSubject: BehaviorSubject<any>;
 
@@ -51,8 +56,6 @@ export class DetallePartidoComponent implements OnInit {
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
 
-
-
     if (window.innerWidth >= 700) {
       this.widthButton = {'width': '20%'};
 
@@ -63,21 +66,52 @@ export class DetallePartidoComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.idpartido = this.route.snapshot.paramMap.get('id');
     this.getPartido();
   }
 
 
+  setItemsButtonAtion() {
+    if (this.partido.abierto && this.propietarioOrAdmin) {
+      this.items = [
+        {label: 'Editar', icon: 'fa fa-2x fa-edit', command: () => {
+          this.onEdit();
+        }},
+        {label: 'Cerrar', icon: 'fa fa-2x fa-close', command: () => {
+          this.CerrarPartido();
+        }},
+        {label: 'Borrar', icon: 'fa fa-1x fa-eraser ', styleClass: 'rojo',  command: () => {
+          this.BorrarPartido();
+       }}
+      ];
+    } else if (this.partido.cerrado && this.propietarioOrAdmin) {
+      this.items = [
+        {label: 'Finalizar', icon: 'fa fa-2x fa-smile-o', command: () => {
+          this.FinalizarPartido();
+         }},
+        {label: 'Borrar', icon: 'fa fa-1x fa-eraser ', styleClass: 'rojo',  command: () => {
+          this.BorrarPartido();
+         }}
+      ];
+    } else if (this.partido.finalizado && this.propietarioOrAdmin) {
+      this.items = [
+        {label: 'Borrar', icon: 'fa fa-1x fa-eraser ', styleClass: 'rojo',  command: () => {
+          this.BorrarPartido();
+         }}
+      ];
+    }
+  }
+
   getPartido() {
 
     this.httpGralService.getDataById(apisUrl.partido, this.idpartido).subscribe(
       data => {
-
-        this.currentPartidoSubject = new BehaviorSubject<any>(data);
+      this.currentPartidoSubject = new BehaviorSubject<any>(data);
       this.currentPartido = this.currentPartidoSubject.asObservable();
-
         this.partido = data;
+        this.propietarioOrAdmin = this.currentUser.isAdmin || this.currentUser.id === this.partido.idcreador;
+
+        this.setItemsButtonAtion();
         // this.currentPartidoSubject.next(data);
         this.idpartido_estado = this.partido.idpartido_estado;
       //  this.getPartidoxPistaxJugador();
@@ -171,9 +205,9 @@ export class DetallePartidoComponent implements OnInit {
   }
 
 
-  onEdit(formulario) {
+  onEdit() {
     this.displayDialog = true;
-    this.myForm.SetFormData(formulario);
+    this.myForm.SetFormData(this.partido);
   }
 
   showDialogToAdd() {
