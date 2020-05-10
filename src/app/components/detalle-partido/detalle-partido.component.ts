@@ -80,25 +80,50 @@ export class DetallePartidoComponent implements OnInit {
         {label: 'Cerrar', icon: 'fa fa-2x fa-close', command: () => {
           this.CerrarPartido();
         }},
-        {label: 'Borrar', icon: 'fa fa-1x fa-eraser ', styleClass: 'rojo',  command: () => {
+        {label: 'Borrar', icon: 'fa fa-2x fa-eraser ', styleClass: 'rojo',  command: () => {
           this.BorrarPartido();
        }}
       ];
     } else if (this.partido.cerrado && this.propietarioOrAdmin) {
-      this.items = [
-        {label: 'Finalizar', icon: 'fa fa-2x fa-smile-o', command: () => {
-          this.FinalizarPartido();
-         }},
-        {label: 'Borrar', icon: 'fa fa-1x fa-eraser ', styleClass: 'rojo',  command: () => {
-          this.BorrarPartido();
-         }}
-      ];
+      if (this.currentUser.isAdmin) {
+        this.items = [
+          {label: 'Abrir', icon: 'fa fa-2x fa-folder-open-o', command: () => {
+            this.AbrirPartido();
+          }},
+          {label: 'Finalizar', icon: 'fa fa-2x fa-smile-o', command: () => {
+            this.FinalizarPartido();
+           }},
+          {label: 'Borrar', icon: 'fa fa-2x fa-eraser ', styleClass: 'rojo',  command: () => {
+            this.BorrarPartido();
+           }}
+        ];
+      } else {
+        this.items = [
+          {label: 'Finalizar', icon: 'fa fa-2x fa-smile-o', command: () => {
+            this.FinalizarPartido();
+           }},
+          {label: 'Borrar', icon: 'fa fa-1x fa-eraser ', styleClass: 'rojo',  command: () => {
+            this.BorrarPartido();
+           }}
+        ];
+      }
     } else if (this.partido.finalizado && this.propietarioOrAdmin) {
-      this.items = [
-        {label: 'Borrar', icon: 'fa fa-1x fa-eraser ', styleClass: 'rojo',  command: () => {
-          this.BorrarPartido();
-         }}
-      ];
+      if (this.currentUser.isAdmin) {
+        this.items = [
+          {label: 'des-Finalizar', icon: 'fa fa-2x fa-smile-o', command: () => {
+            this.DesFinalizarPartido();
+           }},
+          {label: 'Borrar', icon: 'fa fa-1x fa-eraser ', styleClass: 'rojo',  command: () => {
+            this.BorrarPartido();
+           }}
+        ];
+      } else {
+        this.items = [
+          {label: 'Borrar', icon: 'fa fa-1x fa-eraser ', styleClass: 'rojo',  command: () => {
+            this.BorrarPartido();
+           }}
+        ];
+      }
     }
   }
 
@@ -151,10 +176,36 @@ export class DetallePartidoComponent implements OnInit {
       acceptLabel: 'Si',
       rejectLabel: 'No',
       accept: () => {
-        this.httpGralService.getDataById(apisUrl.partidos_cierre, this.partido.id).subscribe(
+        this.httpGralService.updateData(apisUrl.partidoCerrar, {id: this.partido.id } ).subscribe(
             partido => {
+              this.partido = partido;
               this.alertService.success('partido cerrado');
-              this.getPartido();
+              this.currentPartidoSubject.next(partido);
+              this.setItemsButtonAtion();
+            });
+      },
+      reject: () => {
+      }
+    });
+
+  }
+
+
+  AbrirPartido() {
+
+    this.confirmationService.confirm({
+      message: 'Vas a abrir el partido. TODOS LOS MARCADORES SE PERDERAN!!  ¿Deseas continuar?',
+      header: 'Abrir partido',
+      icon: 'fa fa-folder-open-o',
+      acceptLabel: 'Si',
+      rejectLabel: 'No',
+      accept: () => {
+        this.httpGralService.updateData(apisUrl.partidoAbrir, {id: this.partido.id } ).subscribe(
+            partido => {
+              this.partido = partido;
+              this.alertService.success('partido abierto');
+              this.currentPartidoSubject.next(partido);
+              this.setItemsButtonAtion();
             });
       },
       reject: () => {
@@ -172,10 +223,12 @@ export class DetallePartidoComponent implements OnInit {
       acceptLabel: 'Si',
       rejectLabel: 'No',
       accept: () => {
-        this.httpGralService.getDataById(apisUrl.partidos_finaliza, this.partido.id).subscribe(
+        this.httpGralService.updateData(apisUrl.partidoFinalizar, {id: this.partido.id }).subscribe(
             partido => {
+              this.partido = partido;
               this.alertService.success('partido finalizado');
-              this.getPartido();
+              this.currentPartidoSubject.next(partido);
+              this.setItemsButtonAtion();
             });
       },
       reject: () => {
@@ -183,6 +236,30 @@ export class DetallePartidoComponent implements OnInit {
     });
 
   }
+
+  DesFinalizarPartido() {
+
+    this.confirmationService.confirm({
+      message: 'Vas a des-finalizar el partido. LA INFORMACIÓN DEL RANKING DE ESTE PARTIDO SE PERDERÁ ¿Deseas continuar?',
+      header: 'Des-Finalizar partido',
+      icon: 'fa fa-2x fa-smile-o',
+      acceptLabel: 'Si',
+      rejectLabel: 'No',
+      accept: () => {
+        this.httpGralService.updateData(apisUrl.partidoDesFinalizar, {id: this.partido.id }).subscribe(
+            partido => {
+              this.partido = partido;
+              this.alertService.success('partido des-finalizado');
+              this.currentPartidoSubject.next(partido);
+              this.setItemsButtonAtion();
+            });
+      },
+      reject: () => {
+      }
+    });
+
+  }
+
 
   hacerparejas() {
 

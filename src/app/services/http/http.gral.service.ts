@@ -23,6 +23,10 @@ export const apisUrl = {
   jugador: server + `${prefix}/jugador`,
   registro: server + '/registro',
   partido: server + `${prefix}/partido`,
+  partidoCerrar : server + `${prefix}/partido/cerrar`,
+  partidoAbrir : server + `${prefix}/partido/abrir`,
+  partidoFinalizar : server + `${prefix}/partido/finalizar`,
+  partidoDesFinalizar : server + `${prefix}/partido/desfinalizar`,
   partidoPublic: server + `${prefix}/partido/public`,
   codigos: server + `${prefix}/codigos/public`,
 
@@ -35,8 +39,6 @@ export const apisUrl = {
   partidoxpistaxjugadorParejaAleatorio : server + `${prefix}/partidoxpistaxjugador/ParejasAleatorio`,
   hacerparejas : server + '/hacerparejas',
   partidosxpistaxmarcador : server + `${prefix}/partidoxpistaxmarcador`,
-  partidos_cierre : server + '/partidos_cierre',
-  partidos_finaliza : server + '/partidos_finaliza',
   partidoxpistaxranking : server + `${prefix}/partidoxpistaxranking`,
 };
 

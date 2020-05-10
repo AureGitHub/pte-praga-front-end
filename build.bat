@@ -1,1 +1,1 @@
-npm start
+ng build --prod

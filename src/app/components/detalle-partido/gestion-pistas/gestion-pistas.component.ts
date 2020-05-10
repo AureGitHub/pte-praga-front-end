@@ -58,13 +58,7 @@ export class GestionPistasComponent implements OnInit {
     this.pxpSelectMarcador = pxp;
     this.setSelectMarcador = set;
     this.displayDialog = true;
-
-    // this.pxp_setMarcador = pxp;
-    // this.numSet = set;
-    // this.displayDialog = true;
-    // this.marcadorPartido = `${this.pxp_setMarcador['nombre']}    set ${set}` ;
-
-    this.selectTanteoPar1 = this.pxpSelectMarcador[`set${this.setSelectMarcador}`] ?
+     this.selectTanteoPar1 = this.pxpSelectMarcador[`set${this.setSelectMarcador}`] ?
     this.pxpSelectMarcador[`set${this.setSelectMarcador}`].juegospareja1 : 0;
     this.selectTanteoPar2 = this.pxpSelectMarcador[`set${this.setSelectMarcador}`] ?
     this.pxpSelectMarcador[`set${this.setSelectMarcador}`].juegospareja2 : 0;

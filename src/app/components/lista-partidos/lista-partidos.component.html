@@ -19,20 +19,20 @@
                     <div class="ui-g-7"><i class="pi pi-users"></i> Apuntados:
                         <b>{{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}</b>
                     </div>
-                     <div class="ui-g-12 derecha" *ngIf="currentUser">
+                    <div class="ui-g-6 partido_estado izquierda">
+                        <span class="partido_{{partido?.estado_des}}">  {{partido?.estado_des}} </span>
+                    </div>
+                     <div class="ui-g-6 derecha" *ngIf="currentUser">
                         <span class="classBoton"  [routerLink]="['/detalle-partido', partido.id]"><i class="fa fa-eye"> </i> Ir al partido</span>
-                     </div>
-                     
-
-                    <div class="ui-g-12" *ngIf="currentUser && !partido.idpartidoxjugador">
+                     </div>   
+                    <div class="ui-g-12" *ngIf="currentUser && partido?.abierto && !partido.idpartidoxjugador">
                         <b><i (click)="Apuntate(partido)" class="pi pi-thumbs-up verde icono-link">
                                 Apúntate</i></b>
                     </div>
-                    <div class="ui-g-12" *ngIf="currentUser && partido.idpartidoxjugador">
+                    <div class="ui-g-12" *ngIf="currentUser  && partido?.abierto && partido.idpartidoxjugador">
                         <b><i (click)="Borrate(partido)" class="pi pi-thumbs-down rojo icono-link">
                                 Borrarte</i></b>
                     </div>
-                    
                 </div>
             </ng-template>
         </p-dataView>
