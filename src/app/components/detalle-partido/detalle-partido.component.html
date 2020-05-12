@@ -10,7 +10,7 @@
     </div>   
 
     <div class="ui-g-6">
-      <p-splitButton label="Acciones" icon="fa fa-2x  fa-list-alt"  [model]="items" styleClass="ui-button-secondary"></p-splitButton>
+      <p-splitButton label="Acciones" icon="fa fa-1x  fa-list-alt"  [model]="items" styleClass="ui-button-secondary"></p-splitButton>
     </div>
     <div class="ui-g-6 centrado partido_estado">
     <span class="partido_{{partido?.estado_des}}">  {{partido?.estado_des}} </span>
@@ -20,13 +20,14 @@
 </div>
 <hr>
       
+  <app-gestion-resultado *ngIf="partido?.finalizado"  [currentPartido]="currentPartido"></app-gestion-resultado>
   <app-gestion-jugadores *ngIf="currentPartido" [currentPartidoSubject]="currentPartidoSubject"  [currentPartido]="currentPartido" [currentUser]="currentUser"></app-gestion-jugadores>
 
   <div class="ui-g">
     <div class="ui-g-5">
         <button  *ngIf="partido?.abierto && propietarioOrAdmin" (click)="hacerparejasAleatorio()"  styleClass="panelGridCenter"   
         pButton type="button" label="Aleatoria" icon="fa fa-1x fa-steam"  iconPos="right" class="ui-button-secondary"
-        [disabled]="partido.idpartido_estado!=1">
+        [disabled]="!partido?.abierto">
          </button> 
     </div>
     <div class="ui-g-2">
@@ -34,7 +35,7 @@
     <div class="ui-g-5">
         <button  *ngIf="partido?.abierto && propietarioOrAdmin" (click)="hacerparejasPorRanking()"  styleClass="panelGridCenter"   
         pButton type="button" label="V.I.C.T.O.R." icon="fa fa-1x fa-steam"  iconPos="right"
-        [disabled]="partido.idpartido_estado!=1">
+        [disabled]="!partido?.abierto">
       </button> 
     </div>
 </div>

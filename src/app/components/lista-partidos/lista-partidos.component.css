@@ -4,13 +4,15 @@
   -webkit-box-shadow: 7px 13px 5px 0px rgba(0,0,0,1);
   -moz-box-shadow: 7px 13px 5px 0px rgba(0,0,0,1);
   box-shadow: 7px 13px 5px 0px rgba(0,0,0,1);
-  margin: 9px;
-  padding: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 4px;
+  border-radius: 20px;
+  border-color: white;
+  border-style: solid;
 }
 
-.classBoton:hover {
-  background-color: #B45F04;
-}
+
 
 .img_pp{
   width:30%;
@@ -85,8 +87,9 @@
 @media screen and (max-width: 700px) {
   /* Mobile */
   .mypanel-size-local{
-    width: 98%;
+    width: 100%;
     margin: 0 auto;
+
   }
   .botones{
     width: 95%;

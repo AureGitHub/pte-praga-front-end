@@ -2,7 +2,7 @@
 
 
 .partido_estado{
-  font-size: 16px;
+  font-size: 12px;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -26,7 +26,9 @@
   padding: 7px;
   border-radius: 10px;
 }
-
+.classBoton:hover {
+  background-color: #B45F04;
+}
 .icono-link{
   cursor: pointer;
 }
@@ -65,7 +67,7 @@
 .my-container{
   
     margin: 0 auto;
-    padding: 10px;
+    padding: 3px;
 }
 
 

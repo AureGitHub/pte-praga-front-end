@@ -1,0 +1,24 @@
+<p-card header="RESULTADOS" subheader=""   styleClass="ui-card-shadow panelGridCenter">
+    <p-header>
+    </p-header>
+    <p-table [value]="jugadoresxresultado" autoLayout ="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th></th>
+                <th>P.G.</th>                        
+                <th>P.P.</th>
+                <th>J.G.</th>
+                <th>J.P.</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-resultado>
+            <tr>
+                <td style="width: 10%;"><div>{{resultado.alias}}</div></td>
+                <td>{{resultado.pg}}</td>
+                <td>{{resultado.pp}}</td>
+                <td>{{resultado.jg}}</td>
+                <td>{{resultado.jp}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>

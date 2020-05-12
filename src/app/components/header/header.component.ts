@@ -68,23 +68,35 @@ export class HeaderComponent implements OnInit {
           visible: this.currentUser !== null && this.currentUser.isAdmin
       },
       {
+        label: 'login',
+        icon: 'pi pi-power-off', routerLink: ['/login'],
+        visible: !this.currentUser
+      },
+      {
+        label: 'Desconectar',
+        icon: 'pi pi-power-off', command: () => {
+          this.logout()
+         },
+        visible: !!this.currentUser
+      },
+      {
         label: 'registro',
         icon: 'fa fa-user-plus', routerLink: ['/registro'],
         visible: !this.currentUser
       },
-      {
-          label: 'Counters', icon: 'fa fa-fw fa-sitemap',
-          items: [
-              {
-                  label: 'Counter',
-                  icon: 'fa fa-fw fa-list-ol', routerLink: ['/counter']
-              },
-              {
-                  label: 'PrimeNG Counter',
-                  icon: 'fa fa-fw fa-list-ol', routerLink: ['/prime']
-              },
-          ]
-      }
+      // {
+      //     label: 'Counters', icon: 'fa fa-fw fa-sitemap',
+      //     items: [
+      //         {
+      //             label: 'Counter',
+      //             icon: 'fa fa-fw fa-list-ol', routerLink: ['/counter']
+      //         },
+      //         {
+      //             label: 'PrimeNG Counter',
+      //             icon: 'fa fa-fw fa-list-ol', routerLink: ['/prime']
+      //         },
+      //     ]
+      // }
   ];
   }
 

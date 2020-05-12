@@ -15,7 +15,7 @@ export class ComunMenuComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService
-  ) { 
+  ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
