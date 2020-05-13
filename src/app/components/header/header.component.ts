@@ -68,7 +68,7 @@ export class HeaderComponent implements OnInit {
           visible: this.currentUser !== null && this.currentUser.isAdmin
       },
       {
-        label: 'login',
+        label: 'Login',
         icon: 'pi pi-power-off', routerLink: ['/login'],
         visible: !this.currentUser
       },
@@ -80,7 +80,7 @@ export class HeaderComponent implements OnInit {
         visible: !!this.currentUser
       },
       {
-        label: 'registro',
+        label: 'Registro',
         icon: 'fa fa-user-plus', routerLink: ['/registro'],
         visible: !this.currentUser
       },

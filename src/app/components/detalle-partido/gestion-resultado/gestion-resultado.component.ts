@@ -16,16 +16,16 @@ export class GestionResultadoComponent implements OnInit {
     this.currentPartido.subscribe(partido => {
 
       if (partido && partido.finalizado) {
-        this.getJugadorxRanking(partido.id);
+        this.getJugadorxResultado(partido.id);
       }
 
 
     });
   }
-  getJugadorxRanking(idpartido) {
-    this.httpGralService.getDataById(apisUrl.partidoxpistaxranking, idpartido).subscribe(
-      pxp => {
-        this.jugadoresxresultado = pxp;
+  getJugadorxResultado(idpartido) {
+    this.httpGralService.getDataById(apisUrl.jugadorxresultado, idpartido).subscribe(
+      jxr => {
+        this.jugadoresxresultado = jxr;
       });
   }
 

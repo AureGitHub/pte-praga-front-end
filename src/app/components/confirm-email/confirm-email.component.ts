@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
 import { User } from 'src/app/models/user';
 
-import validator from 'validator';
+// import validator from 'validator';
 
 @Component({
   selector: 'app-confirm-email',
@@ -49,10 +49,10 @@ export class ConfirmEmailComponent implements OnInit {
   }
 
   doEnviarCodigo() {
-    if (!validator.isUUID(this.CodConfirmacion)) {
-      this.alertService.error('Código con formato incorrecto (no es un UUID)', false, 3000 );
-      return;
-    }
+    // if (!validator.isUUID(this.CodConfirmacion)) {
+    //   this.alertService.error('Código con formato incorrecto (no es un UUID)', false, 3000 );
+    //   return;
+    // }
 
     this.httpGralService.updateData(apisUrl.jugador_ConfirmarEmail, {uuid : this.CodConfirmacion})
     .subscribe(sal => {
