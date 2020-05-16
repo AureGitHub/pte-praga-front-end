@@ -67,6 +67,13 @@ export class HeaderComponent implements OnInit {
           icon: 'pi pi-users', routerLink: ['/jugadores'],
           visible: this.currentUser !== null && this.currentUser.isAdmin
       },
+
+        {
+          label: 'Ranking',
+          icon: 'fa fa-smile-o', routerLink: ['/jugadores-ranking'],
+          visible: !!this.currentUser
+      },
+
       {
         label: 'Login',
         icon: 'pi pi-power-off', routerLink: ['/login'],

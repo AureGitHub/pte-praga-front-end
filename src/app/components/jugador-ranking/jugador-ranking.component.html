@@ -1,0 +1,28 @@
+<div class="mypanel-size-local" align="center">
+<p-card header="RANKING" subheader=""   styleClass="ui-card-shadow panelGridCenter">
+    <p-header>
+    </p-header>
+    <p-table [value]="jugadoresxranking" autoLayout ="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th></th>
+                <th></th>                        
+                <th>coef.</th>
+                <th>P.</th>
+                <th>G.</th>
+                <th>Diff.J</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-resultado>
+            <tr>
+                <td>{{resultado.posicion}}</td>
+                <td style="width: 10%;"><div>{{resultado.alias}}</div></td>
+                <td>{{resultado.coeficiente}}</td>
+                <td>{{resultado.partidos}}</td>
+                <td>{{resultado.partidosg}}</td>
+                <td>{{resultado.diffjuegos}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
+</div>

@@ -37,9 +37,11 @@ export const apisUrl = {
   partidoxjugadorCreateAny: server +  `${prefix}/partidoxjugador/CreateAny`,
   partidoxpistaxjugador: server + `${prefix}/partidoxpistaxjugador`,
   partidoxpistaxjugadorParejaAleatorio : server + `${prefix}/partidoxpistaxjugador/ParejasAleatorio`,
+  partidoxpistaxjugadorParejasPorRanking : server + `${prefix}/partidoxpistaxjugador/ParejasPorRanking`,
   hacerparejas : server + '/hacerparejas',
   partidosxpistaxmarcador : server + `${prefix}/partidoxpistaxmarcador`,
   jugadorxresultado : server + `${prefix}/jugadorxresultado`,
+  jugadorxranking : server + `${prefix}/jugadorxranking`,
 };
 
 @Injectable({

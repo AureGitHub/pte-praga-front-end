@@ -43,6 +43,7 @@ import { CombosService } from './services/combos/combos.service';
 import { PasswordOlvidadaComponent } from './components/password-olvidada/password-olvidada.component';
 import { GestionPistasComponent } from './components/detalle-partido/gestion-pistas/gestion-pistas.component';
 import { GestionResultadoComponent } from './components/detalle-partido/gestion-resultado/gestion-resultado.component';
+import { JugadorRankingComponent } from './components/jugador-ranking/jugador-ranking.component';
 
 @NgModule({
     declarations: [
@@ -68,7 +69,8 @@ import { GestionResultadoComponent } from './components/detalle-partido/gestion-
         GestionJugadoresComponent,
         PasswordOlvidadaComponent,
         GestionPistasComponent,
-        GestionResultadoComponent
+        GestionResultadoComponent,
+        JugadorRankingComponent
     ],
     imports: [
         BrowserModule,

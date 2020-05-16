@@ -10,7 +10,7 @@
     </div>   
 
     <div class="ui-g-6">
-      <p-splitButton label="Acciones" icon="fa fa-1x  fa-list-alt"  [model]="items" styleClass="ui-button-secondary"></p-splitButton>
+      <p-splitButton *ngIf="propietarioOrAdmin" label="Acciones" icon="fa fa-1x  fa-list-alt"  [model]="items" styleClass="ui-button-secondary"></p-splitButton>
     </div>
     <div class="ui-g-6 centrado partido_estado">
     <span class="partido_{{partido?.estado_des}}">  {{partido?.estado_des}} </span>

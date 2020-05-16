@@ -2,8 +2,9 @@
     /* Mobile */
  
     .mypanel-size-local{
-      width: 98%;
+      width: 100%;
       margin: 0 auto;
+      font-size: 5px;
     }
   }
   

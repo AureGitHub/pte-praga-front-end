@@ -3,8 +3,9 @@
 <p-card header="JUGADORES" subheader=""  styleClass="ui-card-shadow panelGridCenter">
     <p-header>
     </p-header>
-    <div class="panelGridCenter" (click)="showDialogToAddJugador()" *ngIf="currentUser?.isAdmin &&  partido.abierto">
-        <i class="fa fa-1x fa-plus-square-o"></i> (Añadir jugador)
+  
+    <div class="panelGridCenter"  *ngIf="currentUser?.isAdmin &&  partido.abierto">
+        <span  class="classBoton"  (click)="showDialogToAddJugador()"><i class="fa fa-1x fa-plus-square-o"></i>Añadir jugador</span>
     </div>
     
     <p-tabView>
