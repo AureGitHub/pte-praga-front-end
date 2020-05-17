@@ -1,0 +1,24 @@
+<p-table [value]="jugadorxpartidos" autoLayout ="true">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Día</th>
+            <th>Par</th>                        
+            <th>P1</th>
+            <th>JP1</th>
+            <th>P2</th>
+            <th>JP2</th>
+            <th>Set</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-resultado>
+        <tr>
+            <td>{{resultado.dia}}</td>
+            <td>{{resultado.nombre}}</td>
+            <td>{{resultado.p1}}</td>
+            <td>{{resultado.jp1}}</td>
+            <td>{{resultado.p2}}</td>
+            <td>{{resultado.jp2}}</td>
+            <td>{{resultado.set}}</td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -44,6 +44,8 @@ import { PasswordOlvidadaComponent } from './components/password-olvidada/passwo
 import { GestionPistasComponent } from './components/detalle-partido/gestion-pistas/gestion-pistas.component';
 import { GestionResultadoComponent } from './components/detalle-partido/gestion-resultado/gestion-resultado.component';
 import { JugadorRankingComponent } from './components/jugador-ranking/jugador-ranking.component';
+import { DetallePartidosComponent } from './components/detalle-jugador/detalle-partidos/detalle-partidos.component';
+import { DetalleEstadisticasComponent } from './components/detalle-jugador/detalle-estadisticas/detalle-estadisticas.component';
 
 @NgModule({
     declarations: [
@@ -70,7 +72,9 @@ import { JugadorRankingComponent } from './components/jugador-ranking/jugador-ra
         PasswordOlvidadaComponent,
         GestionPistasComponent,
         GestionResultadoComponent,
-        JugadorRankingComponent
+        JugadorRankingComponent,
+        DetallePartidosComponent,
+        DetalleEstadisticasComponent
     ],
     imports: [
         BrowserModule,

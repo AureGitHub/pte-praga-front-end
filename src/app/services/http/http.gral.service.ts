@@ -21,6 +21,7 @@ export const apisUrl = {
   jugador_CambiarPasswordOlvidada : server + `${prefix}/jugador/cambiarpasswordOlvidada/public`,
   jugador_CambiarPassword : server + `${prefix}/jugador/cambiarpassword`,
   jugador: server + `${prefix}/jugador`,
+  jugadorResumenPartidos: server + `${prefix}/jugador/ResumenPartidos`,
   registro: server + '/registro',
   partido: server + `${prefix}/partido`,
   partidoCerrar : server + `${prefix}/partido/cerrar`,

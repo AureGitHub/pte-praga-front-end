@@ -1,20 +1,29 @@
 <div class="mypanel-size-local">
-    <p-panel header="Datos jugador" size="6" styleClass="mypanel-size">
-      <div class="ui-g centrado">
-      <div class="ui-g-12 ui-md-12">
-        <app-my-form (EventEmitterForm)="submit($event)" 
-        [formDataTemplate]="formDataTemplate"    
-        [urlEntidad]="urlEntidad"
-        [formButtonLabel]="'Guardar'"
-        [formButtonIcon]="'pi pi-save'">       
-        </app-my-form>
+    <p-panel header="Jugador" size="6" styleClass="mypanel-size">  
+        <p-accordion>
+          <p-accordionTab header="Tus Datos"  [selected]="true">
+           
+              <app-my-form (EventEmitterForm)="submit($event)" 
+              [formDataTemplate]="formDataTemplate"    
+              [urlEntidad]="urlEntidad"
+              [formButtonLabel]="'Guardar'"
+              [formButtonIcon]="'pi pi-save'">       
+              </app-my-form>
+              <br>
+              <div class="centrado" >
+                <span class="classBoton"  routerLink="/cambiar-password"><i class="fa fa-key fa-4 icono-link"> </i> Cambiar contraseña</span>
+             </div>
+              
+          </p-accordionTab>
+          <p-accordionTab header="Tus Partidos">
+              <app-detalle-partidos></app-detalle-partidos>
+          </p-accordionTab>
+          <p-accordionTab header="Estadísticas">
+              <app-detalle-estadisticas></app-detalle-estadisticas>
+          </p-accordionTab>
+      </p-accordion>
 
-
-        <div class="ui-g-12 ui-md-12">
-          <i routerLink="/cambiar-password"  class="fa fa-key fa-4 icono-link"> <b> Cambiar contraseña</b></i>
-        </div>
-
-      </div>
-    </div>
+     
+   
     </p-panel>
   </div>

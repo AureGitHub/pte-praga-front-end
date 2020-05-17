@@ -23,6 +23,7 @@ import {CardModule} from 'primeng/card';
 import {ListboxModule} from 'primeng/listbox';
 import {TabViewModule} from 'primeng/tabview';
 import {SplitButtonModule} from 'primeng/splitbutton';
+import {AccordionModule} from 'primeng/accordion';
 
 @NgModule({
   declarations: [],
@@ -47,7 +48,8 @@ import {SplitButtonModule} from 'primeng/splitbutton';
     CardModule,
     ListboxModule,
     TabViewModule,
-    SplitButtonModule
+    SplitButtonModule,
+    AccordionModule
 
 
   ],
@@ -72,7 +74,8 @@ import {SplitButtonModule} from 'primeng/splitbutton';
     CardModule,
     ListboxModule,
     TabViewModule,
-    SplitButtonModule
+    SplitButtonModule,
+    AccordionModule
 
 
   ]
