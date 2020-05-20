@@ -1,0 +1,14 @@
+<p-table [value]="jugadorxranking" autoLayout ="true">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Posición</th>
+            <th>Coeficiente</th>            
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-resultado>
+        <tr>                
+            <td class="centrado">{{resultado.posicion}}</td>
+            <td class="centrado">{{resultado.coeficiente}}</td>                
+        </tr>
+    </ng-template>
+</p-table>

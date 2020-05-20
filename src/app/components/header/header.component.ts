@@ -61,6 +61,11 @@ export class HeaderComponent implements OnInit {
           label: 'Partidos',
           icon: 'pi pi-home', routerLink: ['/'],
       },
+      {
+        label: this.currentUser.alias,
+        icon: 'pi pi-user', routerLink: ['/detalle-jugador'],
+        visible: !!this.currentUser
+    },
 
       {
           label: 'Jugadores',

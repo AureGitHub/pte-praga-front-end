@@ -3,13 +3,13 @@ import { HttpGralService, apisUrl } from 'src/app/services/http/http.gral.servic
 import { AuthenticationService } from 'src/app/services/http/authentication.service';
 
 @Component({
-  selector: 'app-detalle-estadisticas',
-  templateUrl: './detalle-estadisticas.component.html',
-  styleUrls: ['./detalle-estadisticas.component.css']
+  selector: 'app-detalle-ranking',
+  templateUrl: './detalle-ranking.component.html',
+  styleUrls: ['./detalle-ranking.component.css']
 })
-export class DetalleEstadisticasComponent implements OnInit {
+export class DetalleRankingComponent implements OnInit {
 
-  jugadorxestadistica: any;
+  jugadorxranking: any;
   currentUser: any;
   constructor(
     private httpGralService: HttpGralService,
@@ -23,9 +23,10 @@ export class DetalleEstadisticasComponent implements OnInit {
     this.getJugadorEstadisticas();
   }
   getJugadorEstadisticas() {
-    this.httpGralService.getDatas(apisUrl.jugadorResumenEstadisticas).subscribe(
+    this.httpGralService.getDataById(apisUrl.jugadorxranking, this.currentUser.id).subscribe(
       data => {
-        this.jugadorxestadistica = data;
+        this.jugadorxranking = [];
+        this.jugadorxranking.push(data);
       });
   }
 

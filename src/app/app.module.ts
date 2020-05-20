@@ -46,6 +46,7 @@ import { GestionResultadoComponent } from './components/detalle-partido/gestion-
 import { JugadorRankingComponent } from './components/jugador-ranking/jugador-ranking.component';
 import { DetallePartidosComponent } from './components/detalle-jugador/detalle-partidos/detalle-partidos.component';
 import { DetalleEstadisticasComponent } from './components/detalle-jugador/detalle-estadisticas/detalle-estadisticas.component';
+import { DetalleRankingComponent } from './components/detalle-jugador/detalle-ranking/detalle-ranking.component';
 
 @NgModule({
     declarations: [
@@ -74,7 +75,8 @@ import { DetalleEstadisticasComponent } from './components/detalle-jugador/detal
         GestionResultadoComponent,
         JugadorRankingComponent,
         DetallePartidosComponent,
-        DetalleEstadisticasComponent
+        DetalleEstadisticasComponent,
+        DetalleRankingComponent
     ],
     imports: [
         BrowserModule,

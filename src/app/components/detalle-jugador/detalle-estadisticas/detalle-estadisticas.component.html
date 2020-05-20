@@ -1,1 +1,72 @@
-<p>detalle-estadisticas works!</p>
+<p-card header="General">
+    <p-table [value]="jugadorxestadistica" autoLayout ="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>P</th>
+                <th>G</th>                        
+                <th>P</th>
+                <th>E</th>
+                <th>JG</th>
+                <th>JP</th>                
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-resultado>
+            <tr>
+                <td class="centrado">{{resultado.partidos}}</td>
+                <td class="centrado">{{resultado.partidog}}</td>
+                <td class="centrado">{{resultado.partidop}}</td>
+                <td class="centrado">{{resultado.partidoe}}</td>
+                <td class="centrado">{{resultado.juegosg}}</td>
+                <td class="centrado">{{resultado.juegosp}}</td>                
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
+<p-card header="Drive">
+    <p-table [value]="jugadorxestadistica" autoLayout ="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>P</th>
+                <th>G</th>                        
+                <th>P</th>
+                <th>E</th>
+                <th>JG</th>
+                <th>JP</th>                
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-resultado>
+            <tr>                
+                <td class="centrado">{{resultado.partidogd + resultado.partidopd + resultado.partidoed}}</td>
+                <td class="centrado">{{resultado.partidogd}}</td>
+                <td class="centrado">{{resultado.partidopd}}</td>
+                <td class="centrado">{{resultado.partidoed}}</td>
+                <td class="centrado">{{resultado.juegosgd}}</td>
+                <td class="centrado">{{resultado.juegospd}}</td>                
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
+<p-card header="Reves">
+    <p-table [value]="jugadorxestadistica" autoLayout ="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>P</th>
+                <th>G</th>                        
+                <th>P</th>
+                <th>E</th>
+                <th>JG</th>
+                <th>JP</th>                
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-resultado>
+            <tr>      
+                <td class="centrado">{{resultado.partidogr + resultado.partidopr + resultado.partidoer}}</td>          
+                <td class="centrado">{{resultado.partidogr}}</td>
+                <td class="centrado">{{resultado.partidopr}}</td>
+                <td class="centrado">{{resultado.partidoer}}</td>
+                <td class="centrado">{{resultado.juegosgr}}</td>
+                <td class="centrado">{{resultado.juegospr}}</td>                
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
