@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
   IniciaMenu() {
 
     const EstaConectado = this.currentUser != null;
-    const isAdmin = (this.currentUser && this.currentUser.isAdmin) != null;
+    const isAdmin = this.currentUser != null &&  this.currentUser.isAdmin;
     const alias = this.currentUser ? this.currentUser.alias : '';
 
     this.MenuItems = [

@@ -20,7 +20,7 @@ import { InterceptorService } from './services/http/interceptor.service';
 import { LoadingService } from './services/components/loading.service';
 import { LoadingComponent } from './components/layout/loading/loading.component';
 import { NgxLoadingModule } from 'ngx-loading';
-import { DatePipe } from '@angular/common';
+import { DatePipe, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { DetallePartidoComponent } from './components/detalle-partido/detalle-partido.component';
 import { NoAuthComponent } from './components/no-auth/no-auth.component';
 import { NoFoundComponent } from './components/no-found/no-found.component';
@@ -101,6 +101,7 @@ import { DetalleParejaComponent } from './components/detalle-jugador/detalle-par
             useClass: InterceptorService,
             multi: true
           },
+          {provide: LocationStrategy, useClass: HashLocationStrategy},
           DatePipe,
         AlertService,
         LoadingService,

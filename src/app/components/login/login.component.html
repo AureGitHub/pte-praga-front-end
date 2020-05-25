@@ -18,14 +18,12 @@
         [urlEntidad]="urlLogin">       
         </app-my-form>
       </div>
-
+      <div class="ui-g-12 ui-md-12">
+        <p-checkbox [(ngModel)]="selectedRecuerdame" binary="true"></p-checkbox> Recuérdame       
+      </div>
       <div class="ui-g-12 ui-md-12">
         <i [routerLink]="['/password-olvidada']" class="fa fa-key fa-4 icono-link"> <b> He olvidado mi contraseña</b></i>
       </div>
-      <div class="ui-g-12 ui-md-12">
-        <button (click)="doFake()" style="width:30%;color: red"  pButton type="button" label="Fake" icon="pi pi-star-o" ></button> 
-      </div>
-
     </div>
     </p-panel>  
   </div>

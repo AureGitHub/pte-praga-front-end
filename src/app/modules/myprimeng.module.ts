@@ -24,6 +24,7 @@ import {ListboxModule} from 'primeng/listbox';
 import {TabViewModule} from 'primeng/tabview';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {AccordionModule} from 'primeng/accordion';
+import {CheckboxModule} from 'primeng/checkbox';
 
 @NgModule({
   declarations: [],
@@ -49,7 +50,8 @@ import {AccordionModule} from 'primeng/accordion';
     ListboxModule,
     TabViewModule,
     SplitButtonModule,
-    AccordionModule
+    AccordionModule,
+    CheckboxModule
 
 
   ],
@@ -75,7 +77,8 @@ import {AccordionModule} from 'primeng/accordion';
     ListboxModule,
     TabViewModule,
     SplitButtonModule,
-    AccordionModule
+    AccordionModule,
+    CheckboxModule
 
 
   ]

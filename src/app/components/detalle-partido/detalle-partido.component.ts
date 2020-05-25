@@ -134,7 +134,7 @@ export class DetallePartidoComponent implements OnInit {
       this.currentPartidoSubject = new BehaviorSubject<any>(data);
       this.currentPartido = this.currentPartidoSubject.asObservable();
         this.partido = data;
-        this.propietarioOrAdmin = this.currentUser.isAdmin || this.currentUser.id === this.partido.idcreador;
+        this.propietarioOrAdmin = this.currentUser.isAdmin || this.currentUser.id === data.idcreador;
 
         this.setItemsButtonAtion();
         // this.currentPartidoSubject.next(data);

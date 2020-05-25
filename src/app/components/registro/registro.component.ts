@@ -30,12 +30,6 @@ export class RegistroComponent implements OnInit {
     this.SetformDataTemplate();
   }
 
-  doFake() {
-
-    this.myForm.SetFormData({alias: '666', idposicion: 1, email: 'auredeveloper@gmail.com', nombre: '111111111111111111',
-    password : 'jas11jas11', confirm_password : 'jas11jas11'});
-      }
-
   SetformDataTemplate() {
     this.combosService.getCombo('posicion').subscribe(
       data => {

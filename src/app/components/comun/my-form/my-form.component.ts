@@ -192,6 +192,10 @@ export class MyFormComponent implements OnInit {
     return this.myFormGroup.controls[controlName].dirty && this.myFormGroup.controls[controlName].hasError(errorName);
   }
 
+  public GetValue(clave){
+    return this.myFormGroup.value[clave];
+  }
+
   public SetFormData(data) {
 
 
