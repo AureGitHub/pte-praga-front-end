@@ -23,6 +23,7 @@ export const apisUrl = {
   jugador: server + `${prefix}/jugador`,
   jugadorResumenPartidos: server + `${prefix}/jugador/ResumenPartidos`,
   jugadorResumenEstadisticas: server + `${prefix}/jugador/ResumenEstadisticas`,
+  jugadorResumenParejas: server + `${prefix}/jugador/ResumenParejas`,
   registro: server + '/registro',
   partido: server + `${prefix}/partido`,
   partidoCerrar : server + `${prefix}/partido/cerrar`,

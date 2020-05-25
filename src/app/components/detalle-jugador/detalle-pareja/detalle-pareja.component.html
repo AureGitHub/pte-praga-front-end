@@ -1,0 +1,14 @@
+<p-table [value]="jugadorxpareja" autoLayout ="true">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Jugador</th>
+            <th>Veces</th>            
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-resultado>
+        <tr>                
+            <td class="centrado">{{resultado.alias}}</td>
+            <td class="centrado">{{resultado.total}}</td>                
+        </tr>
+    </ng-template>
+</p-table>

@@ -53,6 +53,11 @@ export class HeaderComponent implements OnInit {
 
 
   IniciaMenu() {
+
+    const EstaConectado = this.currentUser != null;
+    const isAdmin = (this.currentUser && this.currentUser.isAdmin) != null;
+    const alias = this.currentUser ? this.currentUser.alias : '';
+
     this.MenuItems = [
       {
 
@@ -62,39 +67,39 @@ export class HeaderComponent implements OnInit {
           icon: 'pi pi-home', routerLink: ['/'],
       },
       {
-        label: this.currentUser.alias,
+        label: alias,
         icon: 'pi pi-user', routerLink: ['/detalle-jugador'],
-        visible: !!this.currentUser
+        visible: EstaConectado
     },
 
       {
           label: 'Jugadores',
           icon: 'pi pi-users', routerLink: ['/jugadores'],
-          visible: this.currentUser !== null && this.currentUser.isAdmin
+          visible: isAdmin
       },
 
         {
           label: 'Ranking',
           icon: 'fa fa-smile-o', routerLink: ['/jugadores-ranking'],
-          visible: !!this.currentUser
+          visible: EstaConectado
       },
 
       {
         label: 'Login',
         icon: 'pi pi-power-off', routerLink: ['/login'],
-        visible: !this.currentUser
+        visible: !EstaConectado
       },
       {
         label: 'Desconectar',
         icon: 'pi pi-power-off', command: () => {
-          this.logout()
+          this.logout();
          },
-        visible: !!this.currentUser
+        visible: EstaConectado
       },
       {
         label: 'Registro',
         icon: 'fa fa-user-plus', routerLink: ['/registro'],
-        visible: !this.currentUser
+        visible: !EstaConectado
       },
       // {
       //     label: 'Counters', icon: 'fa fa-fw fa-sitemap',
