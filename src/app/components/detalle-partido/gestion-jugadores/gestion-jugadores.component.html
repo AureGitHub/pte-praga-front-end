@@ -13,14 +13,16 @@
             <p-table [value]="jugadoresSeleccionados">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>Jugador</th>
+                        <th><a (click)="OrdenaByFecha()" >Jugador</a></th>   
                         <th>Posicion</th>                        
+                        <th><a (click)="OrdenaByCoef()" >Coef</a></th>     
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-jugador>
                     <tr (click)="partido.abierto && borrarJugador(jugador)">
                         <td>{{jugador.alias}}</td>
-                        <td>{{jugador.posicion}}</td>                        
+                        <td><span class="{{jugador.posicion}}">{{jugador.posicion}}</span> </td>                        
+                        <td>{{jugador.coeficiente}}</td> 
                     </tr>
                 </ng-template>
             </p-table>

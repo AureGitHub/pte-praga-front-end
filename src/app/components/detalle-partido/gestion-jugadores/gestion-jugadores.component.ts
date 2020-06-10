@@ -99,10 +99,32 @@ export class GestionJugadoresComponent implements OnInit {
     } );
   }
 
+  porPosicion(a, b) {
+    if (a.idposicion > b.idposicion) { return 1; }
+    if (b.idposicion > a.idposicion) { return -1; }
+    return 0;
+  }
 
+  porCoef(a, b) {
+    if (parseFloat(a.coeficiente)  > parseFloat(b.coeficiente)) { return -1; }
+    if (parseFloat(a.coeficiente) > parseFloat(b.coeficiente)) { return 1; }
 
+    return 0;
+  }
 
+  porFecha(a, b) {
+    if (a.created_at > b.created_at) { return 1; }
+    if (b.created_at > a.created_at) { return -1; }
+    return 0;
+  }
 
-
+  OrdenaByCoef() {
+    this.jugadoresSeleccionados.sort(this.porCoef);
+    this.jugadoresSeleccionados.sort(this.porPosicion);
+  }
+  OrdenaByFecha() {
+    this.jugadoresSeleccionados.sort(this.porFecha);
+    
+  }
 
 }
