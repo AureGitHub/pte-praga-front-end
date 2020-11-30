@@ -15,7 +15,7 @@ import { JugadoresComponent } from './components/jugadores/jugadores.component';
 import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-jugador.component';
 import { PasswordOlvidadaComponent } from './components/password-olvidada/password-olvidada.component';
 import { JugadorRankingComponent } from './components/jugador-ranking/jugador-ranking.component';
-
+import { ManualPartidoComponent } from './components/manual-partido/manual-partido.component';
 
 const routes: Routes = [
   { path: '', component: ListaPartidosComponent },
@@ -32,6 +32,7 @@ const routes: Routes = [
   { path: 'not-found', component: NoFoundComponent },
   { path: 'session-expired', component: SessionExpiredComponent },
   { path: 'jugadores-ranking', component: JugadorRankingComponent, canActivate: [EstadoGuard] },
+  { path: 'manual-partido', component: ManualPartidoComponent, canActivate: [EstadoGuard] },
   { path: '**', redirectTo: 'not-found' },
   // {
   //   path: 'heroes',

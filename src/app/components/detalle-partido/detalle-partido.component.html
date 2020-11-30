@@ -1,22 +1,15 @@
 <div class="ui-fluid mypanel-size-local">
 
-  <div class="ui-g" *ngIf="currentUser && partido">
-    <div class="ui-g-12"><i class="pi pi-calendar"></i> Día: <b>{{partido.dia}}</b></div>
-    <div class="ui-g-6"> <i class="pi pi-clock"></i> Tiempo: <b>{{partido.duracion}}</b></div>
-    <div class="ui-g-6"> <i class="pi pi-clock"></i> Turnos: <b>{{partido.turnos}}</b></div>
-    <div class="ui-g-6"><i class="fa verde fa-square"></i> Pistas: <b>{{partido.pistas}}</b></div>
-    <div class="ui-g-6"><i class="pi pi-users"></i> Apuntados:
-        <b>{{partido.jugadoresapuntados}}/{{partido.jugadorestotal}}</b>      
-    </div>   
 
-    <div class="ui-g-6">
-      <p-splitButton *ngIf="propietarioOrAdmin" label="Acciones" icon="fa fa-1x  fa-list-alt"  [model]="items" styleClass="ui-button-secondary"></p-splitButton>
-    </div>
-    <div class="ui-g-6 centrado partido_estado">
-    <span class="partido_{{partido?.estado_des}}">  {{partido?.estado_des}} </span>
-    </div>
-    
-    
+  <app-ver-datos-partido [currentPartido]=partido  [currentUser]=currentUser></app-ver-datos-partido>
+
+<div class="ui-g" *ngIf="currentUser && partido">
+  <div class="ui-g-6">
+    <p-splitButton *ngIf="propietarioOrAdmin" label="Acciones" icon="fa fa-1x  fa-list-alt"  [model]="items" styleClass="ui-button-secondary"></p-splitButton>
+  </div>
+  <div class="ui-g-6 centrado partido_estado">
+  <span class="partido_{{partido?.estado_des}}">  {{partido?.estado_des}} </span>
+  </div>
 </div>
 <hr>
       
@@ -24,20 +17,29 @@
   <app-gestion-jugadores *ngIf="currentPartido" [currentPartidoSubject]="currentPartidoSubject"  [currentPartido]="currentPartido" [currentUser]="currentUser"></app-gestion-jugadores>
 
   <div class="ui-g">
-    <div class="ui-g-5">
+    <div class="ui-g-3">
         <button  *ngIf="partido?.abierto && propietarioOrAdmin" (click)="hacerparejasAleatorio()"  styleClass="panelGridCenter"   
         pButton type="button" label="Aleatoria" icon="fa fa-1x fa-steam"  iconPos="right" class="ui-button-secondary"
         [disabled]="!partido?.abierto">
          </button> 
     </div>
-    <div class="ui-g-2">
+    <div class="ui-g-1">
     </div>
-    <div class="ui-g-5">
-        <button  *ngIf="partido?.abierto && propietarioOrAdmin" (click)="hacerparejasPorRanking()"  styleClass="panelGridCenter"   
+    <div class="ui-g-4">
+        <button  *ngIf="partido?.abierto && propietarioOrAdmin" (click)="hacerparejasPorRanking()"   styleClass="panelGridCenter"   
         pButton type="button" label="V.I.C.T.O.R." icon="fa fa-1x fa-steam"  iconPos="right"
         [disabled]="!partido?.abierto">
       </button> 
     </div>
+    <div class="ui-g-1">
+    </div>
+    <div class="ui-g-3">
+      <button  *ngIf="partido?.abierto && propietarioOrAdmin"  [routerLink]="['/manual-partido', partido.id, 'details']" styleClass="panelGridCenter"   
+      pButton type="button" label="Manual" icon="fa fa-1x fa-steam"  iconPos="right"
+      [disabled]="!partido?.abierto">
+    </button> 
+  </div>
+
 </div>
 
   <app-gestion-pistas *ngIf="currentPartido"  [currentPartido]="currentPartido"></app-gestion-pistas>

@@ -48,6 +48,8 @@ import { DetallePartidosComponent } from './components/detalle-jugador/detalle-p
 import { DetalleEstadisticasComponent } from './components/detalle-jugador/detalle-estadisticas/detalle-estadisticas.component';
 import { DetalleRankingComponent } from './components/detalle-jugador/detalle-ranking/detalle-ranking.component';
 import { DetalleParejaComponent } from './components/detalle-jugador/detalle-pareja/detalle-pareja.component';
+import { ManualPartidoComponent } from './components/manual-partido/manual-partido.component';
+import { VerDatosPartidoComponent } from './components/ver-datos-partido/ver-datos-partido.component';
 
 @NgModule({
     declarations: [
@@ -78,7 +80,9 @@ import { DetalleParejaComponent } from './components/detalle-jugador/detalle-par
         DetallePartidosComponent,
         DetalleEstadisticasComponent,
         DetalleRankingComponent,
-        DetalleParejaComponent
+        DetalleParejaComponent,
+        ManualPartidoComponent,
+        VerDatosPartidoComponent
     ],
     imports: [
         BrowserModule,
