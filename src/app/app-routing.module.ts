@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'not-found', component: NoFoundComponent },
   { path: 'session-expired', component: SessionExpiredComponent },
   { path: 'jugadores-ranking', component: JugadorRankingComponent, canActivate: [EstadoGuard] },
-  { path: 'manual-partido', component: ManualPartidoComponent, canActivate: [EstadoGuard] },
+  { path: 'manual-partido/:id', component: ManualPartidoComponent, canActivate: [EstadoGuard] },
   { path: '**', redirectTo: 'not-found' },
   // {
   //   path: 'heroes',

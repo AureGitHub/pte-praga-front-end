@@ -1,0 +1,21 @@
+.divItem{    
+    border-radius: 40px;
+    border-color: white;
+    border-style: solid;
+    text-align: center;
+    margin-bottom: 10px;  
+    margin-top: 10px;
+  }
+
+  .drive{
+    background-color:brown;
+}
+
+.reves{
+    background-color:darkslateblue;
+}
+
+.divParejas{
+    background-color:red;
+    height: 400px;
+}

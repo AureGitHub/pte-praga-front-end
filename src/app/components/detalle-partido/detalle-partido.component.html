@@ -19,7 +19,7 @@
   <div class="ui-g">
     <div class="ui-g-3">
         <button  *ngIf="partido?.abierto && propietarioOrAdmin" (click)="hacerparejasAleatorio()"  styleClass="panelGridCenter"   
-        pButton type="button" label="Aleatoria" icon="fa fa-1x fa-steam"  iconPos="right" class="ui-button-secondary"
+        pButton type="button" label="Aleatoria"  class="ui-button-secondary"
         [disabled]="!partido?.abierto">
          </button> 
     </div>
@@ -27,16 +27,14 @@
     </div>
     <div class="ui-g-4">
         <button  *ngIf="partido?.abierto && propietarioOrAdmin" (click)="hacerparejasPorRanking()"   styleClass="panelGridCenter"   
-        pButton type="button" label="V.I.C.T.O.R." icon="fa fa-1x fa-steam"  iconPos="right"
-        [disabled]="!partido?.abierto">
+        pButton type="button" label="V.I.C.T.O.R."  [disabled]="!partido?.abierto">
       </button> 
     </div>
     <div class="ui-g-1">
     </div>
     <div class="ui-g-3">
-      <button  *ngIf="partido?.abierto && propietarioOrAdmin"  [routerLink]="['/manual-partido', partido.id, 'details']" styleClass="panelGridCenter"   
-      pButton type="button" label="Manual" icon="fa fa-1x fa-steam"  iconPos="right"
-      [disabled]="!partido?.abierto">
+      <button  *ngIf="partido?.abierto && propietarioOrAdmin" [routerLink]="['/manual-partido', partido.id]"   styleClass="panelGridCenter"   
+      pButton type="button" label="Manual"   [disabled]="!partido?.abierto">
     </button> 
   </div>
 

@@ -25,6 +25,7 @@ import {TabViewModule} from 'primeng/tabview';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {AccordionModule} from 'primeng/accordion';
 import {CheckboxModule} from 'primeng/checkbox';
+import {DragDropModule} from 'primeng/dragdrop';
 
 @NgModule({
   declarations: [],
@@ -51,7 +52,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     TabViewModule,
     SplitButtonModule,
     AccordionModule,
-    CheckboxModule
+    CheckboxModule,
+    DragDropModule
 
 
   ],
@@ -78,7 +80,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     TabViewModule,
     SplitButtonModule,
     AccordionModule,
-    CheckboxModule
+    CheckboxModule,
+    DragDropModule
 
 
   ]

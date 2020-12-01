@@ -1,3 +1,56 @@
 <div class="ui-fluid mypanel-size-local">
     <app-ver-datos-partido [currentPartido]=partido  [currentUser]=currentUser></app-ver-datos-partido>
 </div>
+
+<div class="ui-g">
+<div class="ui-g-12 derecha" *ngIf="partido">
+    <span class="classBoton"  [routerLink]="['/detalle-partido', partido.id]"><i class="fa fa-eye"> </i> Ir al partido</span>
+ </div>
+</div>
+
+<!-- "primeng": "^9.0.0-rc.1", -->
+ <div class="ui-g">
+    <div class="ui-g-3">
+            <div *ngFor="let jugador of jugadores">
+                <div class="divItem {{jugador.posicion}}" pDraggable="products" (onDragStart)="dragStart(jugador)" (onDragEnd)="dragEnd()">
+                        {{jugador.alias}} 
+                </div>
+            </div>
+            <!-- <div class="p-col-12 p-md-6 drop-column" pDroppable="products" (onDrop)="drop()">
+            <p-table [value]="selectedProducts">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>ID</th>
+                        <th>Category</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                            <td>{{product.id}}</td>
+                            <td>{{product.category}}</td>
+                            <td>{{product.name}}</td>
+                            <td>{{product.price}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div> -->
+      
+    </div>
+
+    <div  class="ui-g-9">
+        <div class="divParejas" pDroppable="products" (onDrop)="drop()">
+
+            <div *ngFor="let jugador of jugadoresSelect">
+                <div class="divItem {{jugador.posicion}}">
+                        {{jugador.alias}} 
+                </div>
+            </div>
+
+        </div>
+    </div>
+ </div>
+   
+
+ 
