@@ -5,6 +5,7 @@
     text-align: center;
     margin-bottom: 10px;  
     margin-top: 10px;
+    font-weight: bold;
   }
 
   .drive{
@@ -18,4 +19,27 @@
 .divParejas{
     background-color:red;
     height: 400px;
+}
+
+.divFondoJugadores{
+    background-color:gray;
+    margin: 5px;
+    padding: 10px;
+}
+
+.divDestinoParejas{
+    border-color: white;
+    border-style: solid;
+}
+
+.turno{
+    
+    border-color: white;
+    border-style: solid;
+    margin: 5px;
+    padding: 10px;
+}
+.turnoStyle{
+    font-size: 25px;
+    text-align:center;
 }

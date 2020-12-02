@@ -16,9 +16,13 @@ export class ManualPartidoComponent implements OnInit {
   partido: Partido = null;
   idpartido: any;
   draggedJugador: any;
+  draggedJugadorDeselect: any;
 
   jugadores = [] as  any;
-  jugadoresSelect = [] as  any;
+
+  parejas = [] as  any;
+
+  partidosxturnos = [] as  any;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -31,6 +35,24 @@ export class ManualPartidoComponent implements OnInit {
   ngOnInit() {
     this.idpartido = this.route.snapshot.paramMap.get('id');
     this.getPartido();
+
+  }
+
+  SetListasPartido() {
+    const totalParejas = this.partido.pistas * 2;
+    for (let i = 1;  i <= totalParejas; i++) {
+      this.parejas.push({id: i});
+    }
+
+
+    for (let turno = 1;  turno <= this.partido.turnos; turno++) {
+      const pistas = [];
+      for (let pista = 1;  pista <= this.partido.pistas; pista++) {
+        pistas.push({id: pista});
+      }
+      this.partidosxturnos.push({turno, pistas});
+
+    }
   }
 
   getPartido() {
@@ -39,6 +61,7 @@ export class ManualPartidoComponent implements OnInit {
       data => {
         this.partido = data;
         this.getJugadores();
+        this.SetListasPartido();
       });
 
   }
@@ -58,19 +81,54 @@ export class ManualPartidoComponent implements OnInit {
       );
   }
 
-  dragStart(jugador) {
+  dragStartJugadores(jugador) {
     this.draggedJugador = jugador;
   }
-  dragEnd(event) {
+  dragEndJugadores(event) {
     this.draggedJugador = null;
   }
 
-  drop(event) {
+  dropParejas(id, posicion) {
     if (this.draggedJugador) {
-        this.jugadoresSelect.push(this.draggedJugador);
+        let pareja = this.parejas.find(a => a.id === id);
+        if(pareja[posicion]){
+          // si ya existe, lo mando a la lista de jugadores
+          this.jugadores.push(pareja[posicion]);
+        }
+        pareja[posicion] = this.draggedJugador;
         this.jugadores = this.jugadores.filter(jug => jug['alias'] != this.draggedJugador.alias);
-        this.draggedProduct = null;
+        this.draggedJugador = null;
+    }
+    if (this.draggedJugadorDeselect) {
+       // de una pareja a otra
+      // el que estoy moviendo
+      let parejaMoving = this.parejas.find(a => a.id === this.draggedJugadorDeselect['id']); // el que ocupa el destino
+      const JugadorMovido = parejaMoving[this.draggedJugadorDeselect['posicion']];
+      parejaMoving[this.draggedJugadorDeselect['posicion']] = null;
+      // el que ocupa el destino
+      let parejaDestino = this.parejas.find(a => a.id === id); 
+      if (parejaDestino) {
+        // el destino está ocupado. Paso el que estaba al origen
+        parejaMoving[this.draggedJugadorDeselect['posicion']]  = parejaDestino[posicion];
+      }
+      parejaDestino[posicion] = JugadorMovido;
+
     }
   }
 
+  dropJugadores(event) {
+    if (this.draggedJugadorDeselect) {
+      let pareja = this.parejas.find(a => a.id === this.draggedJugadorDeselect['id']);
+      this.jugadores.push(pareja[this.draggedJugadorDeselect['posicion']]);
+      pareja[this.draggedJugadorDeselect['posicion']] = null;
+      this.draggedJugadorDeselect = null;
+    }
+  }
+
+  dragStartPareja(id, posicion) {
+    this.draggedJugadorDeselect = {id, posicion};
+  }
+  dragEndPareja(){
+    this.draggedJugadorDeselect = null;
+  }
 }
