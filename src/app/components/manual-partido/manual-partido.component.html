@@ -108,8 +108,10 @@ showEffect="fade"
        
         <ng-template pTemplate="body" let-pareja>
             <tr>                
+                <td class="centrado">P{{pareja.id}}</td>
                 <td class="centrado">{{pareja['reves']?.alias}}-{{pareja['reves']?.alias}}</td>
             </tr>
+          
         </ng-template>
     </p-table>
 </div>
