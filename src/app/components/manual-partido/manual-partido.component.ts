@@ -18,11 +18,14 @@ export class ManualPartidoComponent implements OnInit {
   draggedJugador: any;
   draggedJugadorDeselect: any;
 
+  displayDialogSelectPareja = false;
+
   jugadores = [] as  any;
+
+  lstpartidoxpistaxjugador = [] as  any;
 
   parejas = [] as  any;
 
-  partidosxturnos = [] as  any;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -50,7 +53,7 @@ export class ManualPartidoComponent implements OnInit {
       for (let pista = 1;  pista <= this.partido.pistas; pista++) {
         pistas.push({id: pista});
       }
-      this.partidosxturnos.push({turno, pistas});
+      this.lstpartidoxpistaxjugador.push({turno, pistas});
 
     }
   }
@@ -130,5 +133,9 @@ export class ManualPartidoComponent implements OnInit {
   }
   dragEndPareja(){
     this.draggedJugadorDeselect = null;
+  }
+
+  showSelectPareja(turno, pista, pareja){
+    this.displayDialogSelectPareja = true;
   }
 }

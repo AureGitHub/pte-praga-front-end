@@ -43,3 +43,8 @@
     font-size: 25px;
     text-align:center;
 }
+
+.pistaStyle{
+    border-color: white;
+    border-style: groove;
+}

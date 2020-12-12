@@ -48,24 +48,32 @@
    
 
  <div *ngIf="partido">
-    <div *ngFor="let parxturn of partidosxturnos">
+    <div *ngFor="let parxturn of lstpartidoxpistaxjugador">  
         <div class="ui-g turno" >
             <div class="ui-g-12 turnoStyle ">
                 Turno {{parxturn.turno}}
             </div>
 
             <div class="ui-g-12">
-                <div *ngFor="let pista of parxturn.pistas">
+                <div class="pistaStyle" *ngFor="let pista of parxturn.pistas">
                     <div class="ui-g">
                         <div class="ui-g-2">
                             P {{pista.id}}
                         </div>
-                        <div class="ui-g-5">
-                            Pista {{pista.id}}
+                        <div class="ui-g-1">
+                            <button type="button" (click)="showSelectPareja(parxturn.turno,pista.id,1)" pButton icon="pi pi-info-circle" label=""></button>                            
+                        </div>
+                        <div class="ui-g-4">
+                            
                         </div>
 
-                        <div class="ui-g-5">
-                            Pista {{pista.id}}
+                        <div class="ui-g-1">
+                            <button type="button" (click)="showSelectPareja(parxturn.turno,pista.id,2)" pButton icon="pi pi-info-circle" label=""></button>
+                            
+                        </div>
+                        <div class="ui-g-4">
+                            
+                            
                         </div>
 
                     </div>
@@ -84,3 +92,25 @@
         </div>
     </div>
  </div>
+
+
+ <p-dialog
+header="Selecciona pareja " 
+[(visible)]="displayDialogSelectPareja"
+[responsive]="true"
+showEffect="fade"
+[modal]="false"
+[resizable]="false"        
+[style]="{'max-width': '300px'}">
+
+<div class="ui-fluid">
+    <p-table [value]="parejas" autoLayout ="true">
+       
+        <ng-template pTemplate="body" let-pareja>
+            <tr>                
+                <td class="centrado">{{pareja['reves']?.alias}}-{{pareja['reves']?.alias}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+  </p-dialog>
